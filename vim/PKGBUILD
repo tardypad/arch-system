@@ -19,23 +19,14 @@ license=('custom:vim')
 makedepends=('glibc' 'libgcrypt' 'gpm' 'python2' 'python' 'libxt' 'lua'
              'gawk' 'pcre' 'zlib' 'libffi')
 source=(vim-${pkgver}.tar.gz::https://github.com/vim/vim/archive/v${pkgver}.tar.gz
-        vimrc
-        archlinux.vim
         vimdoc.hook)
 sha256sums=('d0818df5c6da23db725aa68067c90c80f0779c2e3446811bd1389b1ac2c2df86'
-            'b16e85e457397ab2043a7ee0a3c84307c6b4eac157fd0b721694761f25b3ed5b'
-            '8aa90a9723dc1540546645969a53b67102821775a7c11297dc47e931d469a476'
             '7095cafac21df7aa42749d6864d1c0549fe65771d8edda3102c931c60782b6b9')
 sha512sums=('f6d3af209018ea70c5f87f4b4cc9f8c9daaabd7925ad33a381b20cd744dd7d8e43540f5b0174cd1b01c104a71e3bb6116c585de09c7e5e670a02d93866591541'
-            '4b5bed0813f22af9e158ea9aa56a4a9862dd786ba2d201f20159ccf652da6190164aaed0b6b7217d578f7b25c33a8adcc307bfcf3caa8d173a7ff29e2a00fee7'
-            'b0a54ef95f955db4a4183ef7643f3c94474009842c791e79903ff97eda8296dacdc3841356c33001fda7054738aa3ddb3fbf680d39b98484cddbceb4618fe98b'
             '1e06e981691b17662fd0fddac5c00c87c920d1b4a1cbb6191c42d57cc40b00af12710e26b22fcfc0901bb8142b15f6a04aa65cec2d9b3bb9d5a06cb650d3ab9c')
 
 prepare() {
   (cd vim-${pkgver}/src
-    # define the place for the global (g)vimrc file (set to /etc/vimrc)
-    sed -i 's|^.*\(#define SYS_.*VIMRC_FILE.*"\) .*$|\1|' feature.h
-    sed -i 's|^.*\(#define VIMRC_FILE.*"\) .*$|\1|' feature.h
     autoconf
   )
 }
@@ -73,7 +64,6 @@ package_vim-runtime() {
   optdepends=('sh: support for some tools and macros'
               'python: demoserver example tool'
               'gawk: mve tools upport')
-  backup=('etc/vimrc')
 
   cd vim-${pkgver}
 
@@ -94,11 +84,6 @@ package_vim-runtime() {
     "${pkgdir}"/usr/share/vim/vim${_versiondir}/filetype.vim
   sed -i "/find the end/,+3{s/changelog_date_entry_search/changelog_date_end_entry_search/}" \
     "${pkgdir}"/usr/share/vim/vim${_versiondir}/ftplugin/changelog.vim
-
-  # rc files
-  install -Dm 644 "${srcdir}"/vimrc "${pkgdir}"/etc/vimrc
-  install -Dm 644 "${srcdir}"/archlinux.vim \
-    "${pkgdir}"/usr/share/vim/vimfiles/archlinux.vim
 
   # rgb.txt file
   install -Dm 644 runtime/rgb.txt \
