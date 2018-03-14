@@ -41,11 +41,12 @@ build() {
       --with-compiledby='Arch Linux' \
       --enable-gpm \
       --enable-acl \
-      --with-x=no \
+      --with-x=yes \
       --disable-gui \
       --enable-multibyte \
       --enable-cscope \
-      --enable-netbeans \
+      --disable-netbeans \
+      --enable-autoservername \
       --enable-perlinterp=dynamic \
       --enable-pythoninterp=dynamic \
       --enable-python3interp=dynamic \
