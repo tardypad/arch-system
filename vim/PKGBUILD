@@ -8,7 +8,10 @@
 # Contributor: Eli Schwartz
 
 pkgbase=vim
-pkgname=('vim' 'vim-runtime')
+pkgname=(
+  'vim'
+  'vim-runtime'
+)
 pkgver=8.0.1542
 _versiondir=80
 pkgrel=3
@@ -16,14 +19,31 @@ pkgdesc='Vi Improved, a highly configurable, improved version of the vi text edi
 url='http://www.vim.org'
 arch=('x86_64')
 license=('custom:vim')
-makedepends=('glibc' 'libgcrypt' 'gpm' 'python2' 'python' 'libxt' 'lua'
-             'gawk' 'pcre' 'zlib' 'libffi')
-source=(vim-${pkgver}.tar.gz::https://github.com/vim/vim/archive/v${pkgver}.tar.gz
-        vimdoc.hook)
-sha256sums=('d0818df5c6da23db725aa68067c90c80f0779c2e3446811bd1389b1ac2c2df86'
-            '7095cafac21df7aa42749d6864d1c0549fe65771d8edda3102c931c60782b6b9')
-sha512sums=('f6d3af209018ea70c5f87f4b4cc9f8c9daaabd7925ad33a381b20cd744dd7d8e43540f5b0174cd1b01c104a71e3bb6116c585de09c7e5e670a02d93866591541'
-            '1e06e981691b17662fd0fddac5c00c87c920d1b4a1cbb6191c42d57cc40b00af12710e26b22fcfc0901bb8142b15f6a04aa65cec2d9b3bb9d5a06cb650d3ab9c')
+makedepends=(
+  'glibc'
+  'libgcrypt'
+  'gpm'
+  'python2'
+  'python'
+  'libxt'
+  'lua'
+  'gawk'
+  'pcre'
+  'zlib'
+  'libffi'
+)
+source=(
+  vim-${pkgver}.tar.gz::https://github.com/vim/vim/archive/v${pkgver}.tar.gz
+  vimdoc.hook
+)
+sha256sums=(
+  'd0818df5c6da23db725aa68067c90c80f0779c2e3446811bd1389b1ac2c2df86'
+  '7095cafac21df7aa42749d6864d1c0549fe65771d8edda3102c931c60782b6b9'
+)
+sha512sums=(
+  'f6d3af209018ea70c5f87f4b4cc9f8c9daaabd7925ad33a381b20cd744dd7d8e43540f5b0174cd1b01c104a71e3bb6116c585de09c7e5e670a02d93866591541'
+  '1e06e981691b17662fd0fddac5c00c87c920d1b4a1cbb6191c42d57cc40b00af12710e26b22fcfc0901bb8142b15f6a04aa65cec2d9b3bb9d5a06cb650d3ab9c'
+)
 
 prepare() {
   (cd vim-${pkgver}/src
@@ -61,9 +81,11 @@ check() {
 
 package_vim-runtime() {
   pkgdesc+=' (shared runtime)'
-  optdepends=('sh: support for some tools and macros'
-              'python: demoserver example tool'
-              'gawk: mve tools upport')
+  optdepends=(
+    'sh: support for some tools and macros'
+    'python: demoserver example tool'
+    'gawk: mve tools upport'
+  )
 
   cd vim-${pkgver}
 
@@ -102,17 +124,38 @@ package_vim-runtime() {
 }
 
 package_vim() {
-  depends=("vim-runtime=${pkgver}-${pkgrel}" 'gpm' 'acl' 'glibc' 'libgcrypt' 'pcre'
-           'zlib' 'libffi')
-  optdepends=('python2: Python 2 language support'
-              'python: Python 3 language support'
-              'ruby: Ruby language support'
-              'lua: Lua language support'
-              'perl: Perl language support'
-              'tcl: Tcl language support')
-  conflicts=('gvim' 'vim-minimal' 'vim-python3')
-  provides=('xxd' 'vim-minimal' 'vim-python3')
-  replaces=('vim-python3' 'vim-minimal')
+  depends=(
+    "vim-runtime=${pkgver}-${pkgrel}"
+    'gpm'
+    'acl'
+    'glibc'
+    'libgcrypt'
+    'pcre'
+    'zlib'
+    'libffi'
+  )
+  optdepends=(
+    'python2: Python 2 language support'
+    'python: Python 3 language support'
+    'ruby: Ruby language support'
+    'lua: Lua language support'
+    'perl: Perl language support'
+    'tcl: Tcl language support'
+  )
+  conflicts=(
+    'gvim'
+    'vim-minimal'
+    'vim-python3'
+  )
+  provides=(
+    'xxd'
+    'vim-minimal'
+    'vim-python3'
+  )
+  replaces=(
+    'vim-python3'
+    'vim-minimal'
+  )
 
   cd vim-${pkgver}
   make -j1 VIMRCLOC=/etc DESTDIR="${pkgdir}" install
