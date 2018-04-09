@@ -1,0 +1,15 @@
+pkgname=system-config
+pkgver=0.1.0
+pkgrel=1
+pkgdesc='System configurations'
+arch=('any')
+url='https://github.com/tardypad'
+license=('custom')
+
+source=('etc-issue')
+
+sha256sums=('782b4e03e23d24e0c683e85b085aa55be72b094e561d57fbc61ad1fb5deffc93')
+
+package() {
+  install -Dm0644 etc-issue "$pkgdir"/etc/issue
+}
