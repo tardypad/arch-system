@@ -1,15 +1,18 @@
 pkgname=system-config
-pkgver=0.1.0
+pkgver=0.2.0
 pkgrel=1
 pkgdesc='System configurations'
 arch=('any')
 url='https://github.com/tardypad'
 license=('custom')
 
-source=('etc-issue')
+source=('etc-issue'
+        'etc-vconsole.conf')
 
-sha256sums=('782b4e03e23d24e0c683e85b085aa55be72b094e561d57fbc61ad1fb5deffc93')
+sha256sums=('782b4e03e23d24e0c683e85b085aa55be72b094e561d57fbc61ad1fb5deffc93'
+            'bf960c7f077aa1c4676d83d79b444fd77ae4b7483a703bdd6af88d94993633df')
 
 package() {
   install -Dm0644 etc-issue "$pkgdir"/etc/issue
+  install -Dm0644 etc-vconsole.conf "$pkgdir"/etc/vconsole.conf
 }
