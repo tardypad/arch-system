@@ -1,0 +1,10 @@
+post_install() {
+    if ! id damien &> /dev/null; then
+      useradd --create-home --groups wheel --shell /bin/zsh damien
+      echo ':: User damien created'
+      echo '   do not forget to change its password'
+    else
+      usermod --append --groups wheel damien
+      chsh --shell /bin/zsh damien &> /dev/null
+    fi
+}

@@ -1,13 +1,16 @@
 pkgname=system-config
-pkgver=0.3.1
+pkgver=0.4.0
 pkgrel=1
 pkgdesc='System configurations'
 url='https://github.com/tardypad'
 arch=('any')
 license=('custom')
 
+install=system-config.install
+
 depends=(
   'sudo'
+  'zsh'
 )
 
 source=(
