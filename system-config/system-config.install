@@ -7,4 +7,6 @@ post_install() {
       usermod --append --groups wheel damien
       chsh --shell /bin/zsh damien &> /dev/null
     fi
+
+    chsh --shell /bin/zsh root &> /dev/null
 }
