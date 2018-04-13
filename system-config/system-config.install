@@ -1,4 +1,4 @@
-post_install() {
+pre_install() {
     if ! id damien &> /dev/null; then
       useradd --create-home --groups wheel --shell /bin/zsh damien
       echo ':: User damien created'
@@ -9,7 +9,9 @@ post_install() {
     fi
 
     chsh --shell /bin/zsh root
+}
 
+post_install() {
     # TLP services units config as defined in its doc
     systemctl enable tlp.service
     systemctl enable tlp-sleep.service

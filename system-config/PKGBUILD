@@ -1,6 +1,6 @@
 pkgname=system-config
-pkgver=0.8.1
-pkgrel=2
+pkgver=0.8.2
+pkgrel=1
 pkgdesc='System configurations'
 url='https://github.com/tardypad'
 arch=('any')
@@ -49,4 +49,5 @@ package() {
   install -Dm0644 etc-locale "$pkgdir"/etc/locale.conf
   install -Dm0644 etc-sway-security-commands "$pkgdir"/etc/sway/security.d/01-commands
   install -Dm0644 etc-tlp-default "$pkgdir"/etc/default/tlp
+  install -Dm0644 -o damien -g damien /dev/null "$pkgdir"/var/log/sway.log
 }
