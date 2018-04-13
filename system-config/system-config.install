@@ -5,10 +5,10 @@ post_install() {
       echo '   do not forget to change its password'
     else
       usermod --append --groups wheel damien
-      chsh --shell /bin/zsh damien &> /dev/null
+      chsh --shell /bin/zsh damien
     fi
 
-    chsh --shell /bin/zsh root &> /dev/null
+    chsh --shell /bin/zsh root
 
     # TLP services units config as defined in its doc
     systemctl enable tlp.service
