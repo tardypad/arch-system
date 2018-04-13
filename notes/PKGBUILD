@@ -1,6 +1,6 @@
-pkgname=notes
+pkgname=notes-git
 pkgver=0.4.2
-pkgrel=2
+pkgrel=3
 pkgdesc="Simple delightful note taking, with more unix and less lock-in."
 arch=('any')
 url="https://github.com/pimterry/notes"
@@ -8,6 +8,9 @@ license=('MIT')
 
 depends=(
   'bash'
+)
+provides=(
+  'notes'
 )
 
 source=(
@@ -19,7 +22,7 @@ sha512sums=(
 )
 
 package() {
-  cd "$srcdir/$pkgname-$pkgver"
+  cd "$srcdir/notes-$pkgver"
   install -d "$pkgdir/usr/share/bash-completion/completions"
   make \
     PREFIX="$pkgdir/usr/" \
