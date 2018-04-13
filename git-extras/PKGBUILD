@@ -1,6 +1,6 @@
 pkgname=git-extras
 pkgver=4.5.0
-pkgrel=1
+pkgrel=2
 pkgdesc="GIT utilities -- repo summary, commit counting, repl, changelog population and more"
 arch=('any')
 url="https://github.com/tj/${pkgname}"
@@ -23,4 +23,10 @@ package() {
   cd "$srcdir/$pkgname-$pkgver"
   make DESTDIR="$pkgdir" PREFIX=/usr SYSCONFDIR=/etc install
   install -Dm644 LICENSE "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
+
+  # move bash completion to standard folder
+  rm -rf "$pkgdir/etc/bash_completion.d"
+  install -Dm0644 "etc/bash_completion.sh" "$pkgdir/usr/share/bash-completion/completions/git-extras"
+
+  install -Dm0644 "etc/git-extras-completion.zsh" "$pkgdir/usr/share/zsh/site-functions/git-extras-completion.zsh"
 }
