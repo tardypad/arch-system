@@ -5,5 +5,5 @@
 [AUR packages](https://aur.archlinux.org/packages/)
 
 # Personal packages
-[Earnestly packages](https://github.com/Earnestly/pkgbuilds)
-[Jason Antman packages](https://github.com/jantman/arch-pkgbuilds)
+- [Earnestly packages](https://github.com/Earnestly/pkgbuilds)
+- [Jason Antman packages](https://github.com/jantman/arch-pkgbuilds)
