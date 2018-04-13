@@ -1,5 +1,5 @@
 pkgname=system-config
-pkgver=0.4.1
+pkgver=0.5.0
 pkgrel=1
 pkgdesc='System configurations'
 url='https://github.com/tardypad'
@@ -11,6 +11,7 @@ install=system-config.install
 depends=(
   'sudo'
   'zsh'
+  'networkmanager'
 )
 
 source=(
@@ -18,6 +19,7 @@ source=(
   'etc-vconsole.conf'
   'etc-sudoers.d-users'
   'etc-sudoers.d-defaults'
+  'etc-networkmanager-mac-randomization.conf'
 )
 
 sha512sums=(
@@ -25,6 +27,7 @@ sha512sums=(
   'd28cbce8506ef3990f9e4f36df3ede2e670e48aad027ca2835d8596bf4d5be3854964ce52cbf1c4da16e0e1e3431cd5c2a1076a82ef2d5b9479a588dc858f731'
   'aa5eccb42a650ebd169ae3d8f52f620a45b7d88a4c918af62aa9fd0092e1f39d1f19c4f75aa487feddd45a5348e540a6ed4df20e05b20bf60076a3420bdc9cc3'
   '0106553252fe54c17caac623125a45e43c8320b452b3a3c7e4a9409e37463d9945886e8101eed269d93b11849fd1b62c8f7d537914f8785ca54ab135d05f134f'
+  '83b68ed2c8359b4163e1065f660a2341dfcfcd744d6a213815c5820c138b64773f565c7b1b31c6dbc054080624f7e74045335792be82d78c5be94e13986d5b02'
 )
 
 package() {
@@ -33,4 +36,5 @@ package() {
   install -dm0750 "$pkgdir"/etc/sudoers.d
   install -m0600 etc-sudoers.d-users "$pkgdir"/etc/sudoers.d/users
   install -m0600 etc-sudoers.d-defaults "$pkgdir"/etc/sudoers.d/defaults
+  install -Dm0644 etc-networkmanager-mac-randomization.conf "$pkgdir"/etc/NetworkManager/conf.d/mac-randomization.conf
 }
