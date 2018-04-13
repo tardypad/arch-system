@@ -1,0 +1,4 @@
+# add possibility to logout from IPC clients
+commands {
+    exit ipc binding
+}

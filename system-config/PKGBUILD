@@ -1,6 +1,6 @@
 pkgname=system-config
-pkgver=0.6.0
-pkgrel=2
+pkgver=0.7.0
+pkgrel=1
 pkgdesc='System configurations'
 url='https://github.com/tardypad'
 arch=('any')
@@ -12,6 +12,7 @@ depends=(
   'sudo'
   'zsh'
   'networkmanager'
+  'sway'
 )
 
 source=(
@@ -21,6 +22,7 @@ source=(
   'etc-sudo-defaults'
   'etc-networkmanager-mac-randomization'
   'etc-locale'
+  'etc-sway-security-commands'
 )
 
 sha512sums=(
@@ -30,6 +32,7 @@ sha512sums=(
   '0106553252fe54c17caac623125a45e43c8320b452b3a3c7e4a9409e37463d9945886e8101eed269d93b11849fd1b62c8f7d537914f8785ca54ab135d05f134f'
   '83b68ed2c8359b4163e1065f660a2341dfcfcd744d6a213815c5820c138b64773f565c7b1b31c6dbc054080624f7e74045335792be82d78c5be94e13986d5b02'
   '20b9888adda3aaace774d4268c01d2f6e91244ad8ba0c0a1d7718d67bc501e65fa16b14c9dab6892b2b7be422c490beb7dd1f9617cba6a127c545fae7a496735'
+  'f9925765040cbc24dcf1917588f5d0bcf944acdf3fcbef09892049fd2cbdbc2395d8882720dff77ce400201f7c502207d80d58c66eb2dfae7c88cea01c9241fa'
 )
 
 package() {
@@ -40,4 +43,5 @@ package() {
   install -m0600 etc-sudo-defaults "$pkgdir"/etc/sudoers.d/defaults
   install -Dm0644 etc-networkmanager-mac-randomization "$pkgdir"/etc/NetworkManager/conf.d/mac-randomization.conf
   install -Dm0644 etc-locale "$pkgdir"/etc/locale.conf
+  install -Dm0644 etc-sway-security-commands "$pkgdir"/etc/sway/security.d/01-commands
 }
