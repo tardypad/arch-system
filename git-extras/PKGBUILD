@@ -1,8 +1,3 @@
-# Maintainer: Eli Schwartz <eschwartz@archlinux.org>
-# Contributor: Stefan Tatschner <stefan.tatschner@gmail.com>
-
-# All my PKGBUILDs are managed at https://github.com/eli-schwartz/pkgbuilds
-
 pkgname=git-extras
 pkgver=4.5.0
 pkgrel=1
@@ -10,9 +5,19 @@ pkgdesc="GIT utilities -- repo summary, commit counting, repl, changelog populat
 arch=('any')
 url="https://github.com/tj/${pkgname}"
 license=('MIT')
-depends=('git')
-source=("${pkgname}-${pkgver}.tar.gz::${url}/archive/${pkgver}.tar.gz")
-sha256sums=('cb099d9e155c3bf863f95dd91c72bcc2e05fb28e3ebce527cd70d1b517402615')
+
+depends=(
+  'bash'
+  'git'
+)
+
+source=(
+  "${pkgname}-${pkgver}.tar.gz::${url}/archive/${pkgver}.tar.gz"
+)
+
+sha512sums=(
+  'b63d2f10b48dde9efd673015fdd39975a0e0fd355c07e33d623beaa9c9cffb36116f566a295b0af7e0cd26cad9a572f8b58d6a1f6fb22be40bee727e133ba961'
+)
 
 package() {
   cd "$srcdir/$pkgname-$pkgver"
