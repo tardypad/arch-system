@@ -1,6 +1,6 @@
 pkgname=system-config
 pkgver=0.6.0
-pkgrel=1
+pkgrel=2
 pkgdesc='System configurations'
 url='https://github.com/tardypad'
 arch=('any')
@@ -16,11 +16,11 @@ depends=(
 
 source=(
   'etc-issue'
-  'etc-vconsole.conf'
-  'etc-sudoers.d-users'
-  'etc-sudoers.d-defaults'
-  'etc-networkmanager-mac-randomization.conf'
-  'etc-locale.conf'
+  'etc-vconsole'
+  'etc-sudo-users'
+  'etc-sudo-defaults'
+  'etc-networkmanager-mac-randomization'
+  'etc-locale'
 )
 
 sha512sums=(
@@ -34,10 +34,10 @@ sha512sums=(
 
 package() {
   install -Dm0644 etc-issue "$pkgdir"/etc/issue
-  install -Dm0644 etc-vconsole.conf "$pkgdir"/etc/vconsole.conf
+  install -Dm0644 etc-vconsole "$pkgdir"/etc/vconsole.conf
   install -dm0750 "$pkgdir"/etc/sudoers.d
-  install -m0600 etc-sudoers.d-users "$pkgdir"/etc/sudoers.d/users
-  install -m0600 etc-sudoers.d-defaults "$pkgdir"/etc/sudoers.d/defaults
-  install -Dm0644 etc-networkmanager-mac-randomization.conf "$pkgdir"/etc/NetworkManager/conf.d/mac-randomization.conf
-  install -Dm0644 etc-locale.conf "$pkgdir"/etc/locale.conf
+  install -m0600 etc-sudo-users "$pkgdir"/etc/sudoers.d/users
+  install -m0600 etc-sudo-defaults "$pkgdir"/etc/sudoers.d/defaults
+  install -Dm0644 etc-networkmanager-mac-randomization "$pkgdir"/etc/NetworkManager/conf.d/mac-randomization.conf
+  install -Dm0644 etc-locale "$pkgdir"/etc/locale.conf
 }
