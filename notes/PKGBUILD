@@ -1,20 +1,24 @@
-# Maintainer: Jacob Mischka <jacob@mischka.me>
-pkgname=notes-git
-pkgver=20161202
+pkgname=notes
+pkgver=0.4.2
 pkgrel=1
 pkgdesc="Simple delightful note taking, with more unix and less lock-in."
 arch=('any')
 url="https://github.com/pimterry/notes"
 license=('MIT')
-depends=()
-makedepends=('git')
-provides=('notes')
-source=('git+https://github.com/pimterry/notes.git')
-md5sums=('SKIP')
 
-_gitroot=notes
+depends=(
+  'bash'
+)
+
+source=(
+  notes-${pkgver}.tar.gz::https://github.com/pimterry/notes/archive/v${pkgver}.tar.gz
+)
+
+sha512sums=(
+  '9cbe1aeb6ddeba883d3656a259d5b2e77d79205d410855ba9a30663840d4d96513c472e75be9abf09168e6af8b57b585811f527940762c595c737685d6edacb4'
+)
 
 package() {
-        cd "$srcdir/$_gitroot"
-        install -D notes "$pkgdir/usr/bin/notes"
+  cd "$srcdir/$pkgname-$pkgver"
+  install -D notes "$pkgdir/usr/bin/notes"
 }
