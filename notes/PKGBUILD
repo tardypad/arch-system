@@ -1,6 +1,6 @@
 pkgname=notes
 pkgver=0.4.2
-pkgrel=1
+pkgrel=2
 pkgdesc="Simple delightful note taking, with more unix and less lock-in."
 arch=('any')
 url="https://github.com/pimterry/notes"
@@ -20,5 +20,10 @@ sha512sums=(
 
 package() {
   cd "$srcdir/$pkgname-$pkgver"
-  install -D notes "$pkgdir/usr/bin/notes"
+  install -d "$pkgdir/usr/share/bash-completion/completions"
+  make \
+    PREFIX="$pkgdir/usr/" \
+    BASH_COMPLETION_DIR="$pkgdir/usr/share/bash-completion/completions" \
+    install
+  install -Dm0644 _notes "$pkgdir/usr/share/zsh/site-functions/_notes"
 }
