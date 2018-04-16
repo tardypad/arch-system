@@ -1,6 +1,6 @@
-pkgname=notes-git
+pkgname=notes-pimterry
 pkgver=0.4.2
-pkgrel=3
+pkgrel=4
 pkgdesc="Simple delightful note taking, with more unix and less lock-in."
 arch=('any')
 url="https://github.com/pimterry/notes"
