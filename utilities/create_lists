@@ -1,0 +1,99 @@
+#!/usr/bin/env zsh
+
+COMMAND=${0:t}
+
+init_variables() {
+  OUTPUT_FOLDER=.
+}
+
+
+error() {
+  [[ -z "$1" ]] || echo "$1" >&2
+  usage
+  exit 1
+}
+
+
+usage() {
+  cat << EOF
+usage: ${COMMAND} [<options>]
+
+Create lists of explicitely installed packages per repository
+ignoring the base system packages
+
+Options:
+  -h,  --help                 show this message only
+  -o,  --output     FOLDER    folder to store the lists
+EOF
+}
+
+
+create_lists() {
+  # ignore base packages
+  local ignore_packages=$(
+    pacman --query --quiet --groups base base-devel
+  )
+
+  # ignore system packages installed during installation
+  ignore_packages+='
+efibootmgr
+grub
+intel-ucode
+iw
+os-prober
+r8168
+wpa_supplicant'
+
+  local explicit_packages=$(
+    pacman --query --quiet --explicit
+  )
+
+  for repo in $( pacconf --repo-list ); do
+    local repo_packages=$(
+      comm -12 \
+        <( echo "${explicit_packages}" | sort ) \
+        <( pacman --sync --quiet --list "${repo}" | sort )
+    )
+
+    comm -23 \
+      <( echo "${repo_packages}" | sort ) \
+      <( echo "${ignore_packages}" | sort ) \
+    > "${OUTPUT_FOLDER}/$( hostname )_${repo}"
+  done
+}
+
+
+parse_options() {
+  while [[ "$#" -gt 0 ]]; do
+    case "$1" in
+      -h|--help)
+        usage
+        exit 0
+        ;;
+      -o|--output)
+        [[ -n "$2" ]] || error 'Missing --output value'
+        OUTPUT_FOLDER="$2"
+        shift 2
+        ;;
+      *)
+        error "Invalid option '$1'"
+        ;;
+    esac
+  done
+}
+
+
+validate_options() {
+  if [[ ! -d "${OUTPUT_FOLDER}" ]]; then
+    mkdir --parents "${OUTPUT_FOLDER}"
+    [[ $? -eq 0 ]] || error
+  fi
+}
+
+
+init_variables
+parse_options "$@"
+validate_options
+
+
+create_lists
