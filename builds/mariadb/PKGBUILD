@@ -12,7 +12,7 @@ url='http://mariadb.org/'
 makedepends=('cmake' 'zlib' 'libaio' 'libxml2' 'openssl' 'jemalloc'
              'lz4' 'boost' 'libevent' 'systemd')
 validpgpkeys=('199369E5404BD5FC7D2FE43BCBCB082A1BB943DB') # MariaDB Package Signing Key <package-signing-key@mariadb.org>
-source=("https://ftp.heanet.ie/mirrors/mariadb/mariadb-$pkgver/source/mariadb-$pkgver.tar.gz"{,.asc})
+source=("http://ams2.mirrors.digitalocean.com/mariadb//mariadb-$pkgver/source/mariadb-$pkgver.tar.gz"{,.asc})
 sha256sums=('3443ec2d6e8af1eba49d097f6b2f6741c8d94b75abf19b8dd5753608f0703f7e'
             'SKIP'
 )
@@ -196,7 +196,7 @@ package_mariadb() {
   # not needed
   rm -r usr/{data,mysql-test,sql-bench}
   rm usr/share/man/man1/mysql-test-run.pl.1
-  
+
   # from this isssue https://github.com/johndoejdg/mariadb-10.2-archlinux/issues/1
   rm usr/bin/mariadb_config
   rm usr/lib/libmariadb*
