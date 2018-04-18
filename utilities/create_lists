@@ -52,7 +52,7 @@ wpa_supplicant'
     local repo_packages=$(
       comm -12 \
         <( echo "${explicit_packages}" | sort ) \
-        <( pacman --sync --quiet --list "${repo}" | sort )
+        <( paclist "${repo}" | cut --field 1 --delimiter ' ' | sort )
     )
 
     comm -23 \

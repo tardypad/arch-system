@@ -16,13 +16,9 @@ git
 gnuplot
 gst-plugins-bad
 hplip
-libmariadbclient
 libqalculate
 libreoffice-fresh
-mariadb
-mariadb-clients
 mpc
-mytop
 networkmanager
 php
 php-cgi
@@ -34,7 +30,6 @@ pulseaudio-alsa
 pulseaudio-bluetooth
 tree
 unzip
-vim
 vlc
 wget
 whois
