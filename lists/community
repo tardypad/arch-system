@@ -1,6 +1,5 @@
 acpi_call
 aria2
-aws-cli
 dex
 diff-so-fancy
 elinks
@@ -9,18 +8,15 @@ fzf
 httpie
 i3blocks
 lesspipe
-lxc
 mopidy
 ncdu
 ncmpcpp
 neomutt
 newsboat
-nginx-mainline
 pacutils
 pass
 python2-websocket-client
 qutebrowser
-redis
 shellcheck
 sway
 termite
@@ -31,7 +27,6 @@ tmux
 translate-shell
 vifm
 weechat
-xdebug
 zathura
 zathura-pdf-mupdf
 zsh-completions

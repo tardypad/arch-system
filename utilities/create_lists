@@ -58,7 +58,7 @@ wpa_supplicant'
     comm -23 \
       <( echo "${repo_packages}" | sort ) \
       <( echo "${ignore_packages}" | sort ) \
-    > "${OUTPUT_FOLDER}/$( hostname )_${repo}"
+    > "${OUTPUT_FOLDER}/${repo}"
   done
 }
 

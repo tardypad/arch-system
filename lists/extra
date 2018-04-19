@@ -21,7 +21,9 @@ pulseaudio
 pulseaudio-alsa
 pulseaudio-bluetooth
 tree
+unzip
 vlc
 xdg-user-dirs
 xdg-utils
+zip
 zsh
