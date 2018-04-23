@@ -24,4 +24,14 @@ post_install() {
     repo-add /var/cache/pacman/aur/aur.db.tar
     install -d /var/cache/pacman/tardypad -o damien
     repo-add /var/cache/pacman/tardypad/tardypad.db.tar
+
+    # aurutils setup
+    sudo --user damien gpg --recv-keys DBE7D3DD8C81D58D0A13D0E76BC26A17B9B7018A
+    local tmp_dir=$( sudo --user damien mktemp --directory )
+    curl --silent --location https://aur.archlinux.org/cgit/aur.git/snapshot/aurutils.tar.gz \
+      | sudo --user damien --extract --gunzip --directory "${tmp_dir}"
+    cd "${tmp_dir}/aurutils"
+    sudo --user damien makepkg --syncdeps --noconfirm --install
+    sudo --user damien repo-add /var/cache/pacman/aur/aur.db.tar aurutils-*.pkg.tar.xz
+    rm -rf "${tmp_dir}"
 }

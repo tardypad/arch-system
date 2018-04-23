@@ -19,8 +19,6 @@ Improvements:
 New Features:
 - make a script to better report modified package files
 - make a script to build the packages for AUR and tardypad
-- fetch and build aurutils with makepkg, and add it initially to aur repo,  
-  during system-config installation
 
 Research:
 - [aconfmgr](https://github.com/CyberShadow/aconfmgr) configuration manager  
