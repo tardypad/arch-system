@@ -19,7 +19,6 @@ Improvements:
 New Features:
 - make a script to better report modified package files
 - make a script to build the packages for AUR and tardypad
-- init aur and tardypad packages repositories during system-config installation
 - fetch and build aurutils with makepkg, and add it initially to aur repo,  
   during system-config installation
 

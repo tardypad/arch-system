@@ -18,4 +18,10 @@ post_install() {
     systemctl enable NetworkManager-dispatcher.service
     systemctl mask systemd-rfkill.service
     systemctl mask systemd-rfkill.socket
+
+    # custom packages repositories
+    install -d /var/cache/pacman/aur -o damien
+    repo-add /var/cache/pacman/aur/aur.db.tar
+    install -d /var/cache/pacman/tardypad -o damien
+    repo-add /var/cache/pacman/tardypad/tardypad.db.tar
 }
