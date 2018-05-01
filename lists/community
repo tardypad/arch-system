@@ -29,5 +29,7 @@ vifm
 weechat
 zathura
 zathura-pdf-mupdf
+zsh-autosuggestions
 zsh-completions
+zsh-history-substring-search
 zsh-syntax-highlighting
