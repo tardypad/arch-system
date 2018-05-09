@@ -7,13 +7,6 @@ init_variables() {
 }
 
 
-error() {
-  [[ -z "$1" ]] || echo "$1" >&2
-  usage
-  exit 1
-}
-
-
 usage() {
   cat << EOF
 usage: ${COMMAND} [<options>]
@@ -25,6 +18,13 @@ Options:
   -h,  --help                 show this message only
   -o,  --output     FOLDER    folder to store the lists
 EOF
+}
+
+
+error() {
+  [[ -z "$1" ]] || echo "${COMMAND}: $1" >&2
+  echo "Try '${COMMAND} --help' for more information."
+  exit 1
 }
 
 
