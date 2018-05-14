@@ -6,6 +6,8 @@ arch=('any')
 url="https://github.com/tardypad/dotfiles"
 license=('custom')
 
+install=dotfiles-git.install
+
 # to be changed depending on the machine
 _branch=master
 
