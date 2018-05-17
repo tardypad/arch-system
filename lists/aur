@@ -6,6 +6,7 @@ http-prompt
 light-git
 mopidy-somafm
 mycli
+phpctags                       # needed for vim tagbar-phpctags plugin
 rbtools
 ttf-font-awesome-4             # font needed for some dotfiles' packages
 universal-ctags-git
