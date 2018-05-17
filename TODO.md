@@ -13,8 +13,6 @@ Testing:
 Improvements:
 - list reason for the installation of the package  
   such as `acpi_call # needed for TLP battery threshold`  
-  adapt create_lists not to remove this information (update_lists)  
-  or find another organisation and place to put this information
 
 New Features:
 - make a script to better report modified package files

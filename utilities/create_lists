@@ -49,17 +49,63 @@ wpa_supplicant'
   )
 
   for repo in $( pacconf --repo-list ); do
+    local repo_packages_file="${OUTPUT_FOLDER}/${repo}"
+
     local repo_packages=$(
       comm -12 \
         <( echo "${explicit_packages}" | sort ) \
         <( paclist "${repo}" | cut --field 1 --delimiter ' ' | sort )
     )
 
-    comm -23 \
-      <( echo "${repo_packages}" | sort ) \
-      <( echo "${ignore_packages}" | sort ) \
-    > "${OUTPUT_FOLDER}/${repo}"
+    local filtered_repo_packages=$(
+      comm -23 \
+        <( echo "${repo_packages}" | sort ) \
+        <( echo "${ignore_packages}" | sort )
+     )
+
+    local final_repo_packages=
+    if [[ ! -f "${repo_packages_file}" ]]; then
+      final_repo_packages="${filtered_repo_packages}"
+    else
+      local tmp_file=$( mktemp )
+      echo "${filtered_repo_packages}" > "${tmp_file}"
+      final_repo_packages=$(
+        merge_packages_files "${repo_packages_file}" "${tmp_file}"
+      )
+      rm "${tmp_file}"
+    fi
+
+    echo "${final_repo_packages}" > "${repo_packages_file}"
   done
+}
+
+
+merge_packages_files() {
+  # old file contains the packages list with comments to keep
+  local old_packages_file="$1"
+  local new_packages_file="$2"
+
+  local common_packages=$(
+    comm -12 \
+      <( cut --field 1 --delimiter ' ' "${old_packages_file}" ) \
+      "${new_packages_file}"
+  )
+
+  local new_packages=$(
+    comm -13 \
+      <( cut --field 1 --delimiter ' ' "${old_packages_file}" ) \
+      "${new_packages_file}"
+  )
+
+  {
+    echo "${common_packages}" \
+      | while read common_package; do
+        grep --extended-regexp "^${common_package}( |$)" "${old_packages_file}"
+        done;
+    echo "${new_packages}";
+  } \
+    | grep --invert-match '^$' \
+    | sort --key 1,1
 }
 
 
