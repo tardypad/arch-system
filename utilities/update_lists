@@ -11,7 +11,7 @@ usage() {
   cat << EOF
 usage: ${COMMAND} [<options>]
 
-Create lists of explicitely installed packages per repository
+Update lists of explicitely installed packages per repository
 ignoring the base system packages
 
 Options:
@@ -28,7 +28,7 @@ error() {
 }
 
 
-create_lists() {
+update_lists() {
   # ignore base packages
   local ignore_packages=$(
     pacman --query --quiet --groups base base-devel
@@ -142,4 +142,4 @@ parse_options "$@"
 validate_options
 
 
-create_lists
+update_lists

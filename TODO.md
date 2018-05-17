@@ -1,7 +1,7 @@
 Periodic:
 - Check packages new versions and releases  
   compare new default configuration files with our own
-- Check packages list using the create_lists script
+- Update packages list with the `update_lists` utility script
 - Check for modified package files using `pacman -Qkk`
 
 Cleaning:
