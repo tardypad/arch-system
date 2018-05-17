@@ -1,29 +1,29 @@
-adobe-source-code-pro-fonts
-adobe-source-sans-pro-fonts
-adobe-source-serif-pro-fonts
+adobe-source-code-pro-fonts    # font needed for some dotfiles' packages
+adobe-source-sans-pro-fonts    # font needed for some dotfiles' packages
+adobe-source-serif-pro-fonts   # font needed for some dotfiles' packages
 alsa-utils
-bc
-bluez
-bluez-utils
+bc                             # needed for i3blocks power script
+bluez                          # bluetooth protocol stack
+bluez-utils                    # bluetooth management
 chromium
-ethtool
+ethtool                        # needed to manage Wake-on-LAN in tlp
 firefox
 gimp
 git
 gnuplot
-gst-plugins-bad
+gst-plugins-bad                # play FLAC files
 inkscape
 libqalculate
 libreoffice-fresh
 mpc
 networkmanager
-pulseaudio
-pulseaudio-alsa
-pulseaudio-bluetooth
-tree
-unzip
+pulseaudio                     # needed to play music on bluetooth device...
+pulseaudio-alsa                # needed to play music on bluetooth device...
+pulseaudio-bluetooth           # needed to play music on bluetooth device...
+tree                           # directory listing
+unzip                          # extract ZIP archives
 vlc
 xdg-user-dirs
 xdg-utils
-zip
+zip                            # create ZIP archives
 zsh

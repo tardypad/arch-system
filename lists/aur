@@ -1,11 +1,11 @@
 aurutils
-fortune-mod-calvin
-fortune-mod-chucknorris
+fortune-mod-calvin             # extra fortune cookies with Calvin and Hobbes
+fortune-mod-chucknorris        # extra fortune cookies with Chuck Norris
 htop-vim-git
 http-prompt
 light-git
 mopidy-somafm
 mycli
 rbtools
-ttf-font-awesome-4
+ttf-font-awesome-4             # font needed for some dotfiles' packages
 universal-ctags-git

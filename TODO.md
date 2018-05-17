@@ -11,8 +11,6 @@ Bugs:
 Testing:
 
 Improvements:
-- list reason for the installation of the package  
-  such as `acpi_call # needed for TLP battery threshold`  
 
 New Features:
 - make a script to better report modified package files

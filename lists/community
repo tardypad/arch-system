@@ -1,4 +1,4 @@
-acpi_call
+acpi_call                      # needed for battery charge threshold in tlp
 aria2
 dex
 diff-so-fancy
@@ -9,27 +9,27 @@ httpie
 i3blocks
 lesspipe
 mopidy
-ncdu
+ncdu                           # disk usage analyser
 ncmpcpp
 neomutt
 newsboat
-pacutils
+pacutils                       # needed for pkgbuilds repository utilities
 pass
-python2-websocket-client
+python2-websocket-client       # needed for weechat wee-slack plugin
 qutebrowser
-shellcheck
+shellcheck                     # syntax check of shell scripts
 sway
 termite
 the_silver_searcher
-tlp
-tlp-rdw
+tlp                            # power management
+tlp-rdw                        # radio devices management
 tmux
 translate-shell
 vifm
 weechat
 zathura
-zathura-pdf-mupdf
+zathura-pdf-mupdf              # plugin to read PDF files
 zsh-autosuggestions
-zsh-completions
+zsh-completions                # extra completions for zsh
 zsh-history-substring-search
 zsh-syntax-highlighting
