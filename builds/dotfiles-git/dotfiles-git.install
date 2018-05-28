@@ -6,6 +6,14 @@ update_vim_plugins() {
       > /dev/null 2>&1
 }
 
+generate_vim_spell_files() {
+  echo ':: Generating vim spell files...'
+  sudo --user damien \
+    vim +'mkspell /home/damien/.vim/spell/en.utf-8.add.spl /home/damien/.vim/spell/en.utf-8.add' \
+      +qall \
+      > /dev/null 2>&1
+}
+
 reload_systemd() {
   echo ':: Reloading systemd user daemon...'
   # HACK: not sure if possible to retrieve such environment variables properly
@@ -23,12 +31,14 @@ regenerate_fonts() {
 
 post_install() {
   update_vim_plugins
+  generate_vim_spell_files
   reload_systemd
   regenerate_fonts
 }
 
 post_upgrade() {
   update_vim_plugins
+  generate_vim_spell_files
   reload_systemd
   regenerate_fonts
 }
