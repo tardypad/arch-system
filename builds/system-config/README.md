@@ -2,7 +2,7 @@
 
 Install various system configuration files
 
-Require installation with pacman `--force` option
+Require installation with pacman `--overwrite '*'` option
 to allow overwriting some files owned by other packages
 
 System configuration not included in this package:
