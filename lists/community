@@ -13,6 +13,7 @@ ncdu                           # disk usage analyser
 ncmpcpp
 neomutt
 newsboat
+pacman-contrib                 # checkupdates and other utilities
 pacutils                       # needed for pkgbuilds repository utilities
 pass
 python2-websocket-client       # needed for weechat wee-slack plugin
