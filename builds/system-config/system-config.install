@@ -19,6 +19,9 @@ post_install() {
     systemctl mask systemd-rfkill.service
     systemctl mask systemd-rfkill.socket
 
+    # Weekly delete cached versions of packages, except most recent 3
+    systemctl enable paccache.timer
+
     # custom packages repositories
     install -d /var/cache/pacman/aur -o damien
     repo-add /var/cache/pacman/aur/aur.db.tar
