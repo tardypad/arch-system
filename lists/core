@@ -1,1 +1,3 @@
+dosfstools                     # FAT filesystem utilities
 openssh
+syslinux                       # needed to create an Arch installer on USB
