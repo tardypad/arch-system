@@ -4,6 +4,8 @@
 # User contributed packages
 [AUR packages](https://aur.archlinux.org/packages/)
 
-# Personal packages
-- [Earnestly packages](https://github.com/Earnestly/pkgbuilds)
-- [Jason Antman packages](https://github.com/jantman/arch-pkgbuilds)
+# Personal packages and scripts
+- [Earnestly repo](https://github.com/Earnestly/pkgbuilds)
+- [Jason Antman repo](https://github.com/jantman/arch-pkgbuilds)
+- [Michael Daffin repo](https://github.com/mdaffin/arch-pkgs)
+- [Morten Linderud repo](https://github.com/Foxboron/PKGBUILDS)
