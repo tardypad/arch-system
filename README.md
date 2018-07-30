@@ -1,7 +1,7 @@
-# Pkgbuilds
+# Arch packages
 
-Personal Arch Linux package builds
+Personal [Arch Linux](https://www.archlinux.org/) packages management
 
-- builds: actual packages builds
+- builds: custom packages builds
 - lists: installed packages lists per repository
 - utilities: scripts related to packages management
