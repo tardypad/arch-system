@@ -16,6 +16,7 @@ depends=(
   'tlp'
   'systemd'
   'pacman'
+  'pacman-contrib'
 )
 
 source=(
