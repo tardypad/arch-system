@@ -4,11 +4,11 @@ post_install() {
     chsh --shell /bin/zsh root
 
     # TLP services units config as defined in its doc
-    systemctl enable tlp.service
-    systemctl enable tlp-sleep.service
-    systemctl enable NetworkManager-dispatcher.service
-    systemctl mask systemd-rfkill.service
-    systemctl mask systemd-rfkill.socket
+    systemctl enable --now tlp.service
+    systemctl enable --now tlp-sleep.service
+    systemctl enable --now NetworkManager-dispatcher.service
+    systemctl mask --now systemd-rfkill.service
+    systemctl mask --now systemd-rfkill.socket
 
     # Weekly delete cached versions of packages, except most recent 3
     systemctl enable paccache.timer
