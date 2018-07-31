@@ -36,10 +36,8 @@ update_lists() {
 efibootmgr
 grub
 intel-ucode
-iw
 os-prober
-r8168
-wpa_supplicant'
+'
 
   local explicit_packages=$(
     pacman --query --quiet --explicit
