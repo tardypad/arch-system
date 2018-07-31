@@ -1,17 +1,8 @@
-pre_install() {
-    if ! id damien &> /dev/null; then
-      useradd --create-home --groups wheel --shell /bin/zsh damien
-      echo ':: User damien created'
-      echo '   do not forget to change its password'
-    else
-      usermod --append --groups wheel damien
-      chsh --shell /bin/zsh damien
-    fi
-
-    chsh --shell /bin/zsh root
-}
-
 post_install() {
+    # users settings
+    chsh --shell /bin/zsh damien
+    chsh --shell /bin/zsh root
+
     # TLP services units config as defined in its doc
     systemctl enable tlp.service
     systemctl enable tlp-sleep.service
@@ -21,20 +12,4 @@ post_install() {
 
     # Weekly delete cached versions of packages, except most recent 3
     systemctl enable paccache.timer
-
-    # custom packages repositories
-    install -d /var/cache/pacman/aur -o damien
-    repo-add /var/cache/pacman/aur/aur.db.tar
-    install -d /var/cache/pacman/tardypad -o damien
-    repo-add /var/cache/pacman/tardypad/tardypad.db.tar
-
-    # aurutils setup
-    sudo --user damien gpg --recv-keys DBE7D3DD8C81D58D0A13D0E76BC26A17B9B7018A
-    local tmp_dir=$( sudo --user damien mktemp --directory )
-    curl --silent --location https://aur.archlinux.org/cgit/aur.git/snapshot/aurutils.tar.gz \
-      | sudo --user damien tar --extract --gunzip --directory "${tmp_dir}"
-    cd "${tmp_dir}/aurutils"
-    sudo --user damien makepkg --syncdeps --noconfirm --install
-    sudo --user damien repo-add /var/cache/pacman/aur/aur.db.tar aurutils-*.pkg.tar.xz
-    rm -rf "${tmp_dir}"
 }
