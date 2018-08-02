@@ -57,7 +57,6 @@ package() {
   install -Dm0644 etc-locale "$pkgdir"/etc/locale.conf
   install -Dm0644 etc-sway-security-commands "$pkgdir"/etc/sway/security.d/01-commands
   install -Dm0644 etc-tlp-default "$pkgdir"/etc/default/tlp
-  install -Dm0644 -o damien -g damien /dev/null "$pkgdir"/var/log/sway.log
   install -Dm0644 etc-pacman "$pkgdir"/etc/pacman.conf
   install -Dm0644 etc-pacman-aur "$pkgdir"/etc/pacman.d/aur
   install -Dm0644 etc-pacman-tardypad "$pkgdir"/etc/pacman.d/tardypad
