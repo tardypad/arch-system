@@ -3,8 +3,9 @@ post_install() {
     chsh --shell /bin/zsh damien
     chsh --shell /bin/zsh root
 
-    # create sway log with correct permissions
+    # logs
     install -Dm0644 -o damien -g damien /dev/null /var/log/sway.log
+    install -dm0750 /var/log/projects
 
     # TLP services units config as defined in its doc
     systemctl enable --now tlp.service
