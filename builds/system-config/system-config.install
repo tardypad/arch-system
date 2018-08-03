@@ -5,7 +5,19 @@ post_install() {
 
     # logs
     install -Dm0644 -o damien -g damien /dev/null /var/log/sway.log
-    install -dm0750 /var/log/projects
+
+    # xdg user dirs
+    install -dm0755 /home/damien/build
+    install -dm0755 /home/damien/Desktop
+    install -dm0755 /home/damien/Downloads
+    install -dm0755 /home/damien/Documents
+    install -dm0755 /home/damien/Music
+    install -dm0755 /home/damien/Notes
+    install -dm0755 /home/damien/Pictures
+    install -dm0755 /home/damien/Projects
+    install -dm0755 /home/damien/Documents/Projects
+    install -dm0755 /var/log/projects
+    install -dm0755 /home/damien/Videos
 
     # TLP services units config as defined in its doc
     systemctl enable --now tlp.service
