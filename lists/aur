@@ -3,7 +3,7 @@ fortune-mod-calvin             # extra fortune cookies with Calvin and Hobbes
 fortune-mod-chucknorris        # extra fortune cookies with Chuck Norris
 htop-vim-git
 http-prompt
-light-git
+light
 mopidy-somafm
 mycli
 phpctags                       # needed for vim tagbar-phpctags plugin
