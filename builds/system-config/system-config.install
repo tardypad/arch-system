@@ -3,6 +3,9 @@ post_install() {
     chsh --shell /bin/zsh damien
     chsh --shell /bin/zsh root
 
+    # needed for arduino devices flashing
+    usermod --append --groups uucp damien
+
     # logs
     install -Dm0644 -o damien -g damien /dev/null /var/log/sway.log
 
