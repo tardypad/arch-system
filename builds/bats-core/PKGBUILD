@@ -1,0 +1,40 @@
+pkgname=bats-core
+pkgver=1.1.0
+pkgrel=1
+pkgdesc="Bash Automated Testing System"
+arch=("any")
+url="https://github.com/bats-core/bats-core"
+license=("MIT")
+
+depends=(
+  'bash'
+)
+conflicts=(
+  'bash-bats'
+)
+
+source=(
+  "https://github.com/bats-core/bats-core/archive/v${pkgver}.tar.gz"
+)
+
+sha512sums=(
+  'a0776002c79915343e8fb56fa02414b96619338c86bd35e8522fe49c0e2b3e6e9f7d445de9d3782a2c87c044708571d69327716035250c2927ac4803bdd54031'
+)
+
+check() {
+  cd "${srcdir}/${pkgname}-${pkgver}"
+  bin/bats --tap test
+}
+
+package() {
+  cd "${srcdir}/${pkgname}-${pkgver}"
+
+  for fn in "libexec/${pkgname}"/*; do
+    install -Dm755 ${fn} "${pkgdir}"/usr/libexec/${pkgname}/$(basename ${fn})
+  done
+
+  install -Dm755 bin/bats "${pkgdir}/usr/bin/bats"
+  install -Dm644 man/bats.1 "${pkgdir}/usr/share/man/man1/bats.1"
+  install -Dm644 man/bats.7 "${pkgdir}/usr/share/man/man7/bats.7"
+  install -Dm644 LICENSE.md "${pkgdir}"/usr/share/licenses/${pkgname}/LICENSE
+}
