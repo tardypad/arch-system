@@ -1,5 +1,5 @@
 pkgname=git-extras
-pkgver=4.5.0
+pkgver=4.6.0
 pkgrel=2
 pkgdesc="GIT utilities -- repo summary, commit counting, repl, changelog population and more"
 arch=('any')
@@ -16,7 +16,7 @@ source=(
 )
 
 sha512sums=(
-  'b63d2f10b48dde9efd673015fdd39975a0e0fd355c07e33d623beaa9c9cffb36116f566a295b0af7e0cd26cad9a572f8b58d6a1f6fb22be40bee727e133ba961'
+  '59345668f29fef6d9e2d68c4602f7ce8ae59bda1fd2ffc7d624dc571f6167c77c347b6e7d0938a57e83d67a428dc9c21deda608714e9b907a8c48ca007631539'
 )
 
 package() {
