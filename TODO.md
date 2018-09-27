@@ -13,7 +13,6 @@
 
 # Improvements
   - system-config: split configuration per package config files
-  - system-config: SHA checksum are probably useless for our usage and can be SKIPped
 
 # New Features
   - make a script to report modified package files
