@@ -1,6 +1,6 @@
 # Notes
 
-Initial source [AUR](https://aur.archlinux.org/cgit/aur.git/tree/PKGBUILD?h=notes-git)
+Initial source [AUR](https://aur.archlinux.org/cgit/aur.git/tree?h=notes-git)
 
 Modified to use released version and set the autocompletions and man pages
 
