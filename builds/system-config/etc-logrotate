@@ -1,0 +1,35 @@
+# see "man logrotate" for details
+# rotate log files weekly
+weekly
+
+# keep 4 weeks worth of backlogs
+rotate 4
+
+# create new (empty) log files after rotating old ones
+create
+
+# compress log files
+compress
+
+# use date as a suffix of the rotated file
+dateext
+
+# Ignore pacman saved files
+tabooext + .pacorig .pacnew .pacsave
+
+# Arch packages drop log rotation information into this directory
+include /etc/logrotate.d
+
+/var/log/wtmp {
+    monthly
+    create 0664 root utmp
+    minsize 1M
+    rotate 1
+}
+
+/var/log/btmp {
+    missingok
+    monthly
+    create 0600 root utmp
+    rotate 1
+}

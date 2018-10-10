@@ -1,5 +1,5 @@
 pkgname=system-config
-pkgver=1.0.2
+pkgver=1.0.3
 pkgrel=1
 pkgdesc='System configurations'
 url='https://github.com/tardypad'
@@ -17,6 +17,7 @@ depends=(
   'systemd'
   'pacman'
   'pacman-contrib'
+  'logrotate'
 )
 
 source=(
@@ -31,10 +32,14 @@ source=(
   'etc-pacman'
   'etc-pacman-aur'
   'etc-pacman-tardypad'
+  'etc-logrotate'
+  'etc-logrotate-sway'
+  'etc-logrotate-weechat'
 )
 
 sha512sums=(
-  'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP'
+  'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP'
+  'SKIP' 'SKIP'
 )
 
 package() {
@@ -50,4 +55,7 @@ package() {
   install -Dm0644 etc-pacman "$pkgdir"/etc/pacman.conf
   install -Dm0644 etc-pacman-aur "$pkgdir"/etc/pacman.d/aur
   install -Dm0644 etc-pacman-tardypad "$pkgdir"/etc/pacman.d/tardypad
+  install -Dm0644 etc-logrotate "$pkgdir"/etc/logrotate.conf
+  install -Dm0644 etc-logrotate-sway "$pkgdir"/etc/logrotate.d/sway
+  install -Dm0644 etc-logrotate-weechat "$pkgdir"/etc/logrotate.d/weechat
 }
