@@ -1,4 +1,4 @@
-/var/log/sway.log
+/var/log/sway/sway.log
 {
   su damien damien
   create 644 damien damien
