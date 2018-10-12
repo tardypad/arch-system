@@ -2,7 +2,6 @@ aurutils
 http-prompt
 light
 mopidy-somafm
-mycli
 phpctags                       # needed for vim tagbar-phpctags plugin
 rbtools
 universal-ctags-git
