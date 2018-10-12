@@ -7,6 +7,7 @@ post_install() {
     usermod --append --groups uucp damien
 
     # logs
+    install -dm0755 -o damien -g damien /var/log/sway
     install -Dm0644 -o damien -g damien /dev/null /var/log/sway/sway.log
 
     # xdg user dirs
