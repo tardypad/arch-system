@@ -1,5 +1,4 @@
 aurutils
-http-prompt
 light
 mopidy-somafm
 phpctags                       # needed for vim tagbar-phpctags plugin
