@@ -9,6 +9,7 @@ fortune-mod
 fzf
 httpie
 i3blocks
+jq
 lesspipe
 mopidy
 ncdu                           # disk usage analyser
