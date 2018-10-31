@@ -1,14 +1,18 @@
-pkgbase=zsh
-pkgname=(
-  'zsh'
-  'zsh-doc'
-)
+pkgname=zsh
 pkgver=5.6.2
-pkgrel=2
+pkgrel=3
+pkgdesc='A very advanced and programmable command interpreter (shell) for UNIX'
 url='http://www.zsh.org/'
 arch=('x86_64')
 license=('custom')
 
+install=zsh.install
+
+depends=(
+  'pcre'
+  'libcap'
+  'gdbm'
+)
 makedepends=(
   'pcre'
   'libcap'
@@ -16,16 +20,19 @@ makedepends=(
 )
 
 source=(
-  "https://www.zsh.org/pub/zsh-${pkgver}"{,-doc}".tar.xz"
+  "https://www.zsh.org/pub/zsh-${pkgver}.tar.xz"
   'zprofile'
   'vi-motion-word-alphanum-chars-only.patch'
 )
 
 sha512sums=(
   'f0a49e41b55eb478692ab5471d7c9828956b7e96bc82944202b0ef1c49a889b21a0e7682aa5f59fd0054ebfd866c2244c8a622e7aa46c13038af5c226c48a3a2'
-  '5102314e2857b032c6e6b4b715c261970b2f0c28663aff99fb87f7bb6c3971f88f8e8892ed349793570beae3fb68ff7923c82e99a3c1bb485e4639f01caaad4a'
   'b287e00d8de4dc4cfb1c52bb2aef1d4b191de3512baad4c91dc81e78ddc3e5bb07297f43924b022ac44ff401a348d8a9fa366e19ddc8ea1ea72df311f5ed0034'
   '6a2da76a1a260c9f9c0052f1344189e007c4601fd12f19b7cb303d91ef2af4d687879a0d69f440010d27c4cc3705de18fea75cf1cd31d59830641732a1b6965f'
+)
+
+backup=(
+  'etc/zsh/zprofile'
 )
 
 prepare() {
@@ -77,23 +84,9 @@ check() {
   HOME="${srcdir}" make check
 }
 
-package_zsh() {
-  pkgdesc='A very advanced and programmable command interpreter (shell) for UNIX'
-  depends=('pcre' 'libcap' 'gdbm')
-  backup=('etc/zsh/zprofile')
-  install=zsh.install
-
+package() {
   cd "${srcdir}/${pkgbase}-${pkgver}"
   make DESTDIR="${pkgdir}/" install
   install -D -m644 "${srcdir}/zprofile" "${pkgdir}/etc/zsh/zprofile"
-  install -D -m644 LICENCE "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
-}
-
-package_zsh-doc() {
-  pkgdesc='Info, HTML and PDF format of the ZSH documentation'
-
-  cd "${srcdir}/${pkgbase}-${pkgver}"
-  make DESTDIR="${pkgdir}/" install.info install.html
-  install -D -m644 Doc/zsh.pdf "${pkgdir}/usr/share/doc/zsh/zsh.pdf"
   install -D -m644 LICENCE "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
 }
