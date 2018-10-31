@@ -1,0 +1,36 @@
+From fce33d5e8af09043b76063a8e6b1faa83f215c78 Mon Sep 17 00:00:00 2001
+From: Damien Tardy-Panis <damien@m2mobi.com>
+Date: Wed, 31 Oct 2018 15:08:39 +0100
+Subject: [PATCH] vi-style motion bindings do not count '_' as a word character
+
+This is to match my change in vim config
+I didn't manage to implement this behavior properly with other
+configuration (zsh config or zle widgets)
+---
+ Src/Zle/zle_word.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/Src/Zle/zle_word.c b/Src/Zle/zle_word.c
+index 89959b20c..d5c754ab6 100644
+--- a/Src/Zle/zle_word.c
++++ b/Src/Zle/zle_word.c
+@@ -66,14 +66,14 @@ forwardword(char **args)
+ 
+ /*
+  * class of character (for vi-mode word motion)
+- * 0: blank,  1: alnum or _,  2: punctuation,  3: the others
++ * 0: blank,  1: alnum,  2: punctuation,  3: the others
+  */
+ 
+ /**/
+ int
+ wordclass(ZLE_CHAR_T x)
+ {
+-    return (ZC_iblank(x) ? 0 : ((ZC_ialnum(x) || (ZWC('_') == x)) ? 1 :
++    return (ZC_iblank(x) ? 0 : (ZC_ialnum(x) ? 1 :
+ 		ZC_ipunct(x) ? 2 : 3));
+ }
+ 
+-- 
+2.19.1
+
