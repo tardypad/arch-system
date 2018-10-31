@@ -11,7 +11,6 @@ post_install() {
     install -Dm0644 -o damien -g damien /dev/null /var/log/sway/sway.log
 
     # xdg user dirs
-    install -dm0755 -o damien -g damien /home/damien/build
     install -dm0755 -o damien -g damien /home/damien/Desktop
     install -dm0755 -o damien -g damien /home/damien/Downloads
     install -dm0755 -o damien -g damien /home/damien/Documents
