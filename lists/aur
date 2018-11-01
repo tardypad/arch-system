@@ -1,4 +1,5 @@
 aurutils
+gron-bin
 light
 mopidy-somafm
 phpctags                       # needed for vim tagbar-phpctags plugin
