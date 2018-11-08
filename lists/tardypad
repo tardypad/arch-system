@@ -1,6 +1,6 @@
 bats-core
 dotfiles-git
-git-extras
 htop
 system-config
 vim
+zsh
