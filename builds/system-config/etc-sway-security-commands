@@ -1,4 +1,7 @@
-# add possibility to logout from IPC clients
 commands {
+    # add possibility to logout from IPC clients
     exit ipc binding
+
+    # add possibility to go fullscreen from IPC clients
+    fullscreen ipc binding criteria
 }
