@@ -5,7 +5,7 @@ pkgname=(
 )
 pkgver=14
 _vtever=0.54.2.a
-pkgrel=2
+pkgrel=3
 pkgdesc="A simple VTE-based terminal"
 url="https://github.com/thestinger/termite/"
 arch=('x86_64')
@@ -30,6 +30,7 @@ source=(
   "git+https://github.com/thestinger/vte-ng#tag=${_vtever}"
   "termite-util::git+https://github.com/thestinger/util"
   "geometry-option.patch"
+  "no-csd.patch"
 )
 
 sha512sums=(
@@ -37,6 +38,7 @@ sha512sums=(
   'SKIP'
   'SKIP'
   '419d52e57cef90f1060ea2d1eb5e7ccb9dcd51c4ad8cb7350a2128a2d09f5444fe9d36794490c352fd44f0c0fe66db89c5a583c0e56540ce86bb4d68bcf2fd3d'
+  'e135f8f360e632e57647a96e4493977083105a19add8e1a7e0cee9cece74cb183bed8c75cb23a85a0be4dc1e5519370f3445ea6817847bc87c50fd15cf1f245d'
 )
 
 prepare() {
@@ -49,6 +51,7 @@ prepare() {
   git config --local submodule.util.url "${srcdir}/termite-util"
   git submodule update
   patch -Np1 < "${srcdir}/geometry-option.patch"
+  patch -Np1 < "${srcdir}/no-csd.patch"
 }
 
 build() {
