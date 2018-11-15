@@ -24,7 +24,6 @@ python2-websocket-client       # needed for weechat wee-slack plugin
 qutebrowser
 shellcheck                     # syntax check of shell scripts
 sway
-termite
 the_silver_searcher
 tlp                            # power management
 tlp-rdw                        # radio devices management

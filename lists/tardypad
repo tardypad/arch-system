@@ -2,5 +2,6 @@ bats-core
 dotfiles-git
 htop
 system-config
+termite
 vim
 zsh
