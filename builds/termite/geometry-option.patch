@@ -1,0 +1,149 @@
+From 2cc18dc6e9e65c5bbc62895409c73214154dd8b5 Mon Sep 17 00:00:00 2001
+From: Damien Tardy-Panis <damien@tardypad.me>
+Date: Thu, 15 Nov 2018 10:15:57 +0100
+Subject: [PATCH] Revert "Merge pull request #567 from jelly/remove_geometry"
+
+This reverts commit a4af9e7e4181a6802558f330244730e82ba25907, reversing
+changes made to 7138bc49496425825960ef7a7c1c1c75427de2a2.
+---
+ config               |  1 +
+ man/termite.1        |  2 ++
+ man/termite.config.5 |  2 ++
+ termite.cc           | 31 +++++++++++++++++++++++--------
+ 4 files changed, 28 insertions(+), 8 deletions(-)
+
+diff --git a/config b/config
+index 78b83f3..ff3237a 100644
+--- a/config
++++ b/config
+@@ -6,6 +6,7 @@
+ #dynamic_title = true
+ font = Monospace 9
+ #fullscreen = true
++#geometry = 640x480
+ #icon_name = terminal
+ #mouse_autohide = false
+ #scroll_on_output = false
+diff --git a/man/termite.1 b/man/termite.1
+index 7136dbe..219e017 100644
+--- a/man/termite.1
++++ b/man/termite.1
+@@ -23,6 +23,8 @@ Set the termite window's title to \fITITLE\fP. This disables dynamic
+ titles.
+ .IP "\fB\-d\fR, \fB\-\-directory\fR\fB=\fR\fIDIRECTORY\fR"
+ Tell termite to change to \fIDIRECTORY\fP when launching.
++.IP "\fB\-\-geometry\fR\fB=\fR\fIGEOMETRY\fR"
++Override the window geometry in pixels.
+ .IP "\fB\-\-icon\fR\f8=\fR\fIICON\fR"
+ Override the window icon name.
+ .IP "\fB\-\-hold\fR"
+diff --git a/man/termite.config.5 b/man/termite.config.5
+index f5e26bd..74e8791 100644
+--- a/man/termite.config.5
++++ b/man/termite.config.5
+@@ -39,6 +39,8 @@ Whether to hide url hints not matching input in url hints mode.
+ The font description for the terminal's font.
+ .IP \fIfullscreen\fR
+ Enables entering fullscreen mode by pressing F11.
++.IP \fIgeometry\fR
++The default window geometry for new terminal windows.
+ .IP \fIicon_name\fR
+ The name of the icon to be used for the terminal process.
+ .IP \fImodify_other_keys\fR
+diff --git a/termite.cc b/termite.cc
+index a516331..eba57b4 100644
+--- a/termite.cc
++++ b/termite.cc
+@@ -161,9 +161,9 @@ static void overlay_show(search_panel_info *info, overlay_mode mode, VteTerminal
+ static void get_vte_padding(VteTerminal *vte, int *left, int *top, int *right, int *bottom);
+ static char *check_match(VteTerminal *vte, GdkEventButton *event);
+ static void load_config(GtkWindow *window, VteTerminal *vte, GtkWidget *scrollbar, GtkWidget *hbox,
+-                        config_info *info, char **icon, bool *show_scrollbar);
++                        config_info *info, char **geometry, char **icon, bool *show_scrollbar);
+ static void set_config(GtkWindow *window, VteTerminal *vte, GtkWidget *scrollbar, GtkWidget *hbox,
+-                       config_info *info, char **icon, bool *show_scrollbar,
++                       config_info *info, char **geometry, char **icon, bool *show_scrollbar,
+                        GKeyFile *config);
+ static long first_row(VteTerminal *vte);
+ 
+@@ -1418,7 +1418,7 @@ static void load_theme(GtkWindow *window, VteTerminal *vte, GKeyFile *config, hi
+ }
+ 
+ static void load_config(GtkWindow *window, VteTerminal *vte, GtkWidget *scrollbar,
+-                        GtkWidget *hbox, config_info *info, char **icon,
++                        GtkWidget *hbox, config_info *info, char **geometry, char **icon,
+                         bool *show_scrollbar) {
+     const std::string default_path = "/termite/config";
+     GKeyFile *config = g_key_file_new();
+@@ -1454,14 +1454,19 @@ static void load_config(GtkWindow *window, VteTerminal *vte, GtkWidget *scrollba
+     }
+ 
+     if (loaded) {
+-        set_config(window, vte, scrollbar, hbox, info, icon, show_scrollbar, config);
++        set_config(window, vte, scrollbar, hbox, info, geometry, icon, show_scrollbar, config);
+     }
+     g_key_file_free(config);
+ }
+ 
+ static void set_config(GtkWindow *window, VteTerminal *vte, GtkWidget *scrollbar, GtkWidget *hbox,
+-                       config_info *info, char **icon, bool *show_scrollbar_ptr,
++                       config_info *info, char **geometry, char **icon, bool *show_scrollbar_ptr,
+                        GKeyFile *config) {
++    if (geometry) {
++        if (auto s = get_config_string(config, "options", "geometry")) {
++            *geometry = *s;
++        }
++    }
+ 
+     auto cfg_bool = [config](const char *key, gboolean value) {
+         return get_config<gboolean>(g_key_file_get_boolean,
+@@ -1623,7 +1628,7 @@ int main(int argc, char **argv) {
+     gboolean version = FALSE, hold = FALSE;
+ 
+     GOptionContext *context = g_option_context_new(nullptr);
+-    char *role = nullptr, *execute = nullptr, *config_file = nullptr;
++    char *role = nullptr, *geometry = nullptr, *execute = nullptr, *config_file = nullptr;
+     char *title = nullptr, *icon = nullptr;
+     bool show_scrollbar = false;
+     const GOptionEntry entries[] = {
+@@ -1632,6 +1637,7 @@ int main(int argc, char **argv) {
+         {"role", 'r', 0, G_OPTION_ARG_STRING, &role, "The role to use", "ROLE"},
+         {"title", 't', 0, G_OPTION_ARG_STRING, &title, "Window title", "TITLE"},
+         {"directory", 'd', 0, G_OPTION_ARG_STRING, &directory, "Change to directory", "DIRECTORY"},
++        {"geometry", 0, 0, G_OPTION_ARG_STRING, &geometry, "Window geometry", "GEOMETRY"},
+         {"hold", 0, 0, G_OPTION_ARG_NONE, &hold, "Remain open after child process exits", nullptr},
+         {"config", 'c', 0, G_OPTION_ARG_STRING, &config_file, "Path of config file", "CONFIG"},
+         {"icon", 'i', 0, G_OPTION_ARG_STRING, &icon, "Icon", "ICON"},
+@@ -1711,11 +1717,11 @@ int main(int argc, char **argv) {
+     };
+ 
+     load_config(GTK_WINDOW(window), vte, scrollbar, hbox, &info.config,
+-                icon ? nullptr : &icon, &show_scrollbar);
++                geometry ? nullptr : &geometry, icon ? nullptr : &icon, &show_scrollbar);
+ 
+     reload_config = [&]{
+         load_config(GTK_WINDOW(window), vte, scrollbar, hbox, &info.config,
+-                    nullptr, nullptr);
++                    nullptr, nullptr, nullptr);
+     };
+     signal(SIGUSR1, [](int){ reload_config(); });
+ 
+@@ -1777,6 +1783,15 @@ int main(int argc, char **argv) {
+         }
+     }
+ 
++    if (geometry) {
++        gtk_widget_show_all(panel_overlay);
++        gtk_widget_show_all(info.panel.entry);
++        if (!gtk_window_parse_geometry(GTK_WINDOW(window), geometry)) {
++            g_printerr("invalid geometry string: %s\n", geometry);
++        }
++        g_free(geometry);
++    }
++
+     if (icon) {
+         gtk_window_set_icon_name(GTK_WINDOW(window), icon);
+         g_free(icon);
+-- 
+2.19.1
+
