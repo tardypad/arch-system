@@ -3,9 +3,8 @@ pkgname=(
   'termite'
   'termite-terminfo'
 )
-pkgver=14
-_vtever=0.54.2.a
-pkgrel=3
+pkgver=14.90
+pkgrel=1
 pkgdesc="A simple VTE-based terminal"
 url="https://github.com/thestinger/termite/"
 arch=('x86_64')
@@ -13,63 +12,24 @@ license=('LGPL')
 
 depends=(
   'gtk3'
-  'pcre2'
-  'gnutls'
+  'vte3'
   'vte-common'
 )
 makedepends=(
   'git'
   'ncurses'
-  'intltool'
-  'gperf'
-  'gtk-doc'
 )
 
 source=(
-  "git+https://github.com/thestinger/termite#tag=v${pkgver}"
-  "git+https://github.com/thestinger/vte-ng#tag=${_vtever}"
-  "termite-util::git+https://github.com/thestinger/util"
-  "geometry-option.patch"
-  "no-csd.patch"
+  "git+https://github.com/tardypad/termite#tag=v${pkgver}"
 )
 
 sha512sums=(
   'SKIP'
-  'SKIP'
-  'SKIP'
-  '419d52e57cef90f1060ea2d1eb5e7ccb9dcd51c4ad8cb7350a2128a2d09f5444fe9d36794490c352fd44f0c0fe66db89c5a583c0e56540ce86bb4d68bcf2fd3d'
-  'e135f8f360e632e57647a96e4493977083105a19add8e1a7e0cee9cece74cb183bed8c75cb23a85a0be4dc1e5519370f3445ea6817847bc87c50fd15cf1f245d'
 )
 
-prepare() {
-  cd vte-ng
-  echo 'sources: $(BUILT_SOURCES)' >> src/Makefile.am
-  NOCONFIGURE=1 ./autogen.sh
-
-  cd "../${pkgbase}"
-  git submodule init
-  git config --local submodule.util.url "${srcdir}/termite-util"
-  git submodule update
-  patch -Np1 < "${srcdir}/geometry-option.patch"
-  patch -Np1 < "${srcdir}/no-csd.patch"
-}
-
 build() {
-  cd vte-ng
-  ./configure \
-    --prefix="${srcdir}/vte-static" \
-    --localedir="/usr/share/${pkgbase}/locale" \
-    --enable-static \
-    --disable-shared \
-    enable_introspection=no \
-    enable_vala=no \
-    --disable-gtk-doc \
-    --disable-glade-catalogue
-  make -C src sources install-exec install-data -j 1 # makefile bug does not allow -j
-  make install-pkgconfigDATA
-
-  cd "../${pkgbase}"
-  export PKG_CONFIG_PATH="${srcdir}/vte-static/lib/pkgconfig"
+  cd "${pkgbase}"
   make
 }
 
@@ -77,7 +37,6 @@ package_termite() {
   depends+=( 'termite-terminfo' )
   backup=( etc/xdg/termite/config )
 
-  make -C vte-ng/po DESTDIR="${pkgdir}" install-data
   make -C "${pkgbase}" DESTDIR="${pkgdir}" PREFIX=/usr install
   rm -r "${pkgdir}/usr/share/terminfo"
 }
