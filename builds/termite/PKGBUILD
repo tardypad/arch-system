@@ -1,10 +1,6 @@
-pkgbase=termite
-pkgname=(
-  'termite'
-  'termite-terminfo'
-)
+pkgname=termite
 pkgver=14.90
-pkgrel=1
+pkgrel=2
 pkgdesc="A simple VTE-based terminal"
 url="https://github.com/thestinger/termite/"
 arch=('x86_64')
@@ -12,12 +8,12 @@ license=('LGPL')
 
 depends=(
   'gtk3'
+  'ncurses'
   'vte3'
   'vte-common'
 )
 makedepends=(
   'git'
-  'ncurses'
 )
 
 source=(
@@ -28,23 +24,16 @@ sha512sums=(
   'SKIP'
 )
 
+backup=(
+  'etc/xdg/termite/config'
+)
+
 build() {
-  cd "${pkgbase}"
+  cd "${pkgname}"
   make
 }
 
 package_termite() {
-  depends+=( 'termite-terminfo' )
-  backup=( etc/xdg/termite/config )
-
-  make -C "${pkgbase}" DESTDIR="${pkgdir}" PREFIX=/usr install
-  rm -r "${pkgdir}/usr/share/terminfo"
-}
-
-package_termite-terminfo() {
-  pkgdesc='Terminfo for Termite, a simple VTE-based terminal'
-  depends=( 'ncurses' )
-
-  mkdir -p "${pkgdir}/usr/share/terminfo"
-  tic -x -o "${pkgdir}/usr/share/terminfo" "${pkgbase}/termite.terminfo"
+  cd "${pkgname}"
+  make DESTDIR="${pkgdir}" PREFIX=/usr install
 }
