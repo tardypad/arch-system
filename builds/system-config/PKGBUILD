@@ -1,5 +1,5 @@
 pkgname=system-config
-pkgver=1.0.5
+pkgver=1.0.6
 pkgrel=1
 pkgdesc='System configurations'
 url='https://github.com/tardypad'
@@ -18,6 +18,7 @@ depends=(
   'pacman'
   'pacman-contrib'
   'logrotate'
+  'bluez'
 )
 
 source=(
@@ -35,11 +36,12 @@ source=(
   'etc-logrotate'
   'etc-logrotate-sway'
   'etc-logrotate-weechat'
+  'etc-bluetooth-main'
 )
 
 sha512sums=(
   'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP'
-  'SKIP' 'SKIP'
+  'SKIP' 'SKIP' 'SKIP'
 )
 
 package() {
@@ -58,4 +60,5 @@ package() {
   install -Dm0644 etc-logrotate "$pkgdir"/etc/logrotate.conf
   install -Dm0644 etc-logrotate-sway "$pkgdir"/etc/logrotate.d/sway
   install -Dm0644 etc-logrotate-weechat "$pkgdir"/etc/logrotate.d/weechat
+  install -Dm0644 etc-bluetooth-main "$pkgdir"/etc/bluetooth/main.conf
 }
