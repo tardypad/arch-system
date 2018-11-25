@@ -1,6 +1,6 @@
 pkgname=termite
-pkgver=14.90
-pkgrel=2
+pkgver=14.91
+pkgrel=1
 pkgdesc="A simple VTE-based terminal"
 url="https://github.com/thestinger/termite/"
 arch=('x86_64')
@@ -12,16 +12,13 @@ depends=(
   'vte3'
   'vte-common'
 )
-makedepends=(
-  'git'
-)
 
 source=(
-  "git+https://github.com/tardypad/termite#tag=v${pkgver}"
+  "https://github.com/tardypad/termite/archive/v${pkgver}.tar.gz"
 )
 
 sha512sums=(
-  'SKIP'
+  '1a52a3906b3dacefb1975913ef7930f14a9558d52906bfa1faccd85e5d5a006767d3cf47d339c239cb81e0706726b2a80db419b0549cbfe0c54fc021cb0710cd'
 )
 
 backup=(
@@ -29,11 +26,11 @@ backup=(
 )
 
 build() {
-  cd "${pkgname}"
+  cd "${pkgname}-${pkgver}"
   make
 }
 
 package_termite() {
-  cd "${pkgname}"
+  cd "${pkgname}-${pkgver}"
   make DESTDIR="${pkgdir}" PREFIX=/usr install
 }
