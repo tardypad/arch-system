@@ -31,6 +31,9 @@ post_install() {
 
     # Weekly delete cached versions of packages, except most recent 3
     systemctl enable paccache.timer
+
+    echo ':: You need to update pacman "tardypad" and "aur" repositories config'
+    echo '   with the correct HTTP credentials'
 }
 
 post_upgrade() {

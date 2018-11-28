@@ -12,8 +12,6 @@
 #RootDir     = /
 #DBPath      = /var/lib/pacman/
 CacheDir = /var/cache/pacman/pkg/
-CacheDir = /var/cache/pacman/aur
-CacheDir = /var/cache/pacman/tardypad
 #LogFile     = /var/log/pacman.log
 #GPGDir      = /etc/pacman.d/gnupg/
 #HookDir     = /etc/pacman.d/hooks/
