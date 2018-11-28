@@ -34,60 +34,10 @@ update_current_packages() {
 }
 
 setup_repositories() {
-  # create repositories
-  install -d /var/cache/pacman/aur -o damien
-  repo-add /var/cache/pacman/aur/aur.db.tar
-  install -d /var/cache/pacman/tardypad -o damien
-  repo-add /var/cache/pacman/tardypad/tardypad.db.tar
-
   # reuse pacman config from system-config package
   install -Dm0644 builds/system-config/etc-pacman /etc/pacman.conf
   install -Dm0644 builds/system-config/etc-pacman-aur /etc/pacman.d/aur
   install -Dm0644 builds/system-config/etc-pacman-tardypad /etc/pacman.d/tardypad
-}
-
-setup_sudo() {
-  # sudo is needed by aurutils packages building
-  pacman --sync --noconfirm sudo
-
-  # reuse sudo config from system-config package
-  install -m0600 builds/system-config/etc-sudo-users /etc/sudoers.d/users
-  usermod --append --groups wheel damien
-}
-
-setup_aurutils() {
-  sudo --user damien gpg --recv-keys DBE7D3DD8C81D58D0A13D0E76BC26A17B9B7018A
-  local tmp_dir=$( sudo --user damien mktemp --directory )
-  curl --silent --location https://aur.archlinux.org/cgit/aur.git/snapshot/aurutils.tar.gz \
-      | sudo --user damien tar --extract --gunzip --directory "${tmp_dir}"
-  cd "${tmp_dir}/aurutils"
-  sudo --user damien makepkg --syncdeps --noconfirm --install
-  sudo --user damien repo-add /var/cache/pacman/aur/aur.db.tar aurutils-*.pkg.tar.xz
-  sudo --user damien cp aurutils-*.pkg.tar.xz /var/cache/pacman/aur/
-  rm -rf "${tmp_dir}"
-}
-
-build_tardypad_packages() {
-  # ssh might be needed to retrieve some sources
-  pacman --sync --noconfirm openssh
-
-  local packages=$(
-    cut --delimiter ' ' --fields 1 lists/tardypad
-  )
-
-  for package in ${packages}; do
-    cd "builds/${package}"
-    sudo --user damien aurbuild -d tardypad
-  done
-}
-
-build_aur_packages() {
-  local packages=$(
-    cut --delimiter ' ' --fields 1 lists/aur \
-      grep --invert-match aurutils
-  )
-
-  sudo --user damien aursync --no-view --no-confirm --repo aur ${packages}
 }
 
 install_packages() {
@@ -104,10 +54,6 @@ install_packages() {
 system_setup() {
   update_current_packages
   setup_repositories
-  setup_sudo
-  setup_aurutils
-  build_tardypad_packages
-  build_aur_packages
   install_packages
 }
 
