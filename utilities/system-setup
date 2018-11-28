@@ -38,6 +38,13 @@ setup_repositories() {
   install -Dm0644 builds/system-config/etc-pacman /etc/pacman.conf
   install -Dm0644 builds/system-config/etc-pacman-aur /etc/pacman.d/aur
   install -Dm0644 builds/system-config/etc-pacman-tardypad /etc/pacman.d/tardypad
+
+  # set own repo HTTP credentials
+  echo 'Enter pkgs.tardypad.me HTTP credentials'
+  read -p 'username: ' username
+  read -p 'password: ' password
+  sed -i "s/{USERNAME}/${username}/" /etc/pacman.d/{aur,tardypad}
+  sed -i "s/{PASSWORD}/${password}/" /etc/pacman.d/{aur,tardypad}
 }
 
 install_packages() {
