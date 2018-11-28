@@ -5,6 +5,8 @@ post_install() {
 
     # needed for arduino devices flashing
     usermod --append --groups uucp damien
+    # use sudo
+    usermod --append --groups wheel damien
 
     # logs
     install -dm0755 -o damien -g damien /var/log/sway
