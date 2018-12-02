@@ -3,7 +3,6 @@ adobe-source-han-sans-jp-fonts # needed for some emojis characters ¯\_(ツ)_/¯
 aria2
 bluez-tools                    # contains bt-obex needed to receive files via bluetooth
 dex
-diff-so-fancy
 elinks
 fortune-mod
 fzf
