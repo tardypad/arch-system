@@ -23,6 +23,7 @@ pass
 python2-websocket-client       # needed for weechat wee-slack plugin
 qutebrowser
 shellcheck                     # syntax check of shell scripts
+speedtest-cli                  # speedtest.net client
 sway
 the_silver_searcher
 tlp                            # power management
