@@ -4,6 +4,7 @@ aria2
 bluez-tools                    # contains bt-obex needed to receive files via bluetooth
 dex
 elinks
+entr                           # event notify test runner
 fortune-mod
 fzf
 httpie
