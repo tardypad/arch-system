@@ -32,7 +32,7 @@ IgnorePkg   = grub
 
 # Misc options
 #UseSyslog
-#Color
+Color
 #TotalDownload
 CheckSpace
 #VerbosePkgLists
