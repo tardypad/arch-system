@@ -12,6 +12,7 @@ gimp
 git
 gnuplot
 gst-plugins-bad                # play FLAC files
+imagemagick
 inkscape
 libqalculate
 libreoffice-fresh
