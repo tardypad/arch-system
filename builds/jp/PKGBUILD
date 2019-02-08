@@ -1,0 +1,42 @@
+pkgname=jp
+pkgver=1.1.12
+pkgrel=1
+pkgdesc="Simple terminal plotting from JSON or CSV data"
+arch=("any")
+url="https://github.com/sgreben/jp"
+license=("MIT")
+
+makedepends=(
+  'go-pie'
+  'dep'
+)
+
+source=(
+  "https://github.com/sgreben/jp/archive/${pkgver}.tar.gz"
+)
+
+sha512sums=(
+  '4982d71c0cdfc6c0392a3d6c7554136282244f1045f9dc44a3ae3758065e9ff3f3a428390f65ebf242820860be5d0092eb41eef4083ac142923acf8f0dbb6bd9'
+)
+
+prepare(){
+  mkdir -p gopath/src/github.com/jp
+  ln -rTsf "${pkgname}-${pkgver}" gopath/src/github.com/jp/jp
+  export GOPATH="${srcdir}/gopath"
+  cd "$GOPATH/src/github.com/jp/jp"
+  dep ensure
+}
+
+build() {
+  export GOPATH="${srcdir}/gopath"
+  cd "$GOPATH/src/github.com/jp/jp"
+  go install \
+    -gcflags "all=-trimpath=$GOPATH" \
+    -asmflags "all=-trimpath=$GOPATH" \
+    -ldflags "-extldflags $LDFLAGS" \
+    -v ./...
+}
+
+package() {
+  install -Dm755 "gopath/bin/${pkgname}" "${pkgdir}/usr/bin/${pkgname}"
+}
