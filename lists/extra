@@ -10,7 +10,6 @@ ethtool                        # needed to manage Wake-on-LAN in tlp
 firefox
 gimp
 git
-gnuplot
 gst-plugins-bad                # play FLAC files
 imagemagick
 inkscape
