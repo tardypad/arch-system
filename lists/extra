@@ -15,6 +15,7 @@ imagemagick
 inkscape
 libqalculate
 libreoffice-fresh
+libxml2
 mpc
 networkmanager
 p7zip                          # extract ZIP archives using encryptions not supported by unzip
