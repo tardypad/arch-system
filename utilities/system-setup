@@ -5,16 +5,16 @@ COMMAND=$( basename $0 )
 
 
 usage() {
-  cat << EOF
-usage: ${COMMAND} [<options>]
+  cat <<- EOF
+	usage: ${COMMAND} [<options>]
 
-Setup a new system after basic Arch installation
+	Setup a new system after basic Arch installation
 
-Needs to be run from the repository root as a root user
+	Needs to be run from the repository root as a root user
 
-Options:
-  -h,  --help    show this message only
-EOF
+	Options:
+	  -h,  --help    show this message only
+	EOF
 }
 
 
