@@ -3,7 +3,6 @@ adobe-source-han-sans-jp-fonts # needed for some emojis characters ¯\_(ツ)_/¯
 aria2
 bluez-tools                    # contains bt-obex needed to receive files via bluetooth
 calibre                        # ebooks management
-dex
 elinks
 entr                           # event notify test runner
 fortune-mod
