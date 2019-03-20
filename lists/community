@@ -26,6 +26,7 @@ qutebrowser
 shellcheck                     # syntax check of shell scripts
 speedtest-cli                  # speedtest.net client
 sway
+swaylock
 the_silver_searcher
 tlp                            # power management
 tlp-rdw                        # radio devices management
