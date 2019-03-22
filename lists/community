@@ -12,6 +12,7 @@ i3blocks
 jq
 lesspipe
 light
+mako
 mopidy
 ncdu                           # disk usage analyser
 ncmpcpp
