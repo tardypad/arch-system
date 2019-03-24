@@ -1,5 +1,5 @@
 pkgname=termite
-pkgver=14.91
+pkgver=14.92
 pkgrel=1
 pkgdesc="A simple VTE-based terminal"
 url="https://github.com/thestinger/termite/"
@@ -18,7 +18,7 @@ source=(
 )
 
 sha512sums=(
-  '1a52a3906b3dacefb1975913ef7930f14a9558d52906bfa1faccd85e5d5a006767d3cf47d339c239cb81e0706726b2a80db419b0549cbfe0c54fc021cb0710cd'
+  '5f929f71d191e40ebe3e54e25d149d3659740da64a0b3c1c767eea840fffb98fcdfd1d61c7e4c71f9f7fe2e143375f898bc6cc21444346f2ca9b7f3dc3c76db8'
 )
 
 backup=(
