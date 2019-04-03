@@ -30,7 +30,9 @@ post_install() {
     systemctl enable --now NetworkManager-dispatcher.service
     systemctl mask --now systemd-rfkill.service
     systemctl mask --now systemd-rfkill.socket
+
     systemctl enable --now NetworkManager.service
+    systemctl enable --now bluetooth.service
 
     # Weekly delete cached versions of packages, except most recent 3
     systemctl enable paccache.timer
