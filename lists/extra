@@ -13,7 +13,6 @@ git
 gst-plugins-bad                # play FLAC files
 imagemagick
 inkscape
-libnotify
 libqalculate
 libreoffice-fresh
 libxml2
