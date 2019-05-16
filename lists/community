@@ -5,7 +5,6 @@ bluez-tools                    # contains bt-obex needed to receive files via bl
 calibre                        # ebooks management
 elinks
 entr                           # event notify test runner
-fortune-mod
 fzf
 grim                           # used for screenshots
 httpie
