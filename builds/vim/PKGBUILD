@@ -3,7 +3,7 @@ pkgname=(
   'vim'
   'vim-runtime'
 )
-pkgver=8.1.0283
+pkgver=8.1.1467
 _versiondir=81
 pkgrel=1
 pkgdesc='Vi Improved, a highly configurable, improved version of the vi text editor'
@@ -31,7 +31,7 @@ source=(
 )
 
 sha512sums=(
-  'e8236e0a0de3dfe3071dc4eaac978700b55e73eace314e88b36107e8089b5cc619d9de4f2c136768095d65506437ffbaad5fb2ba7bbbbca68c50ec0277886925'
+  '70088265eea5ad104a5cf4e814ea45d28e5904e63f9a79515fa1beede7a043b96abd16102ece58e3df6ca3e84245d206dc38b47c1d7db77540086735f3f3ea91'
   '1e06e981691b17662fd0fddac5c00c87c920d1b4a1cbb6191c42d57cc40b00af12710e26b22fcfc0901bb8142b15f6a04aa65cec2d9b3bb9d5a06cb650d3ab9c'
 )
 
