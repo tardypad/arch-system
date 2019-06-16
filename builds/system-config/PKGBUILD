@@ -1,5 +1,5 @@
 pkgname=system-config
-pkgver=1.0.15
+pkgver=1.0.16
 pkgrel=1
 pkgdesc='System configurations'
 url='https://github.com/tardypad'
