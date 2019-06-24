@@ -41,6 +41,5 @@ wl-clipboard
 zathura
 zathura-pdf-mupdf              # plugin to read PDF files
 zsh-autosuggestions
-zsh-completions                # extra completions for zsh
 zsh-history-substring-search
 zsh-syntax-highlighting
