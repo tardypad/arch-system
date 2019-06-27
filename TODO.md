@@ -13,6 +13,7 @@
 
 # Improvements
   - system-config: split configuration per package config files
+  - make utility scripts POSIX compliant
 
 # New Features
   - make a script to report modified package files
