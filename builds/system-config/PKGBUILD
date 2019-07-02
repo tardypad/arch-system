@@ -3,7 +3,7 @@ pkgname=(
   'system-config-light'
   'system-config-dark'
 )
-pkgver=1.1.0
+pkgver=1.1.1
 pkgrel=1
 pkgdesc='System configurations'
 url='https://github.com/tardypad'
