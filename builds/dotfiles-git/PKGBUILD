@@ -1,10 +1,26 @@
-pkgname=dotfiles-git
-pkgver=r1013.13d1569
+pkgbase=dotfiles-git
+pkgname=(
+  'dotfiles-light-git'
+  'dotfiles-dark-git'
+)
+pkgver=r1847.edf012e2
 pkgrel=1
 pkgdesc="My dotfiles"
 arch=('any')
 url="https://github.com/tardypad/dotfiles"
 license=('custom')
+
+conflicts=(
+  'dotfiles-git'
+)
+
+provides=(
+  'dotfiles-git'
+)
+
+replaces=(
+  'dotfiles-git'
+)
 
 makedepends=(
   'git'
@@ -30,11 +46,21 @@ pkgver() {
   printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
 }
 
-package() {
+package_dotfiles-light-git() {
   cd dotfiles
-  make DESTDIR="$pkgdir" all
+  make DESTDIR="$pkgdir" THEME=light all
 
-  # adjust permissions
+  adjust_permissions
+}
+
+package_dotfiles-dark-git() {
+  cd dotfiles
+  make DESTDIR="$pkgdir" THEME=dark all
+
+  adjust_permissions
+}
+
+adjust_permissions() {
   chown -R damien:damien "$pkgdir/home/damien"
   chmod 711 "$pkgdir/home/damien"
   chmod 700 "$pkgdir/home/damien/.config"
