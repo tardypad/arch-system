@@ -1,9 +1,9 @@
 asciitosvg-git
 bats-core
-dotfiles-git
+dotfiles-light-git
 htop
 jp
-system-config
+system-config-light
 termite
 vim
 zsh
