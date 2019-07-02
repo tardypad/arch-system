@@ -1,10 +1,26 @@
-pkgname=system-config
-pkgver=1.0.16
+pkgbase=system-config
+pkgname=(
+  'system-config-light'
+  'system-config-dark'
+)
+pkgver=1.1.0
 pkgrel=1
 pkgdesc='System configurations'
 url='https://github.com/tardypad'
 arch=('any')
 license=('custom')
+
+conflicts=(
+  'system-config'
+)
+
+provides=(
+  'system-config'
+)
+
+replaces=(
+  'system-config'
+)
 
 install=system-config.install
 
@@ -22,7 +38,8 @@ depends=(
 )
 
 source=(
-  'etc-issue'
+  'etc-issue-light'
+  'etc-issue-dark'
   'etc-vconsole'
   'etc-sudo-users'
   'etc-sudo-defaults'
@@ -41,11 +58,10 @@ source=(
 
 sha512sums=(
   'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP'
-  'SKIP' 'SKIP' 'SKIP'
+  'SKIP' 'SKIP' 'SKIP' 'SKIP'
 )
 
-package() {
-  install -Dm0644 etc-issue "$pkgdir"/etc/issue
+package_common() {
   install -Dm0644 etc-vconsole "$pkgdir"/etc/vconsole.conf
   install -dm0750 "$pkgdir"/etc/sudoers.d
   install -m0600 etc-sudo-users "$pkgdir"/etc/sudoers.d/users
@@ -61,4 +77,16 @@ package() {
   install -Dm0644 etc-logrotate-sway "$pkgdir"/etc/logrotate.d/sway
   install -Dm0644 etc-logrotate-weechat "$pkgdir"/etc/logrotate.d/weechat
   install -Dm0644 etc-bluetooth-main "$pkgdir"/etc/bluetooth/main.conf
+}
+
+package_system-config-light() {
+  install -Dm0644 etc-issue-light "$pkgdir"/etc/issue
+
+  package_common
+}
+
+package_system-config-dark() {
+  install -Dm0644 etc-issue-dark "$pkgdir"/etc/issue
+
+  package_common
 }
