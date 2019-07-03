@@ -1,8 +1,8 @@
-#!/usr/bin/env bash
-# Needs to be in bash since it's the shell installed by default on Arch
+#!/bin/sh
 
-COMMAND=$( basename $0 )
-
+init_variables() {
+  COMMAND=${0##*/}
+}
 
 usage() {
   cat <<- EOF
@@ -17,46 +17,45 @@ usage() {
 	EOF
 }
 
-
 error() {
-  [[ -z "$1" ]] || echo "${COMMAND}: $1"
+  [ -z "$1" ] || echo "${COMMAND}: $1"
   echo "Try '${COMMAND} --help' for more information."
   exit 1
 } >&2
 
-
 check_root_user() {
-  [[ $( id -u ) -ne 0 ]] && error 'The script must be run as root'
+  [ "$( id -u )" -ne 0 ] && error 'The script must be run as root'
 }
 
 update_current_packages() {
-  pacman --sync --refresh --sysupgrade --noconfirm
+  pacman -Syu --noconfirm
 }
 
 setup_repositories() {
-  # reuse pacman config from system-config package
-  install -Dm0644 builds/system-config/etc-pacman /etc/pacman.conf
-  install -Dm0644 builds/system-config/etc-pacman-aur /etc/pacman.d/aur
-  install -Dm0644 builds/system-config/etc-pacman-tardypad /etc/pacman.d/tardypad
-
   # set own repo HTTP credentials
   echo 'Enter pkgs.tardypad.me HTTP credentials'
-  read -p 'username: ' username
-  read -p 'password: ' password
-  sed -i "s/{USERNAME}/${username}/" /etc/pacman.d/{aur,tardypad}
-  sed -i "s/{PASSWORD}/${password}/" /etc/pacman.d/{aur,tardypad}
+  printf 'username: '; read -r USERNAME
+  printf 'password: '; read -r PASSWORD
+
+  # reuse pacman config from system-config package
+  mkdir -p /etc/pacmand.d/
+  cp builds/system-config/etc-pacman /etc/pacman.conf
+  sed -e "s/{USERNAME}/${USERNAME}/" -e "s/{PASSWORD}/${PASSWORD}/" \
+    builds/system-config/etc-pacman-aur > /etc/pacman.d/aur
+  sed -e "s/{USERNAME}/${USERNAME}/" -e "s/{PASSWORD}/${PASSWORD}/" \
+    builds/system-config/etc-pacman-tardypad > /etc/pacman.d/tardypad
+  chmod 644 /etc/pacman.conf /etc/pacman.d/aur /etc/pacman.d/tardypad
 }
 
 install_packages() {
-  local packages=$(
-    cut --delimiter ' ' --fields 1 lists/* \
-      | grep --invert-match --extended-regexp 'system-config|dotfiles-git'
+  PACKAGES=$(
+    cut -d' ' -f1 lists/* \
+      | grep -v -E 'system-config|dotfiles-git'
   )
 
-  pacman --sync --refresh --noconfirm ${packages}
-  pacman --sync --noconfirm --overwrite '*' system-config dotfiles-git
+  pacman -Sy --noconfirm ${PACKAGES}
+  pacman -S --noconfirm --overwrite '*' system-config dotfiles-git
 }
-
 
 system_setup() {
   update_current_packages
@@ -64,9 +63,8 @@ system_setup() {
   install_packages
 }
 
-
 parse_options() {
-  while [[ "$#" -gt 0 ]]; do
+  while [ "$#" -gt 0 ]; do
     case "$1" in
       -h|--help)
         usage
@@ -79,7 +77,7 @@ parse_options() {
   done
 }
 
-
+init_variables
 parse_options "$@"
 
 check_root_user
