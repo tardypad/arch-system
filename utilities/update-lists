@@ -1,4 +1,8 @@
 #!/bin/sh
+# commands used:
+# - pacconf
+# - paclist
+# - pacman
 
 init_variables() {
   COMMAND=${0##*/}
