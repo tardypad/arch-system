@@ -36,7 +36,6 @@ tlp                            # power management
 tlp-rdw                        # radio devices management
 tmux
 translate-shell
-vifm
 weechat
 wl-clipboard
 zathura
