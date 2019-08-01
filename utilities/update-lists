@@ -13,7 +13,7 @@ init_variables() {
   trap 'rm "${TMP_FILE_1}" "${TMP_FILE_2}" "${TMP_FILE_3}"' EXIT
 }
 
-usage() {
+show_usage() {
   cat <<- EOF
 	usage: ${COMMAND} [<options>]
 
@@ -27,7 +27,21 @@ usage() {
 	EOF
 }
 
-error() {
+parse_command_line() {
+  while [ "$#" -gt 0 ]; do
+    case "$1" in
+      -h|--help)
+        show_usage
+        exit 0
+        ;;
+      *)
+        exit_error "Invalid option '$1'"
+        ;;
+    esac
+  done
+}
+
+exit_error() {
   [ -z "$1" ] || echo "${COMMAND}: $1"
   echo "Try '${COMMAND} --help' for more information."
   exit 1
@@ -92,21 +106,7 @@ merge_packages_files() {
     | sort -k 1,1
 }
 
-parse_options() {
-  while [ "$#" -gt 0 ]; do
-    case "$1" in
-      -h|--help)
-        usage
-        exit 0
-        ;;
-      *)
-        error "Invalid option '$1'"
-        ;;
-    esac
-  done
-}
-
 init_variables
-parse_options "$@"
+parse_command_line "$@"
 
 update_lists
