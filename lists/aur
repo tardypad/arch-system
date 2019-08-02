@@ -1,6 +1,5 @@
 aurutils
 gron-bin
-hyperfine
 mopidy-somafm
 phpctags                       # needed for vim tagbar-phpctags plugin
 rbtools

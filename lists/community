@@ -8,6 +8,7 @@ entr                           # event notify test runner
 fzf
 grim                           # used for screenshots
 httpie
+hyperfine
 i3blocks
 jq
 light
