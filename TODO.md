@@ -1,28 +1,30 @@
-# Periodic
+# TODO
+
+## Periodic
   - Check packages new versions and releases  
     compare new default configuration files with our own
   - Update packages list with the `update-lists` utility script
   - Check for modified package files with the `TBD` utility script
   - Check for files not belonging to any package with the `TBD` utility script
 
-# Cleaning
+## Cleaning
 
-# Bugs
+## Bugs
   - system setup should ask which system-config and dotfiles-git packages to install  
     * theme (light/dark)
     * version (perso/work/...)
 
-# Testing
+## Testing
 
-# Improvements
+## Improvements
   - system-config: split configuration per package config files
 
-# New Features
+## New Features
   - make a script to report modified package files
   - make a script to report files not belonging to any package  
     [lostfiles](https://github.com/graysky2/lostfiles)
 
-# Research
+## Research
   - [aconfmgr](https://github.com/CyberShadow/aconfmgr) configuration manager  
     maybe to replace our system-config package
   - [arch-audit](https://github.com/ilpianista/arch-audit) list security vulnerabilities
