@@ -22,7 +22,7 @@ otf-font-awesome               # font needed for some dotfiles' packages
 pacman-contrib                 # checkupdates and other utilities
 pacutils                       # needed for pkgbuilds repository utilities
 pass
-python2-websocket-client       # needed for weechat wee-slack plugin
+python-websocket-client        # needed for weechat wee-slack plugin
 qutebrowser
 scdoc                          # man pages generation
 shellcheck                     # syntax check of shell scripts
