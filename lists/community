@@ -38,6 +38,7 @@ tmux
 translate-shell
 weechat
 wl-clipboard
+yubikey-manager
 zathura
 zathura-pdf-mupdf              # plugin to read PDF files
 zsh-autosuggestions
