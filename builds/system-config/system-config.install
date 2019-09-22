@@ -34,6 +34,9 @@ post_install() {
     systemctl enable --now NetworkManager.service
     systemctl enable --now bluetooth.service
 
+    # Yubikey usage
+    systemctl enable --now pcscd.service
+
     # Weekly delete cached versions of packages, except most recent 3
     systemctl enable paccache.timer
 

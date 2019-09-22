@@ -3,7 +3,7 @@ pkgname=(
   'system-config-light'
   'system-config-dark'
 )
-pkgver=1.1.1
+pkgver=1.1.2
 pkgrel=1
 pkgdesc='System configurations'
 url='https://github.com/tardypad'
@@ -35,6 +35,7 @@ depends=(
   'pacman-contrib'
   'logrotate'
   'bluez'
+  'pcsclite'
 )
 
 source=(
