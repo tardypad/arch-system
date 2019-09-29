@@ -1,5 +1,6 @@
 acpi_call                      # needed for battery charge threshold in tlp
 adobe-source-han-sans-jp-fonts # needed for some emojis characters ¯\_(ツ)_/¯
+alacritty
 aria2
 bluez-tools                    # contains bt-obex needed to receive files via bluetooth
 calibre                        # ebooks management
