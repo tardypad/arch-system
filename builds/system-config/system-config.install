@@ -7,6 +7,8 @@ post_install() {
     usermod --append --groups uucp damien
     # use sudo
     usermod --append --groups wheel damien
+    # use light
+    usermod --append --groups video damien
 
     # logs
     install -dm0755 -o damien -g damien /var/log/sway
