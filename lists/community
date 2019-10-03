@@ -4,7 +4,6 @@ alacritty
 aria2
 bluez-tools                    # contains bt-obex needed to receive files via bluetooth
 calibre                        # ebooks management
-elinks
 entr                           # event notify test runner
 fzf
 grim                           # used for screenshots

@@ -26,6 +26,7 @@ rsync
 tree                           # directory listing
 unrar                          # extract RAR archives
 unzip                          # extract ZIP archives
+w3m
 xdg-user-dirs
 xdg-utils
 zip                            # create ZIP archives
