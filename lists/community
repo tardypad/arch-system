@@ -18,7 +18,6 @@ mpv
 ncdu                           # disk usage analyser
 ncmpcpp
 neomutt
-newsboat
 otf-font-awesome               # font needed for some dotfiles' packages
 pacman-contrib                 # checkupdates and other utilities
 pacutils                       # needed for pkgbuilds repository utilities
