@@ -4,7 +4,7 @@ pkgname=(
   'dotfiles-dark-git'
 )
 pkgver=r1847.edf012e2
-pkgrel=1
+pkgrel=2
 pkgdesc="My dotfiles"
 arch=('any')
 url="https://github.com/tardypad/dotfiles"
@@ -23,8 +23,17 @@ replaces=(
 )
 
 makedepends=(
+  'curl'
   'git'
   'openssh'
+  'scdoc'
+)
+
+depends=(
+  'fontconfig'
+  'sudo'
+  'systemd'
+  'vim'
 )
 
 install=dotfiles-git.install
