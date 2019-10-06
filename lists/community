@@ -13,7 +13,6 @@ i3blocks
 jq
 light
 mako
-mopidy
 mpv
 ncdu                           # disk usage analyser
 ncmpcpp

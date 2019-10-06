@@ -17,6 +17,7 @@ libqalculate
 libreoffice-fresh
 libxml2
 mpc
+mpd
 networkmanager
 p7zip                          # extract ZIP archives using encryptions not supported by unzip
 pulseaudio                     # needed to play music on bluetooth device...
