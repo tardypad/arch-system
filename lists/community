@@ -15,7 +15,6 @@ light
 mako
 mpv
 ncdu                           # disk usage analyser
-ncmpcpp
 neomutt
 otf-font-awesome               # font needed for some dotfiles' packages
 pacman-contrib                 # checkupdates and other utilities
