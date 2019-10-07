@@ -60,6 +60,7 @@ package_dotfiles-light-git() {
   make DESTDIR="$pkgdir" THEME=light all
 
   adjust_permissions
+  hush_login
 }
 
 package_dotfiles-dark-git() {
@@ -67,10 +68,16 @@ package_dotfiles-dark-git() {
   make DESTDIR="$pkgdir" THEME=dark all
 
   adjust_permissions
+  hush_login
 }
 
 adjust_permissions() {
   chown -R damien:damien "$pkgdir/home/damien"
   chmod 711 "$pkgdir/home/damien"
   chmod 700 "$pkgdir/home/damien/.config"
+}
+
+hush_login() {
+  printf '' > "$pkgdir/home/damien/.hushlogin"
+  chown damien:damien "$pkgdir/home/damien/.hushlogin"
 }
