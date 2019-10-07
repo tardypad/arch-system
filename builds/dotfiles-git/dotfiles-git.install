@@ -1,16 +1,16 @@
-update_vim_plugins() {
-  echo ':: Updating vim plugins...'
-  sudo --user damien \
-    vim -N --noplugin -u "/home/damien/.vim/plugins.vim" \
-      +PlugInstall +PlugClean! +PlugUpdate +qall \
-      > /dev/null 2>&1
-}
-
 generate_vim_spell_files() {
   echo ':: Generating vim spell files...'
   sudo --user damien \
-    vim +'mkspell /home/damien/.vim/spell/en.utf-8.add.spl /home/damien/.vim/spell/en.utf-8.add' \
+    vim --clean \
+      -c 'mkspell /home/damien/.vim/spell/en.utf-8.add.spl /home/damien/.vim/spell/en.utf-8.add' \
       +qall \
+      > /dev/null 2>&1
+}
+
+generate_vim_help_tags() {
+  echo ':: Generating vim help tags...'
+  sudo --user damien \
+    vim --clean -c 'helptags ALL' +qall \
       > /dev/null 2>&1
 }
 
@@ -30,15 +30,15 @@ regenerate_fonts() {
 
 
 post_install() {
-  update_vim_plugins
   generate_vim_spell_files
+  generate_vim_help_tags
   reload_systemd
   regenerate_fonts
 }
 
 post_upgrade() {
-  update_vim_plugins
   generate_vim_spell_files
+  generate_vim_help_tags
   reload_systemd
   regenerate_fonts
 }
