@@ -7,6 +7,8 @@ init_variables() {
 
   TMP_DIR='/tmp/packages_list'
   trap 'rm -rf "${TMP_DIR}"' EXIT
+
+  REPOS='core extra community aur tardypad'
 }
 
 show_usage() {
@@ -54,48 +56,47 @@ update_lists() {
     echo os-prober
   } | sort > "${TMP_DIR}/ignored_pkgs"
 
-  # group all explicitely installed packages per repo
-  pacman -Qqe \
-    | while read -r PACKAGE; do
-        PACKAGE_REPO=$( pacman -Sp --print-format '%r' "${PACKAGE}" )
-        echo "${PACKAGE}" >> "${TMP_DIR}/repos/${PACKAGE_REPO}"
-      done
+  pacman -Qqe | sort > "${TMP_DIR}/explicit_pkgs"
 
-  find "${TMP_DIR}/repos" -type f \
-    | while read -r REPO_PACKAGES; do
-        REPO="${REPO_PACKAGES##*/}"
+  for REPO in ${REPOS}; do
+    pacman -Sl "${REPO}" \
+      | sed -n "s/${REPO} \([^ ]*\) .* \[installed.*/\1/p" \
+      | sort \
+      > "${TMP_DIR}/repo_pkgs"
 
-        sort "${REPO_PACKAGES}" > "${TMP_DIR}/repo_pkgs"
-        comm -23 "${TMP_DIR}/repo_pkgs" "${TMP_DIR}/ignored_pkgs" \
-          > "${TMP_DIR}/filtered_repo_pkgs"
+    comm -12 "${TMP_DIR}/explicit_pkgs" "${TMP_DIR}/repo_pkgs" \
+      > "${TMP_DIR}/repo_explicit_pkgs"
 
-        if [ ! -f "lists/${REPO}" ]; then
-          cp "${TMP_DIR}/filtered_repo_pkgs" "lists/${REPO}"
-          continue
-        fi
+    comm -23 "${TMP_DIR}/repo_explicit_pkgs" "${TMP_DIR}/ignored_pkgs" \
+      > "${TMP_DIR}/repo_filtered_pkgs"
 
-        # merge repo packages data
-        cut -f1 -d' ' "lists/${REPO}" > "${TMP_DIR}/old_pkgs"
-        {
-          # common packages
-          comm -12 "${TMP_DIR}/old_pkgs" "${TMP_DIR}/filtered_repo_pkgs" \
-            | while read -r COMMON_PACKAGE; do
-                grep -E "^${COMMON_PACKAGE}( |$)" "lists/${REPO}"
-              done;
-          # new packages
-          comm -13 "${TMP_DIR}/old_pkgs" "${TMP_DIR}/filtered_repo_pkgs"
-        } \
-          | grep -v '^$' \
-          | sort -k 1,1 \
-          > "${TMP_DIR}/final_pkgs"
-        cp "${TMP_DIR}/final_pkgs" "lists/${REPO}"
-      done
+    if [ ! -f "lists/${REPO}" ]; then
+      cp "${TMP_DIR}/repo_filtered_pkgs" "lists/${REPO}"
+      continue
+    fi
+
+    # merge repo packages data
+    cut -f1 -d' ' "lists/${REPO}" > "${TMP_DIR}/old_pkgs"
+    {
+      # common packages
+      comm -12 "${TMP_DIR}/old_pkgs" "${TMP_DIR}/repo_filtered_pkgs" \
+        | while read -r COMMON_PACKAGE; do
+            grep -E "^${COMMON_PACKAGE}( |$)" "lists/${REPO}"
+          done;
+      # new packages
+      comm -13 "${TMP_DIR}/old_pkgs" "${TMP_DIR}/repo_filtered_pkgs"
+    } \
+      | grep -v '^$' \
+      | sort -k 1,1 \
+      > "${TMP_DIR}/final_pkgs"
+    cp "${TMP_DIR}/final_pkgs" "lists/${REPO}"
+  done
 }
 
 init_variables
 parse_command_line "$@"
 
 rm -rf "${TMP_DIR}"
-mkdir -p "${TMP_DIR}/repos"
+mkdir -p "${TMP_DIR}"
 
 update_lists
