@@ -1,10 +1,10 @@
-adobe-source-code-pro-fonts    # font needed for some dotfiles' packages
-adobe-source-sans-pro-fonts    # font needed for some dotfiles' packages
-adobe-source-serif-pro-fonts   # font needed for some dotfiles' packages
+adobe-source-code-pro-fonts
+adobe-source-sans-pro-fonts
+adobe-source-serif-pro-fonts
 alsa-utils
-bc                             # needed for i3blocks power script
-bluez                          # bluetooth protocol stack
-bluez-utils                    # bluetooth management
+bc
+bluez
+bluez-utils
 chromium
 ethtool                        # needed to manage Wake-on-LAN in tlp
 firefox
@@ -20,16 +20,16 @@ mpc
 mpd
 networkmanager
 p7zip                          # extract ZIP archives using encryptions not supported by unzip
-pulseaudio                     # needed to play music on bluetooth device...
-pulseaudio-alsa                # needed to play music on bluetooth device...
-pulseaudio-bluetooth           # needed to play music on bluetooth device...
+pulseaudio
+pulseaudio-alsa
+pulseaudio-bluetooth
 rsync
-tree                           # directory listing
-unrar                          # extract RAR archives
-unzip                          # extract ZIP archives
+tree
+unrar
+unzip
 vim
 w3m
 xdg-user-dirs
 xdg-utils
-zip                            # create ZIP archives
+zip
 zsh

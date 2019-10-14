@@ -3,10 +3,10 @@ adobe-source-han-sans-jp-fonts # needed for some emojis characters ¯\_(ツ)_/¯
 alacritty
 aria2
 bluez-tools                    # contains bt-obex needed to receive files via bluetooth
-calibre                        # ebooks management
-entr                           # event notify test runner
+calibre
+entr
 fzf
-grim                           # used for screenshots
+grim
 httpie
 hyperfine
 i3blocks
@@ -14,17 +14,17 @@ jq
 light
 mako
 mpv
-ncdu                           # disk usage analyser
+ncdu
 neomutt
-otf-font-awesome               # font needed for some dotfiles' packages
+otf-font-awesome
 pacman-contrib                 # checkupdates and other utilities
 pass
 python-websocket-client        # needed for weechat wee-slack plugin
 qutebrowser
-scdoc                          # man pages generation
-shellcheck                     # syntax check of shell scripts
-slurp                          # used for screenshots
-speedtest-cli                  # speedtest.net client
+scdoc
+shellcheck
+slurp
+speedtest-cli
 sway
 swayidle
 swaylock
