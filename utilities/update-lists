@@ -1,16 +1,12 @@
 #!/bin/sh
 # commands used:
-# - pacconf
-# - paclist
 # - pacman
 
 init_variables() {
   COMMAND=${0##*/}
 
-  TMP_FILE_1=$( mktemp )
-  TMP_FILE_2=$( mktemp )
-  TMP_FILE_3=$( mktemp )
-  trap 'rm "${TMP_FILE_1}" "${TMP_FILE_2}" "${TMP_FILE_3}"' EXIT
+  TMP_DIR='/tmp/packages_list'
+  trap 'rm -rf "${TMP_DIR}"' EXIT
 }
 
 show_usage() {
@@ -48,65 +44,58 @@ exit_error() {
 } >&2
 
 update_lists() {
-  # ignore base packages
-  IGNORE_PACKAGES=$( pacman -Qqg base base-devel )
-
-  # ignore system packages installed during installation
-  IGNORE_PACKAGES="${IGNORE_PACKAGES}
-efibootmgr
-grub
-intel-ucode
-os-prober
-"
-
-  EXPLICIT_PACKAGES=$( pacman -Qqe )
-
-  for REPO in $( pacconf --repo-list ); do
-    REPO_PACKAGES_FILE="lists/${REPO}"
-
-    echo "${EXPLICIT_PACKAGES}" | sort > "${TMP_FILE_1}"
-    paclist "${REPO}" | cut -f1 -d' ' | sort > "${TMP_FILE_2}"
-    REPO_PACKAGES=$( comm -12 "${TMP_FILE_1}" "${TMP_FILE_2}" )
-
-    echo "${REPO_PACKAGES}" | sort > "${TMP_FILE_1}"
-    echo "${IGNORE_PACKAGES}" | sort > "${TMP_FILE_2}"
-    FILTERED_REPO_PACKAGES=$( comm -23 "${TMP_FILE_1}" "${TMP_FILE_2}" )
-
-    FINAL_REPO_PACKAGES=
-    if [ ! -f "${REPO_PACKAGES_FILE}" ]; then
-      FINAL_REPO_PACKAGES="${FILTERED_REPO_PACKAGES}"
-    else
-      echo "${FILTERED_REPO_PACKAGES}" > "${TMP_FILE_1}"
-      FINAL_REPO_PACKAGES=$(
-        merge_packages_files "${REPO_PACKAGES_FILE}" "${TMP_FILE_1}"
-      )
-    fi
-
-    echo "${FINAL_REPO_PACKAGES}" > "${REPO_PACKAGES_FILE}"
-  done
-}
-
-merge_packages_files() {
-  # old file contains the packages list with comments to keep
-  OLD_PACKAGES_FILE="$1"
-  NEW_PACKAGES_FILE="$2"
-
-  cut -f1 -d' ' "${OLD_PACKAGES_FILE}" > "${TMP_FILE_3}"
-  COMMON_PACKAGES=$( comm -12 "${TMP_FILE_3}" "${NEW_PACKAGES_FILE}" )
-  NEW_PACKAGES=$( comm -13 "${TMP_FILE_3}" "${NEW_PACKAGES_FILE}" )
-
   {
-    echo "${COMMON_PACKAGES}" \
-      | while read -r COMMON_PACKAGE; do
-          grep -E "^${COMMON_PACKAGE}( |$)" "${OLD_PACKAGES_FILE}"
-        done;
-    echo "${NEW_PACKAGES}";
-  } \
-    | grep -v '^$' \
-    | sort -k 1,1
+    # ignore base packages
+    pacman -Qqg base base-devel;
+    # ignore system packages installed during installation
+    echo efibootmgr
+    echo grub
+    echo intel-ucode
+    echo os-prober
+  } | sort > "${TMP_DIR}/ignored_pkgs"
+
+  # group all explicitely installed packages per repo
+  pacman -Qqe \
+    | while read -r PACKAGE; do
+        PACKAGE_REPO=$( pacman -Sp --print-format '%r' "${PACKAGE}" )
+        echo "${PACKAGE}" >> "${TMP_DIR}/repos/${PACKAGE_REPO}"
+      done
+
+  find "${TMP_DIR}/repos" -type f \
+    | while read -r REPO_PACKAGES; do
+        REPO="${REPO_PACKAGES##*/}"
+
+        sort "${REPO_PACKAGES}" > "${TMP_DIR}/repo_pkgs"
+        comm -23 "${TMP_DIR}/repo_pkgs" "${TMP_DIR}/ignored_pkgs" \
+          > "${TMP_DIR}/filtered_repo_pkgs"
+
+        if [ ! -f "lists/${REPO}" ]; then
+          cp "${TMP_DIR}/filtered_repo_pkgs" "lists/${REPO}"
+          continue
+        fi
+
+        # merge repo packages data
+        cut -f1 -d' ' "lists/${REPO}" > "${TMP_DIR}/old_pkgs"
+        {
+          # common packages
+          comm -12 "${TMP_DIR}/old_pkgs" "${TMP_DIR}/filtered_repo_pkgs" \
+            | while read -r COMMON_PACKAGE; do
+                grep -E "^${COMMON_PACKAGE}( |$)" "lists/${REPO}"
+              done;
+          # new packages
+          comm -13 "${TMP_DIR}/old_pkgs" "${TMP_DIR}/filtered_repo_pkgs"
+        } \
+          | grep -v '^$' \
+          | sort -k 1,1 \
+          > "${TMP_DIR}/final_pkgs"
+        cp "${TMP_DIR}/final_pkgs" "lists/${REPO}"
+      done
 }
 
 init_variables
 parse_command_line "$@"
+
+rm -rf "${TMP_DIR}"
+mkdir -p "${TMP_DIR}/repos"
 
 update_lists
