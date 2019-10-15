@@ -4,6 +4,7 @@
   nocreate
   daily
   rotate 28
+  maxage 28
   dateyesterday
   missingok
   notifempty

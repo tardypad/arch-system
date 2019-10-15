@@ -4,6 +4,7 @@
   create 644 damien damien
   daily
   rotate 28
+  maxage 28
   dateyesterday
   missingok
   notifempty
