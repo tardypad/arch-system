@@ -3,7 +3,7 @@ pkgname=(
   'system-config-light'
   'system-config-dark'
 )
-pkgver=1.1.6
+pkgver=1.1.7
 pkgrel=1
 pkgdesc='System configurations'
 url='https://github.com/tardypad'
@@ -52,6 +52,7 @@ source=(
   'etc-pacman-aur'
   'etc-pacman-tardypad'
   'etc-logrotate'
+  'etc-logrotate-sfeed'
   'etc-logrotate-sway'
   'etc-logrotate-weechat'
   'etc-bluetooth-main'
@@ -59,7 +60,7 @@ source=(
 
 sha512sums=(
   'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP'
-  'SKIP' 'SKIP' 'SKIP' 'SKIP'
+  'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP'
 )
 
 package_common() {
@@ -75,6 +76,7 @@ package_common() {
   install -Dm0644 etc-pacman-aur "$pkgdir"/etc/pacman.d/aur
   install -Dm0644 etc-pacman-tardypad "$pkgdir"/etc/pacman.d/tardypad
   install -Dm0644 etc-logrotate "$pkgdir"/etc/logrotate.conf
+  install -Dm0644 etc-logrotate-sfeed "$pkgdir"/etc/logrotate.d/sfeed
   install -Dm0644 etc-logrotate-sway "$pkgdir"/etc/logrotate.d/sway
   install -Dm0644 etc-logrotate-weechat "$pkgdir"/etc/logrotate.d/weechat
   install -Dm0644 etc-bluetooth-main "$pkgdir"/etc/bluetooth/main.conf

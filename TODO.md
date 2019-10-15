@@ -27,8 +27,6 @@
   - make a script to report modified package files
   - make a script to report files not belonging to any package  
     [lostfiles](https://github.com/graysky2/lostfiles)
-  - use logrotate on sfeed feeds  
-    this will imply a small adaptation to the read-news dotfiles script to ignore .gz files
 
 ## Research
   - [aconfmgr](https://github.com/CyberShadow/aconfmgr) configuration manager  

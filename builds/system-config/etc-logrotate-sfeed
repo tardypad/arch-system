@@ -1,0 +1,13 @@
+/home/damien/.sfeed/feeds/*
+{
+  su damien damien
+  nocreate
+  weekly
+  olddir old
+  createolddir 755 damien damien
+  rotate 4
+  maxage 28
+  dateyesterday
+  missingok
+  notifempty
+}
