@@ -47,9 +47,12 @@ exit_error() {
 
 update_lists() {
   {
-    # ignore base packages
-    pacman -Qqg base base-devel;
+    # ignore packages from base-devel group
+    pacman -Qqg base-devel;
     # ignore system packages installed during installation
+    echo base
+    echo linux
+    echo linux-firmware
     echo efibootmgr
     echo grub
     echo intel-ucode

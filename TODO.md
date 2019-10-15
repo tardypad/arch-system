@@ -13,8 +13,6 @@
   - system setup should ask which system-config and dotfiles-git packages to install  
     * theme (light/dark)
     * version (perso/work/...)
-  - fix update-lists script to take into account new base package instead of group  
-    [Arch News](https://www.archlinux.org/news/base-group-replaced-by-mandatory-base-package-manual-intervention-required/)
 
 ## Testing
 
