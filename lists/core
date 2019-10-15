@@ -1,4 +1,19 @@
+cryptsetup
 curl
+device-mapper
+dhcpcd                         # not sure I still need this one
+diffutils
 dosfstools                     # FAT filesystem utilities
+e2fsprogs
+inetutils
+less
+logrotate
+lvm2
+man-db
+man-pages
+netctl                         # not sure I still need this one
 openssh
+s-nail
 syslinux                       # needed to create an Arch installer on USB
+usbutils
+vi
