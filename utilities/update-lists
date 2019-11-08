@@ -1,14 +1,13 @@
 #!/bin/sh
 # commands used:
 # - pacman
+# - pacman-conf
 
 init_variables() {
   COMMAND=${0##*/}
 
   TMP_DIR='/tmp/packages_list'
   trap 'rm -rf "${TMP_DIR}"' EXIT
-
-  REPOS='core extra community aur tardypad'
 }
 
 show_usage() {
@@ -61,7 +60,7 @@ update_lists() {
 
   pacman -Qqe | sort > "${TMP_DIR}/explicit_pkgs"
 
-  for REPO in ${REPOS}; do
+  for REPO in $( pacman-conf -l ); do
     pacman -Sl "${REPO}" \
       | sed -n "s/${REPO} \([^ ]*\) .* \[installed.*/\1/p" \
       | sort \
