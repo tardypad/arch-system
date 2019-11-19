@@ -20,22 +20,19 @@ show_usage() {
 	Needs to be run from the repository root
 
 	Options:
-	  -h,  --help    show this message only
+	  -h    show this message only
 	EOF
 }
 
 parse_command_line() {
-  while [ "$#" -gt 0 ]; do
-    case "$1" in
-      -h|--help)
-        show_usage
-        exit 0
-        ;;
-      *)
-        exit_error "Invalid option '$1'"
-        ;;
+  while getopts h OPT; do
+    case "${OPT}" in
+      h) show_usage; exit 0 ;;
+      ?) exit_error ;;
     esac
   done
+
+  shift $(( OPTIND - 1 ))
 }
 
 exit_error() {
