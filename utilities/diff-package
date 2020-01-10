@@ -62,7 +62,7 @@ diff_package() {
    | while read -r PACKAGE_MODIFIED_FILE; do
        echo "${PACKAGE_MODIFIED_FILE}"
        tar -xO \
-         -f "/var/cache/pacman/pkg/${PACKAGE_NAME}-${PACKAGE_VERSION}"-*.pkg.tar.xz \
+         -f "/var/cache/pacman/pkg/${PACKAGE_NAME}-${PACKAGE_VERSION}"-*.pkg.tar.* \
          "$( echo "${PACKAGE_MODIFIED_FILE}" | sed 's|/||' )" \
          2> /dev/null \
        | diff - "${PACKAGE_MODIFIED_FILE}"
