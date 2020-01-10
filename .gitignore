@@ -1,2 +1,3 @@
-# leftover packages symlinks
+# leftover packages
 *.tar.xz
+*.tar.zst
