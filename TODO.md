@@ -18,10 +18,6 @@
 
 ## Improvements
   - system-config: split configuration per package config files
-  - dotfiles-config: remove non important folders from vim plugins to decrease package size  
-    (remove .git folder and only keep meaningful vim folders)  
-    this will imply a small adaptation to the install-vim-plugin dotfiles setup script  
-    to reclone the plugin repository when needed
 
 ## New Features
   - make a script to report modified package files
