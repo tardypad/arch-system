@@ -3,7 +3,7 @@ pkgname=(
   'system-config-light'
   'system-config-dark'
 )
-pkgver=1.1.7
+pkgver=1.1.8
 pkgrel=1
 pkgdesc='System configurations'
 url='https://github.com/tardypad'
@@ -47,7 +47,7 @@ source=(
   'etc-networkmanager-mac-randomization'
   'etc-locale'
   'etc-sway-security-commands'
-  'etc-tlp-default'
+  'etc-tlp-custom'
   'etc-pacman'
   'etc-pacman-aur'
   'etc-pacman-tardypad'
@@ -71,7 +71,7 @@ package_common() {
   install -Dm0644 etc-networkmanager-mac-randomization "$pkgdir"/etc/NetworkManager/conf.d/mac-randomization.conf
   install -Dm0644 etc-locale "$pkgdir"/etc/locale.conf
   install -Dm0644 etc-sway-security-commands "$pkgdir"/etc/sway/security.d/01-commands
-  install -Dm0644 etc-tlp-default "$pkgdir"/etc/default/tlp
+  install -Dm0644 etc-tlp-custom "$pkgdir"/etc/tlp.d/custom.conf
   install -Dm0644 etc-pacman "$pkgdir"/etc/pacman.conf
   install -Dm0644 etc-pacman-aur "$pkgdir"/etc/pacman.d/aur
   install -Dm0644 etc-pacman-tardypad "$pkgdir"/etc/pacman.d/tardypad

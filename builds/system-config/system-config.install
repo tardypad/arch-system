@@ -28,7 +28,6 @@ post_install() {
 
     # TLP services units config as defined in its doc
     systemctl enable --now tlp.service
-    systemctl enable --now tlp-sleep.service
     systemctl enable --now NetworkManager-dispatcher.service
     systemctl mask --now systemd-rfkill.service
     systemctl mask --now systemd-rfkill.socket
