@@ -10,9 +10,6 @@
 ## Cleaning
 
 ## Bugs
-  - system setup should ask which system-config and dotfiles-git packages to install  
-    * theme (light/dark)
-    * version (perso/work/...)
 
 ## Testing
 

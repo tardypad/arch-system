@@ -63,11 +63,17 @@ setup_repositories() {
 install_packages() {
   PACKAGES=$(
     cut -d' ' -f1 lists/* \
-      | grep -v -E 'system-config|dotfiles-git'
+      | grep -v -E '^system-config|^dotfiles'
   )
 
   pacman -Sy --noconfirm ${PACKAGES}
-  pacman -S --noconfirm --overwrite '*' system-config dotfiles-git
+
+  CUSTOM_PACKAGES=$(
+    cut -d' ' -f1 lists/* \
+      | grep -E '^system-config|^dotfiles'
+  )
+
+  pacman -S --noconfirm --overwrite '*' ${CUSTOM_PACKAGES}
 }
 
 system_setup() {
