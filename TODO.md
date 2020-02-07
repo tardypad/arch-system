@@ -18,8 +18,6 @@
 
 ## New Features
   - make a script to report modified package files
-  - make a script to report files not belonging to any package  
-    [lostfiles](https://github.com/graysky2/lostfiles)
 
 ## Research
   - [aconfmgr](https://github.com/CyberShadow/aconfmgr) configuration manager  
