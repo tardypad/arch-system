@@ -1,0 +1,59 @@
+#!/bin/sh
+# commands used:
+# - column
+# - pacman
+
+init_variables() {
+  COMMAND=${0##*/}
+
+  BLACKLIST='/etc/fstab'
+  BLACKLIST="${BLACKLIST}:/etc/group"
+  BLACKLIST="${BLACKLIST}:/etc/passwd"
+  BLACKLIST="${BLACKLIST}:/etc/resolv.conf"
+  BLACKLIST="${BLACKLIST}:/etc/shells"
+  BLACKLIST="${BLACKLIST}:/etc/locale.gen"
+  BLACKLIST="${BLACKLIST}:/etc/pacman.d/mirrorlist"
+}
+
+show_usage() {
+  cat <<- EOF
+	usage: ${COMMAND} [<options>]
+
+	List modified package files alongside the package they belong to.
+	Some blacklisted paths are ignored
+
+	Options:
+	  -h    show this message only
+	EOF
+}
+
+parse_command_line() {
+  while getopts h OPT; do
+    case "${OPT}" in
+      h) show_usage; exit 0 ;;
+      ?) exit_error ;;
+    esac
+  done
+
+  shift $(( OPTIND - 1 ))
+}
+
+exit_error() {
+  [ -z "$1" ] || echo "${COMMAND}: $1"
+  echo "Try '${COMMAND} -h' for more information."
+  exit 1
+} >&2
+
+list_files() {
+  pacman -Qii \
+    | awk '/^MODIFIED/ { print $2 }' \
+    | grep -vE "$( echo "${BLACKLIST}" | tr ':' '|' )" \
+    | xargs -I{} sh -c "{ pacman -Qoq {}; echo {}; } | paste -s -" \
+    | sort \
+    | column -t
+}
+
+init_variables
+parse_command_line "$@"
+
+list_files

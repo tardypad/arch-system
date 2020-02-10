@@ -17,7 +17,6 @@
   - system-config: split configuration per package config files
 
 ## New Features
-  - make a script to report modified package files
 
 ## Research
   - [aconfmgr](https://github.com/CyberShadow/aconfmgr) configuration manager  
