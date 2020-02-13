@@ -1,11 +1,11 @@
 # TODO
 
 ## Periodic
-  - Check packages new versions and releases  
-    compare new default configuration files with our own
-  - Update packages list with the `update-lists` utility script
-  - Check for modified package files with the `TBD` utility script
-  - Check for files not belonging to any package with the `TBD` utility script
+  - update packages list with the `update-lists` utility script
+  - system-config:
+    * check for modified package files with the `list-modified-files` utility script
+    * compare configuration change with the `diff-package` utility script
+    * check for files not belonging to any package with the `list-unowned-files` utility script
 
 ## Cleaning
 
