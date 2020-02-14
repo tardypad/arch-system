@@ -1,0 +1,9 @@
+#!/bin/sh
+# commands used:
+# - pacman
+
+sudo pacman -Syu \
+&& tput setaf 3 \
+&& echo '-----------------------------' \
+&& echo 'Review carefully the messages' \
+&& echo '-----------------------------'
