@@ -1,0 +1,16 @@
+#!/bin/sh
+# commands used:
+# - aur
+# - column
+# - pacman-conf
+
+IGNORED_PACKAGES=$( pacman-conf IgnorePkg )
+
+{
+  aur repo -d aur -S -u;
+  aur repo -d tardypad -S -u;
+} \
+  | grep -vE "^($( echo "${IGNORED_PACKAGES}" | tr '\n' '|' )):" \
+  | sed 's/: / /' \
+  | cut -d' ' -f1,2,4 \
+  | column -t
