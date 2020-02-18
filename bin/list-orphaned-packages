@@ -1,0 +1,61 @@
+#!/bin/sh
+# commands used:
+# - pacman
+
+init_variables() {
+  COMMAND=${0##*/}
+
+  TMP_DIR='/tmp/orphaned_packages'
+  trap 'rm -rf "${TMP_DIR}"' EXIT
+
+  TYPE='strict'
+}
+
+show_usage() {
+  cat <<- EOF
+	usage: ${COMMAND} [<options>]
+
+	List orphaned packages
+
+	Options:
+	  -h    show this message only
+	  -o    list only optional packages
+	        default is to list only true orphans
+	EOF
+}
+
+parse_command_line() {
+  while getopts ho OPT; do
+    case "${OPT}" in
+      h) show_usage; exit 0 ;;
+      o) TYPE='optional' ;;
+      ?) exit_error ;;
+    esac
+  done
+
+  shift $(( OPTIND - 1 ))
+}
+
+exit_error() {
+  [ -z "$1" ] || echo "${COMMAND}: $1"
+  echo "Try '${COMMAND} -h' for more information."
+  exit 1
+} >&2
+
+list_orphans() {
+  if [ "${TYPE}" = 'strict' ]; then
+    pacman -Qtdq
+  elif [ "${TYPE}" = 'optional' ]; then
+    pacman -Qtdq > "${TMP_DIR}/strict"
+    pacman -Qttdq > "${TMP_DIR}/optional"
+    comm -13 "${TMP_DIR}/strict" "${TMP_DIR}/optional"
+  fi
+}
+
+init_variables
+parse_command_line "$@"
+
+rm -rf "${TMP_DIR}"
+mkdir -p "${TMP_DIR}"
+
+list_orphans
