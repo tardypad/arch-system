@@ -14,11 +14,12 @@ init_variables() {
   REPO=
   ACTION=
   PACKAGE=
+  TOOL_OPTIONS=
 }
 
 show_usage() {
   cat <<- EOF
-	usage: ${COMMAND} [<options>] (add|remove|sync) [package_file|package_name]
+	usage: ${COMMAND} [<options>] (add|remove|sync) (package_file|package_name) [<tool options>...]
 
 	Manage personal remote repository packages
 
@@ -40,6 +41,9 @@ parse_command_line() {
   REPO="$1"
   ACTION="$2"
   PACKAGE="$3"
+
+  shift 3 2> /dev/null
+  TOOL_OPTIONS="$*"
 }
 
 validate_command_line() {
@@ -95,15 +99,15 @@ export_env() {
 }
 
 add_package() {
-  repo-add "${TMP_DIR}/${REPO}.db.tar.xz" "${PACKAGE}"
+  repo-add ${TOOL_OPTIONS} "${TMP_DIR}/${REPO}.db.tar.xz" "${PACKAGE}"
 }
 
 remove_package() {
-  repo-remove "${TMP_DIR}/${REPO}.db.tar.xz" "${PACKAGE}"
+  repo-remove ${TOOL_OPTIONS} "${TMP_DIR}/${REPO}.db.tar.xz" "${PACKAGE}"
 }
 
 sync_package() {
-  aur sync --root "${TMP_DIR}" -d "${REPO}" -rn "${PACKAGE}"
+  aur sync ${TOOL_OPTIONS} --root "${TMP_DIR}" -d "${REPO}" -rn "${PACKAGE}"
 }
 
 init_variables
