@@ -30,5 +30,6 @@ unzip
 vim
 w3m
 xdg-utils
+xorg-server-xwayland           # run X clients within sway
 zip
 zsh
