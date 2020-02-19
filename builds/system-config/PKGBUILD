@@ -4,9 +4,9 @@ pkgname=(
   'system-config-dark'
 )
 pkgver=100
-pkgrel=1
+pkgrel=2
 pkgdesc='System configurations'
-url='https://github.com/tardypad'
+url='https://github.com/tardypad/arch-packages'
 arch=('any')
 license=('custom')
 
