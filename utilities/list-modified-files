@@ -8,6 +8,8 @@ init_variables() {
 
   BLACKLIST='/etc/fstab'
   BLACKLIST="${BLACKLIST}:/etc/group"
+  BLACKLIST="${BLACKLIST}:/etc/gshadow"
+  BLACKLIST="${BLACKLIST}:/etc/shadow"
   BLACKLIST="${BLACKLIST}:/etc/passwd"
   BLACKLIST="${BLACKLIST}:/etc/resolv.conf"
   BLACKLIST="${BLACKLIST}:/etc/shells"
@@ -21,6 +23,8 @@ show_usage() {
 
 	List modified package files alongside the package they belong to.
 	Some blacklisted paths are ignored
+
+	Needs to be run as a root user
 
 	Options:
 	  -h    show this message only
@@ -44,6 +48,10 @@ exit_error() {
   exit 1
 } >&2
 
+check_root_user() {
+  [ "$( id -u )" -ne 0 ] && exit_error 'The script must be run as root'
+}
+
 list_files() {
   pacman -Qii \
     | awk '/^MODIFIED/ { print $2 }' \
@@ -55,5 +63,7 @@ list_files() {
 
 init_variables
 parse_command_line "$@"
+
+check_root_user
 
 list_files
