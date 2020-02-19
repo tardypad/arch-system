@@ -3,7 +3,7 @@ pkgname=(
   'system-config-light'
   'system-config-dark'
 )
-pkgver=1.1.8
+pkgver=1.2.0
 pkgrel=1
 pkgdesc='System configurations'
 url='https://github.com/tardypad'
@@ -38,58 +38,22 @@ depends=(
   'pcsclite'
 )
 
-source=(
-  'etc-issue-light'
-  'etc-issue-dark'
-  'etc-vconsole'
-  'etc-sudo-users'
-  'etc-sudo-defaults'
-  'etc-networkmanager-mac-randomization'
-  'etc-locale'
-  'etc-sway-security-commands'
-  'etc-tlp-custom'
-  'etc-pacman'
-  'etc-pacman-aur'
-  'etc-pacman-tardypad'
-  'etc-logrotate'
-  'etc-logrotate-sfeed'
-  'etc-logrotate-sway'
-  'etc-logrotate-weechat'
-  'etc-bluetooth-main'
-)
-
-sha512sums=(
-  'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP'
-  'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP'
-)
+_rootdir=$PWD
 
 package_common() {
-  install -Dm0644 etc-vconsole "$pkgdir"/etc/vconsole.conf
-  install -dm0750 "$pkgdir"/etc/sudoers.d
-  install -m0600 etc-sudo-users "$pkgdir"/etc/sudoers.d/users
-  install -m0600 etc-sudo-defaults "$pkgdir"/etc/sudoers.d/defaults
-  install -Dm0644 etc-networkmanager-mac-randomization "$pkgdir"/etc/NetworkManager/conf.d/mac-randomization.conf
-  install -Dm0644 etc-locale "$pkgdir"/etc/locale.conf
-  install -Dm0644 etc-sway-security-commands "$pkgdir"/etc/sway/security.d/01-commands
-  install -Dm0644 etc-tlp-custom "$pkgdir"/etc/tlp.d/custom.conf
-  install -Dm0644 etc-pacman "$pkgdir"/etc/pacman.conf
-  install -Dm0644 etc-pacman-aur "$pkgdir"/etc/pacman.d/aur
-  install -Dm0644 etc-pacman-tardypad "$pkgdir"/etc/pacman.d/tardypad
-  install -Dm0644 etc-logrotate "$pkgdir"/etc/logrotate.conf
-  install -Dm0644 etc-logrotate-sfeed "$pkgdir"/etc/logrotate.d/sfeed
-  install -Dm0644 etc-logrotate-sway "$pkgdir"/etc/logrotate.d/sway
-  install -Dm0644 etc-logrotate-weechat "$pkgdir"/etc/logrotate.d/weechat
-  install -Dm0644 etc-bluetooth-main "$pkgdir"/etc/bluetooth/main.conf
+  cp -R "$_rootdir"/files/* "$pkgdir"
+  chmod 0750 "$pkgdir"/etc/sudoers.d
+  chmod 0600 "$pkgdir"/etc/sudoers.d/*
 }
 
 package_system-config-light() {
-  install -Dm0644 etc-issue-light "$pkgdir"/etc/issue
-
   package_common
+
+  ln -sf issue_light "$pkgdir"/etc/issue
 }
 
 package_system-config-dark() {
-  install -Dm0644 etc-issue-dark "$pkgdir"/etc/issue
-
   package_common
+
+  ln -sf issue_dark "$pkgdir"/etc/issue
 }
