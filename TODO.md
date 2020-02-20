@@ -22,4 +22,3 @@
 ## Research
   - [aconfmgr](https://github.com/CyberShadow/aconfmgr) configuration manager  
     maybe to replace our system-config package
-  - evaluate usage of meta packages as in [Michael Daffin blog](https://disconnected.systems/blog/archlinux-meta-packages/)

@@ -3,7 +3,7 @@ pkgname=(
   'system-config-light'
   'system-config-dark'
 )
-pkgver=101
+pkgver=102
 pkgrel=1
 pkgdesc='System configurations'
 url='https://github.com/tardypad/arch-packages'
@@ -24,18 +24,124 @@ replaces=(
 
 install=system-config.install
 
+# base installation
 depends=(
-  'sudo'
-  'zsh'
-  'networkmanager'
-  'sway'
-  'tlp'
-  'systemd'
-  'pacman'
-  'pacman-contrib'
-  'logrotate'
-  'bluez'
-  'pcsclite'
+  base
+  linux
+  linux-firmware
+  efibootmgr
+  grub
+  intel-ucode
+  os-prober
+)
+
+depends+=(
+  acpi_call # needed for battery charge threshold in tlp
+  adobe-source-code-pro-fonts
+  adobe-source-han-sans-jp-fonts # needed for some emojis characters ¯\_(ツ)_/¯
+  adobe-source-sans-pro-fonts
+  adobe-source-serif-pro-fonts
+  alacritty
+  alsa-utils
+  aria2
+  asciitosvg-git
+  aurutils
+  bats-core
+  bc
+  bluez
+  bluez-tools # contains bt-obex needed to receive files via bluetooth
+  bluez-utils
+  chromium
+  cryptsetup
+  curl
+  device-mapper
+  dhcpcd # not sure I still need this one
+  diffutils
+  dosfstools # FAT filesystem utilities
+  e2fsprogs
+  entr
+  ethtool # needed to manage Wake-on-LAN in tlp
+  firefox
+  fzf
+  gimp
+  git
+  grim
+  gron-bin
+  gst-plugins-bad # play FLAC files
+  htop
+  httpie
+  hyperfine
+  i3blocks
+  imagemagick
+  inetutils
+  inkscape
+  jp
+  jq
+  less
+  libqalculate
+  libreoffice-fresh
+  libxml2
+  light
+  logrotate
+  lvm2
+  mako
+  man-db
+  man-pages
+  mpc
+  mpd
+  mpv
+  ncdu
+  neomutt
+  netctl # not sure I still need this one
+  networkmanager
+  openssh
+  otf-font-awesome
+  p7zip # extract ZIP archives using encryptions not supported by unzip
+  pacman-contrib # needed for paccache service
+  pass
+  pulseaudio
+  pulseaudio-alsa
+  pulseaudio-bluetooth
+  python-websocket-client # needed for weechat wee-slack plugin
+  qutebrowser
+  rsync
+  scdoc
+  sfeed
+  shellcheck
+  slurp
+  s-nail
+  speedtest-cli
+  sudo
+  sway
+  swayidle
+  swaylock
+  syslinux # needed to create an Arch installer on USB
+  the_silver_searcher
+  tlp # power management
+  tlp-rdw # radio devices management
+  tmux
+  translate-shell
+  tree
+  universal-ctags-git
+  unrar
+  unzip
+  usbutils
+  vi
+  vim
+  w3m
+  weechat
+  wl-clipboard
+  xdg-utils
+  xorg-server-xwayland # run X clients within sway
+  yamllint
+  yubikey-manager
+  zathura
+  zathura-pdf-mupdf # plugin to read PDF files
+  zip
+  zsh
+  zsh-autosuggestions
+  zsh-history-substring-search
+  zsh-syntax-highlighting
 )
 
 _rootdir=$PWD
@@ -47,12 +153,20 @@ package_common() {
 }
 
 package_system-config-light() {
+  depends+=(
+    dotfiles-light-git
+  )
+
   package_common
 
   ln -sf issue_light "$pkgdir"/etc/issue
 }
 
 package_system-config-dark() {
+  depends+=(
+    dotfiles-dark-git
+  )
+
   package_common
 
   ln -sf issue_dark "$pkgdir"/etc/issue
