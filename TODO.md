@@ -15,7 +15,6 @@
 ## Testing
 
 ## Improvements
-  - system-config: split configuration per package config files
 
 ## New Features
 
