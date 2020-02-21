@@ -1,0 +1,62 @@
+#!/bin/sh
+# commands used:
+# - pacman
+
+init_variables() {
+  COMMAND=${0##*/}
+
+  TMP_DIR='/tmp/diff_system_depends'
+  trap 'rm -rf "${TMP_DIR}"' EXIT
+}
+
+show_usage() {
+  cat <<- EOF
+	usage: ${COMMAND} [<options>]
+
+	Display a diff of the system-config package list of dependencies compared to
+	the list of the explicitely installed packages in the system
+
+	Options:
+	  -h    show this message only
+	EOF
+}
+
+parse_command_line() {
+  while getopts h OPT; do
+    case "${OPT}" in
+      h) show_usage; exit 0 ;;
+      ?) exit_error ;;
+    esac
+  done
+
+  shift $(( OPTIND - 1 ))
+}
+
+exit_error() {
+  [ -z "$1" ] || echo "${COMMAND}: $1"
+  echo "Try '${COMMAND} --help' for more information."
+  exit 1
+} >&2
+
+diff_packages_lists() {
+  pacman -Qqe \
+    | sort \
+    > "${TMP_DIR}/explicit_pkgs"
+
+  pacman -Qi system-config \
+    | sed -n 's/^Depends On *: \(.*\)/\1/p' \
+    | tr -s ' ' \
+    | tr ' ' '\n' \
+    | sort \
+    > "${TMP_DIR}/system_pkgs"
+
+  diff "${TMP_DIR}/system_pkgs" "${TMP_DIR}/explicit_pkgs"
+}
+
+init_variables
+parse_command_line "$@"
+
+rm -rf "${TMP_DIR}"
+mkdir -p "${TMP_DIR}"
+
+diff_packages_lists
