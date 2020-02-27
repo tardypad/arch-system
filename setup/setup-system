@@ -45,7 +45,6 @@ update_current_packages() {
 }
 
 setup_repositories() {
-  # set own repo HTTP credentials
   echo 'Enter pkgs.tardypad.me HTTP credentials'
   printf 'username: '; read -r USERNAME
   printf 'password: '; read -r PASSWORD
@@ -65,14 +64,30 @@ install_packages() {
   pacman -S --noconfirm --overwrite '*' system-config
 }
 
-system_setup() {
-  update_current_packages
-  setup_repositories
-  install_packages
+setup_users() {
+  useradd -mU -s /usr/bin/zsh -G uucp,video,wheel damien
+  chsh -s /usr/bin/zsh root
+
+  mkdir -p /home/damien/Desktop
+  mkdir -p /home/damien/Downloads
+  mkdir -p /home/damien/Documents
+  mkdir -p /home/damien/Music
+  mkdir -p /home/damien/Notes
+  mkdir -p /home/damien/Pictures
+  mkdir -p /home/damien/Projects
+  mkdir -p /home/damien/Documents/Projects
+  mkdir -p /home/damien/Videos
+  mkdir -p /var/log/projects
+
+  chown -R damien:damien /home/damien /var/log/projects
 }
 
 init_variables
 parse_command_line "$@"
 
 check_root_user
-system_setup
+
+update_current_packages
+setup_repositories
+install_packages
+setup_users

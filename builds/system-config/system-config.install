@@ -1,30 +1,7 @@
 post_install() {
-    # users settings
-    chsh --shell /bin/zsh damien
-    chsh --shell /bin/zsh root
-
-    # needed for arduino devices flashing
-    usermod --append --groups uucp damien
-    # use sudo
-    usermod --append --groups wheel damien
-    # use light
-    usermod --append --groups video damien
-
     # logs
     install -dm0755 -o damien -g damien /var/log/sway
     install -Dm0644 -o damien -g damien /dev/null /var/log/sway/sway.log
-
-    # xdg user dirs
-    install -dm0755 -o damien -g damien /home/damien/Desktop
-    install -dm0755 -o damien -g damien /home/damien/Downloads
-    install -dm0755 -o damien -g damien /home/damien/Documents
-    install -dm0755 -o damien -g damien /home/damien/Music
-    install -dm0755 -o damien -g damien /home/damien/Notes
-    install -dm0755 -o damien -g damien /home/damien/Pictures
-    install -dm0755 -o damien -g damien /home/damien/Projects
-    install -dm0755 -o damien -g damien /home/damien/Documents/Projects
-    install -dm0755 -o damien -g damien /home/damien/Videos
-    install -dm0755 -o damien -g damien /var/log/projects
 
     # TLP services units config as defined in its doc
     systemctl enable --now tlp.service
