@@ -12,7 +12,7 @@ show_usage() {
 
 	Setup a new system after basic Arch installation
 
-	Needs to be run from the repository root as a root user
+	Needs to be run as a root user
 
 	Options:
 	  -h    show this message only
@@ -50,14 +50,15 @@ setup_repositories() {
   printf 'username: '; read -r USERNAME
   printf 'password: '; read -r PASSWORD
 
-  # reuse pacman config from system-config package
-  mkdir -p /etc/pacmand.d/
-  cp builds/system-config/etc-pacman /etc/pacman.conf
-  sed -e "s/{USERNAME}/${USERNAME}/" -e "s/{PASSWORD}/${PASSWORD}/" \
-    builds/system-config/etc-pacman-aur > /etc/pacman.d/aur
-  sed -e "s/{USERNAME}/${USERNAME}/" -e "s/{PASSWORD}/${PASSWORD}/" \
-    builds/system-config/etc-pacman-tardypad > /etc/pacman.d/tardypad
-  chmod 644 /etc/pacman.conf /etc/pacman.d/aur /etc/pacman.d/tardypad
+  cat >> /etc/pacman.conf <<- EOF
+	[tardypad]
+	SigLevel = Optional TrustAll
+	Server = https://${USERNAME}:${PASSWORD}@pkgs.tardypad.me/tardypad
+
+	[aur]
+	SigLevel = Optional TrustAll
+	Server = https://${USERNAME}:${PASSWORD}@pkgs.tardypad.me/aur
+	EOF
 }
 
 install_packages() {
