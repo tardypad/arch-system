@@ -1,3 +1,0 @@
-[aur]
-	SigLevel = Optional TrustAll
-	Server = https://{USERNAME}:{PASSWORD}@pkgs.tardypad.me/aur

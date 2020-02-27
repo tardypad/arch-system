@@ -1,0 +1,2 @@
+SigLevel = Optional TrustAll
+Server = https://{USERNAME}:{PASSWORD}@pkgs.tardypad.me/$repo
