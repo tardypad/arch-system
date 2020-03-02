@@ -3,7 +3,7 @@ pkgname=(
   'system-config-light'
   'system-config-dark'
 )
-pkgver=105
+pkgver=106
 pkgrel=1
 pkgdesc='System configurations'
 url='https://github.com/tardypad/arch-packages'
@@ -122,6 +122,7 @@ depends+=(
   neomutt
   netctl # not sure I still need this one
   networkmanager
+  oath-toolkit
   openssh
   otf-font-awesome
   p7zip # extract ZIP archives using encryptions not supported by unzip
