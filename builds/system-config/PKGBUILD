@@ -3,7 +3,7 @@ pkgname=(
   'system-config-light'
   'system-config-dark'
 )
-pkgver=106
+pkgver=107
 pkgrel=1
 pkgdesc='System configurations'
 url='https://github.com/tardypad/arch-packages'
@@ -162,7 +162,7 @@ depends+=(
   wl-clipboard
   xdg-utils
   xorg-server-xwayland # run X clients within sway
-  yamllint
+  yq-go
   yubikey-manager
   zathura
   zathura-pdf-mupdf # plugin to read PDF files
