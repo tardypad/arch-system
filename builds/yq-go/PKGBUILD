@@ -1,4 +1,4 @@
-pkgname=yq
+pkgname=yq-go
 pkgver=3.2.1
 pkgrel=1
 pkgdesc="Command-line YAML processor"
@@ -6,12 +6,16 @@ arch=("any")
 url="https://github.com/mikefarah/yq"
 license=("MIT")
 
+conflicts=(
+  'yq'
+)
+
 makedepends=(
   'go-pie'
 )
 
 source=(
-  "${pkgname}-${pkgver}.tar.gz::https://github.com/mikefarah/yq/archive/${pkgver}.tar.gz"
+  "yq-${pkgver}.tar.gz::https://github.com/mikefarah/yq/archive/${pkgver}.tar.gz"
 )
 
 sha512sums=(
@@ -19,20 +23,20 @@ sha512sums=(
 )
 
 prepare() {
-  cd "${pkgname}-${pkgver}"
+  cd "yq-${pkgver}"
   go mod vendor
 }
 
 build() {
-  cd "${pkgname}-${pkgver}"
+  cd "yq-${pkgver}"
   go build \
     -mod=vendor \
     -trimpath \
     -ldflags "-extldflags $LDFLAGS" \
-    -o "${pkgname}" .
+    -o yq .
 }
 
 package() {
-  cd "${pkgname}-${pkgver}"
-  install -Dm755 "${pkgname}" "${pkgdir}/usr/bin/${pkgname}"
+  cd "yq-${pkgver}"
+  install -Dm755 yq "${pkgdir}/usr/bin/yq"
 }
