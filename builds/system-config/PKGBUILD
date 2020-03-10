@@ -3,7 +3,7 @@ pkgname=(
   'system-config-light'
   'system-config-dark'
 )
-pkgver=107
+pkgver=108
 pkgrel=1
 pkgdesc='System configurations'
 url='https://github.com/tardypad/arch-packages'
@@ -128,6 +128,9 @@ depends+=(
   p7zip # extract ZIP archives using encryptions not supported by unzip
   pacman-contrib # needed for paccache service
   pass
+  perl-authen-sasl # git email
+  perl-net-smtp-ssl # git email
+  perl-mime-tools # git email
   pulseaudio
   pulseaudio-alsa
   pulseaudio-bluetooth
