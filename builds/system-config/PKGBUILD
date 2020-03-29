@@ -3,7 +3,7 @@ pkgname=(
   'system-config-light'
   'system-config-dark'
 )
-pkgver=109
+pkgver=110
 pkgrel=1
 pkgdesc='System configurations'
 url='https://github.com/tardypad/arch-packages'
@@ -76,6 +76,7 @@ depends+=(
   aurutils
   bats-core
   bc
+  bemenu
   bluez
   bluez-tools # contains bt-obex needed to receive files via bluetooth
   bluez-utils
