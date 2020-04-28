@@ -3,7 +3,7 @@ pkgname=(
   'system-config-light'
   'system-config-dark'
 )
-pkgver=111
+pkgver=112
 pkgrel=1
 pkgdesc='System configurations'
 url='https://github.com/tardypad/arch-packages'
@@ -163,6 +163,7 @@ depends+=(
   vi
   vim
   w3m
+  waybar
   weechat
   wl-clipboard
   xdg-utils
