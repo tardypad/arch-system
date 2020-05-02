@@ -1,0 +1,34 @@
+pkgname=aerc
+pkgver=0.3.0
+pkgrel=1
+pkgdesc='Email Client for your Terminal'
+arch=('x86_64')
+url='https://git.sr.ht/~sircmpwn/aerc'
+license=('MIT')
+
+depends=(
+  'notmuch-runtime'
+)
+
+makedepends=(
+  'go'
+  'scdoc'
+)
+
+source=(
+  "${pkgname}-${pkgver}.tar.gz::https://git.sr.ht/~sircmpwn/${pkgname}/archive/${pkgver}.tar.gz"
+)
+
+sha512sums=(
+  '7f2b285b1045d1f271e3741a3d66fb48afbd7a372eea70c89307d8853f5dffd8e25d077c51da4139ed2568ec465782c97091da3b5fd0fd03b89e9cec936d6f27'
+)
+
+build() {
+    cd "${srcdir}/${pkgname}-${pkgver}"
+    make GOFLAGS=-tags=notmuch PREFIX=/usr
+}
+
+package() {
+    cd "${srcdir}/${pkgname}-${pkgver}"
+    make DESTDIR=${pkgdir} PREFIX=/usr install
+}
