@@ -1,6 +1,6 @@
-# Arch packages
+# Arch system
 
-Personal [Arch Linux](https://www.archlinux.org/) packages management
+Personal [Arch Linux](https://www.archlinux.org/) system management
 
 - bin: scripts to manage system and packages
 - builds: custom packages builds
