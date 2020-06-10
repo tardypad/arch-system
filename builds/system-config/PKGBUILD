@@ -3,7 +3,7 @@ pkgname=(
   'system-config-light'
   'system-config-dark'
 )
-pkgver=116
+pkgver=117
 pkgrel=1
 pkgdesc='System configurations'
 url='https://github.com/tardypad/arch-packages'
@@ -141,7 +141,7 @@ depends+=(
   rsync
   scdoc
   sfeed
-  shellcheck
+  shellcheck-bin
   slurp
   s-nail
   speedtest-cli
