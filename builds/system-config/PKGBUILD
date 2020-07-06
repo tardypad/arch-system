@@ -3,7 +3,7 @@ pkgname=(
   'system-config-light'
   'system-config-dark'
 )
-pkgver=117
+pkgver=118
 pkgrel=1
 pkgdesc='System configurations'
 url='https://github.com/tardypad/arch-packages'
@@ -101,6 +101,7 @@ depends+=(
   htop
   httpie
   hyperfine
+  i3blocks
   imagemagick
   imv
   inetutils
@@ -163,7 +164,6 @@ depends+=(
   vi
   vim
   w3m
-  waybar
   weechat
   wl-clipboard
   xdg-utils
