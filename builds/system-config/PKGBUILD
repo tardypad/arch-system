@@ -3,7 +3,7 @@ pkgname=(
   'system-config-light'
   'system-config-dark'
 )
-pkgver=119
+pkgver=120
 pkgrel=1
 pkgdesc='System configurations'
 url='https://github.com/tardypad/arch-packages'
@@ -96,6 +96,7 @@ depends+=(
   gimp
   git
   go
+  go-tools
   grim
   gron-bin
   gst-plugins-bad # play FLAC files
