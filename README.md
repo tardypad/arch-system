@@ -15,6 +15,6 @@ Most scripts rely on the following packages
 
 | Name        | Purpose                          | Source                                                                            | Version                                                                                                 |
 |-------------|----------------------------------|-----------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------|
-| aurutils    | AUR helper                       | [GitHub](https://github.com/AladW/aurutils)                                       | [2.3.3](https://github.com/AladW/aurutils/releases/tag/2.3.3)                                           |
+| aurutils    | AUR helper                       | [GitHub](https://github.com/AladW/aurutils)                                       | [2.3.6b](https://github.com/AladW/aurutils/releases/tag/2.3.6b)                                         |
 | fakeroot    | Simulate superuser privileges    | [Debian](http://debian.backend.mirrors.debian.org/debian/pool/main/f/fakeroot)    | [1.24](http://debian.backend.mirrors.debian.org/debian/pool/main/f/fakeroot/fakeroot_1.24.orig.tar.gz)  |
-| pacman      | package manager                  | [Archlinux](https://git.archlinux.org/pacman.git)                                 | [5.2.1](https://git.archlinux.org/pacman.git/tag/?h=v5.2.1)                                             |
+| pacman      | package manager                  | [Archlinux](https://git.archlinux.org/pacman.git)                                 | [5.2.2](https://git.archlinux.org/pacman.git/tag/?h=v5.2.2)                                             |
