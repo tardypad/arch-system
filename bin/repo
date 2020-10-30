@@ -107,6 +107,7 @@ remove_package() {
 }
 
 sync_package() {
+  AUR_PAGER='ls -lLR' AUR_CONFIRM_PAGER='yes' \
   aur sync ${TOOL_OPTIONS} --root "${TMP_DIR}" -d "${REPO}" -rn "${PACKAGE}"
 }
 
