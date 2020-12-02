@@ -3,7 +3,7 @@ pkgname=(
   'system-config-light'
   'system-config-dark'
 )
-pkgver=122
+pkgver=123
 pkgrel=1
 pkgdesc='System configurations'
 url='https://github.com/tardypad/arch-packages'
@@ -45,6 +45,7 @@ depends=(
   file
   findutils
   flex
+  gammastep
   gawk
   gcc
   gettext
