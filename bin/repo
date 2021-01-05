@@ -19,7 +19,7 @@ init_variables() {
 
 show_usage() {
   cat <<- EOF
-	usage: ${COMMAND} [<options>] (add|remove|sync) (package_file|package_name) [<tool options>...]
+	usage: ${COMMAND} [<options>] <repo> (add|remove|sync) (package_file|package_name) [<tool options>...]
 
 	Manage personal remote repository packages
 
