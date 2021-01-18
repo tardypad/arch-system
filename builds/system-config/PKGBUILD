@@ -3,7 +3,7 @@ pkgname=(
   'system-config-light'
   'system-config-dark'
 )
-pkgver=126
+pkgver=127
 pkgrel=1
 pkgdesc='System configurations'
 url='https://github.com/tardypad/arch-packages'
@@ -127,7 +127,6 @@ depends+=(
   mpd
   mpv
   ncdu
-  neomutt
   netctl # not sure I still need this one
   networkmanager
   oath-toolkit
