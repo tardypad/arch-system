@@ -3,7 +3,7 @@ pkgname=(
   'system-config-light'
   'system-config-dark'
 )
-pkgver=127
+pkgver=128
 pkgrel=1
 pkgdesc='System configurations'
 url='https://github.com/tardypad/arch-packages'
@@ -113,6 +113,7 @@ depends+=(
   inkscape
   jp
   jq
+  khard
   less
   libqalculate
   libreoffice-fresh
