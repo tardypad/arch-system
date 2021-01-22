@@ -68,6 +68,7 @@ setup_users() {
   useradd -mU -s /usr/bin/zsh -G uucp,video,wheel damien
   chsh -s /usr/bin/zsh root
 
+  mkdir -p /home/damien/Contacts
   mkdir -p /home/damien/Desktop
   mkdir -p /home/damien/Downloads
   mkdir -p /home/damien/Documents
