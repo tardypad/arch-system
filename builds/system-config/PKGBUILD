@@ -3,7 +3,7 @@ pkgname=(
   'system-config-light'
   'system-config-dark'
 )
-pkgver=128
+pkgver=129
 pkgrel=1
 pkgdesc='System configurations'
 url='https://github.com/tardypad/arch-packages'
@@ -74,6 +74,7 @@ depends+=(
   alacritty
   alsa-utils
   aria2
+  asciinema
   asciitosvg-git
   aurutils
   bats-core
@@ -170,6 +171,7 @@ depends+=(
   vim
   w3m
   weechat
+  wf-recorder
   wl-clipboard
   xdg-utils
   xorg-xwayland # run X clients within sway
