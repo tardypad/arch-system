@@ -3,7 +3,7 @@ pkgname=(
   'system-config-light'
   'system-config-dark'
 )
-pkgver=130
+pkgver=131
 pkgrel=1
 pkgdesc='System configurations'
 url='https://github.com/tardypad/arch-packages'
@@ -116,6 +116,7 @@ depends+=(
   jq
   khard
   less
+  libpipewire02 # older version needed for screen sharing in chromium
   libqalculate
   libreoffice-fresh
   libxml2
@@ -174,6 +175,7 @@ depends+=(
   weechat
   wf-recorder
   wl-clipboard
+  xdg-desktop-portal-wlr
   xdg-utils
   xorg-xwayland # run X clients within sway
   yq-go
