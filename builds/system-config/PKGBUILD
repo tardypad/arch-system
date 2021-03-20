@@ -3,7 +3,7 @@ pkgname=(
   'system-config-light'
   'system-config-dark'
 )
-pkgver=133
+pkgver=134
 pkgrel=1
 pkgdesc='System configurations'
 url='https://github.com/tardypad/arch-packages'
@@ -100,6 +100,7 @@ depends+=(
   fzf
   gimp
   git
+  gmni-git
   go
   gopls
   grim
