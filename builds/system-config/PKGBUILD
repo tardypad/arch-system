@@ -3,7 +3,7 @@ pkgname=(
   'system-config-light'
   'system-config-dark'
 )
-pkgver=134
+pkgver=135
 pkgrel=1
 pkgdesc='System configurations'
 url='https://github.com/tardypad/arch-packages'
@@ -142,6 +142,7 @@ depends+=(
   perl-authen-sasl # git email
   perl-net-smtp-ssl # git email
   perl-mime-tools # git email
+  pipewire-media-session # needed for screen sharing in browsers
   pulseaudio
   pulseaudio-alsa
   pulseaudio-bluetooth
