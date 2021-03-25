@@ -8,27 +8,28 @@ init_variables() {
   TMP_DIR='/tmp/orphaned_packages'
   trap 'rm -rf "${TMP_DIR}"' EXIT
 
-  TYPE='strict'
+  TYPE='all'
 }
 
 show_usage() {
   cat <<- EOF
 	usage: ${COMMAND} [<options>]
 
-	List orphaned packages
+	List orphaned packages (strict or optional)
 
 	Options:
 	  -h    show this message only
 	  -o    list only optional packages
-	        default is to list only true orphans
+	  -s    list only strictly orphan packages
 	EOF
 }
 
 parse_command_line() {
-  while getopts ho OPT; do
+  while getopts hos OPT; do
     case "${OPT}" in
       h) show_usage; exit 0 ;;
       o) TYPE='optional' ;;
+      s) TYPE='strict' ;;
       ?) exit_error ;;
     esac
   done
@@ -43,13 +44,28 @@ exit_error() {
 } >&2
 
 list_orphans() {
-  if [ "${TYPE}" = 'strict' ]; then
-    pacman -Qtdq
-  elif [ "${TYPE}" = 'optional' ]; then
-    pacman -Qtdq > "${TMP_DIR}/strict"
-    pacman -Qttdq > "${TMP_DIR}/optional"
-    comm -13 "${TMP_DIR}/strict" "${TMP_DIR}/optional"
-  fi
+  pacman -Qtdq > "${TMP_DIR}/strict"
+  pacman -Qttdq > "${TMP_DIR}/optional"
+
+  case "${TYPE}" in
+    all)
+      if [ -s "${TMP_DIR}/strict" ]; then
+        printf 'strict:\n'
+        sed 's/^/- /' "${TMP_DIR}/strict"
+      fi
+
+      if [ -s "${TMP_DIR}/optional" ]; then
+        printf 'optional:\n'
+        sed 's/^/- /' "${TMP_DIR}/optional"
+      fi
+      ;;
+    strict)
+      cat "${TMP_DIR}/strict"
+      ;;
+    optional)
+      comm -13 "${TMP_DIR}/strict" "${TMP_DIR}/optional"
+      ;;
+  esac
 }
 
 init_variables
