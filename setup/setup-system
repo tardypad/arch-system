@@ -88,7 +88,7 @@ parse_command_line "$@"
 
 check_root_user
 
-update_current_packages
 setup_repositories
+update_current_packages
 install_packages
 setup_users
