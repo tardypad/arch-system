@@ -66,6 +66,8 @@ install_packages() {
 
 setup_users() {
   useradd -mU -s /usr/bin/zsh -G uucp,video,wheel,input damien
+  passwd damien
+
   chsh -s /usr/bin/zsh root
 
   mkdir -p /home/damien/Contacts
