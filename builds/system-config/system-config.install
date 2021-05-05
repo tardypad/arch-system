@@ -3,12 +3,6 @@ post_install() {
     install -dm0755 -o damien -g damien /var/log/sway
     install -Dm0644 -o damien -g damien /dev/null /var/log/sway/sway.log
 
-    # TLP services units config as defined in its doc
-    systemctl enable --now tlp.service
-    systemctl enable --now NetworkManager-dispatcher.service
-    systemctl mask --now systemd-rfkill.service
-    systemctl mask --now systemd-rfkill.socket
-
     systemctl enable --now NetworkManager.service
     systemctl enable --now bluetooth.service
 
