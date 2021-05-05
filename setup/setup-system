@@ -61,7 +61,7 @@ setup_repositories() {
 }
 
 install_packages() {
-  pacman -S --noconfirm --overwrite '*' system-config
+  pacman -S --overwrite '*' system-config
 }
 
 setup_users() {
