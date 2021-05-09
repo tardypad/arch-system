@@ -78,11 +78,9 @@ setup_users() {
   mkdir -p /home/damien/Notes
   mkdir -p /home/damien/Pictures
   mkdir -p /home/damien/Projects
-  mkdir -p /home/damien/Documents/Projects
   mkdir -p /home/damien/Videos
-  mkdir -p /var/log/projects
 
-  chown -R damien:damien /home/damien /var/log/projects
+  chown -R damien:damien /home/damien
 }
 
 init_variables
