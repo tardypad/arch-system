@@ -45,7 +45,9 @@ exit_error() {
 
 list_orphans() {
   pacman -Qtdq > "${TMP_DIR}/strict"
-  pacman -Qttdq > "${TMP_DIR}/optional"
+  pacman -Qttdq > "${TMP_DIR}/strict_and_optional"
+  comm -13 "${TMP_DIR}/strict" "${TMP_DIR}/strict_and_optional" \
+    > "${TMP_DIR}/optional"
 
   case "${TYPE}" in
     all)
@@ -63,7 +65,7 @@ list_orphans() {
       cat "${TMP_DIR}/strict"
       ;;
     optional)
-      comm -13 "${TMP_DIR}/strict" "${TMP_DIR}/optional"
+      cat "${TMP_DIR}/optional"
       ;;
   esac
 }
