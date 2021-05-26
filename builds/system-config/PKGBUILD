@@ -3,7 +3,7 @@ pkgname=(
   'system-config-light'
   'system-config-dark'
 )
-pkgver=142
+pkgver=143
 pkgrel=1
 pkgdesc='System configurations'
 url='https://github.com/tardypad/arch-packages'
@@ -87,6 +87,7 @@ depends+=(
   chromium
   cmark
   cryptsetup
+  ctags
   curl
   device-mapper
   dhcpcd # not sure I still need this one
@@ -163,7 +164,6 @@ depends+=(
   tmux
   translate-shell
   tree
-  universal-ctags-git
   unrar
   unzip
   usbutils
