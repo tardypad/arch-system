@@ -7,13 +7,6 @@ generate_vim_spell_files() {
       > /dev/null 2>&1
 }
 
-generate_vim_help_tags() {
-  echo ':: Generating vim help tags...'
-  sudo --user damien \
-    vim --clean -c 'helptags ALL' +qall \
-      > /dev/null 2>&1
-}
-
 reload_systemd() {
   echo ':: Reloading systemd user daemon...'
   # HACK: not sure if possible to retrieve such environment variables properly
@@ -31,14 +24,12 @@ regenerate_fonts() {
 
 post_install() {
   generate_vim_spell_files
-  generate_vim_help_tags
   reload_systemd
   regenerate_fonts
 }
 
 post_upgrade() {
   generate_vim_spell_files
-  generate_vim_help_tags
   reload_systemd
   regenerate_fonts
 }

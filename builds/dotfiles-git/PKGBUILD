@@ -4,7 +4,7 @@ pkgname=(
   'dotfiles-dark-git'
 )
 pkgver=r1847.edf012e2
-pkgrel=2
+pkgrel=3
 pkgdesc="My dotfiles"
 arch=('any')
 url="https://github.com/tardypad/dotfiles"
