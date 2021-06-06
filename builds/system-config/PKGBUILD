@@ -3,7 +3,7 @@ pkgname=(
   'system-config-light'
   'system-config-dark'
 )
-pkgver=146
+pkgver=147
 pkgrel=1
 pkgdesc='System configurations'
 url='https://github.com/tardypad/arch-packages'
@@ -169,6 +169,16 @@ depends+=(
   usbutils
   vi
   vim
+  vim-ale
+  vim-go
+  vim-goyo-git
+  vim-gutentags-git
+  vim-nerdcommenter
+  vim-surround-git
+  vim-tagbar
+  vim-tmux-navigator-git
+  vim-ultisnips
+  vim-undotree
   w3m
   weechat
   weechat-vimode-git
