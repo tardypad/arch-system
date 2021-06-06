@@ -3,7 +3,7 @@ pkgname=(
   'system-config-light'
   'system-config-dark'
 )
-pkgver=148
+pkgver=149
 pkgrel=1
 pkgdesc='System configurations'
 url='https://github.com/tardypad/arch-packages'
@@ -148,6 +148,7 @@ depends+=(
   pulseaudio-bluetooth
   python-adblock # needed for qutebrowser adblocking
   qutebrowser
+  ripgrep
   rsync
   scdoc
   sfeed
@@ -160,7 +161,6 @@ depends+=(
   swayidle
   swaylock
   syslinux # needed to create an Arch installer on USB
-  the_silver_searcher
   tmux
   translate-shell
   tree
