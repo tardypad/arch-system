@@ -1,4 +1,4 @@
-/home/damien/.weechat/logs/*.weechatlog
+/home/damien/.local/share/weechat/logs/*.weechatlog
 {
   su damien damien
   nocreate
