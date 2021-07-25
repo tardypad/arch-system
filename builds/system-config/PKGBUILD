@@ -3,7 +3,7 @@ pkgname=(
   'system-config-light'
   'system-config-dark'
 )
-pkgver=153
+pkgver=154
 pkgrel=1
 pkgdesc='System configurations'
 url='https://github.com/tardypad/arch-packages'
@@ -186,6 +186,7 @@ depends+=(
   w3m
   weechat
   weechat-vimode-git
+  weechat-wee-most-git
   wf-recorder
   wl-clipboard
   xdg-desktop-portal-wlr
