@@ -3,7 +3,7 @@ pkgname=(
   'system-config-light'
   'system-config-dark'
 )
-pkgver=152
+pkgver=153
 pkgrel=1
 pkgdesc='System configurations'
 url='https://github.com/tardypad/arch-packages'
@@ -126,6 +126,7 @@ depends+=(
   mako
   man-db
   man-pages
+  mitmproxy
   mpc
   mpd
   mpv
