@@ -3,7 +3,7 @@ pkgname=(
   'system-config-light'
   'system-config-dark'
 )
-pkgver=156
+pkgver=157
 pkgrel=1
 pkgdesc='System configurations'
 url='https://github.com/tardypad/arch-packages'
@@ -143,7 +143,6 @@ depends+=(
   perl-authen-sasl # git email
   perl-net-smtp-ssl # git email
   perl-mime-tools # git email
-  pipewire-alsa
   pipewire-media-session # needed for screen sharing in browsers
   pipewire-pulse
   python-adblock # needed for qutebrowser adblocking
