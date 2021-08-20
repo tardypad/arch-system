@@ -2,10 +2,11 @@
 # commands used:
 # - column
 # - fakeroot
+# - mktemp
 # - pacman
 # - pacman-conf
 
-TMP_DIR="${XDG_RUNTIME_DIR:-/tmp}/packages-updates"
+TMP_DIR="$( mktemp -d )"
 trap 'rm -rf "${TMP_DIR}"' EXIT
 
 rm -rf "${TMP_DIR}"

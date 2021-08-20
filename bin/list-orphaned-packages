@@ -1,11 +1,12 @@
 #!/bin/sh
 # commands used:
+# - mktemp
 # - pacman
 
 init_variables() {
   COMMAND=${0##*/}
 
-  TMP_DIR='/tmp/orphaned_packages'
+  TMP_DIR="$( mktemp -d )"
   trap 'rm -rf "${TMP_DIR}"' EXIT
 
   TYPE='all'
