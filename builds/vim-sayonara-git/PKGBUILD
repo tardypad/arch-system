@@ -1,5 +1,5 @@
 pkgname=vim-sayonara-git
-pkgver=r50.357135c
+pkgver=r51.75c73f3
 pkgrel=1
 pkgdesc="A Vim plugin for sane buffer/window deletion"
 arch=("any")
