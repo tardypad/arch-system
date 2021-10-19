@@ -43,7 +43,7 @@ _branch=master
 
 # use personal remote containing all the branches
 source=(
-  "git+ssh://damien@tardypad.me:11235/~/damien.git/dotfiles#branch=${_branch}"
+  "git+ssh://damien@tardypad.me:11235/~/repos/dotfiles#branch=${_branch}"
 )
 
 sha512sums=(
