@@ -3,7 +3,7 @@ pkgname=(
   'system-config-light'
   'system-config-dark'
 )
-pkgver=161
+pkgver=162
 pkgrel=1
 pkgdesc='System configurations'
 url='https://github.com/tardypad/arch-packages'
@@ -89,7 +89,6 @@ depends+=(
   ctags
   curl
   device-mapper
-  dhcpcd # not sure I still need this one
   diffutils
   dosfstools # FAT filesystem utilities
   e2fsprogs
@@ -131,7 +130,6 @@ depends+=(
   mpv
   mtools # needed for syslinux to create an Arch installer on USB
   ncdu
-  netctl # not sure I still need this one
   networkmanager
   oath-toolkit
   openssh
