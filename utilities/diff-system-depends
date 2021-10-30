@@ -57,7 +57,4 @@ diff_packages_lists() {
 init_variables
 parse_command_line "$@"
 
-rm -rf "${TMP_DIR}"
-mkdir -p "${TMP_DIR}"
-
 diff_packages_lists

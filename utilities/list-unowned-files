@@ -109,7 +109,4 @@ parse_command_line "$@"
 
 check_root_user
 
-rm -rf "${TMP_DIR}"
-mkdir -p "${TMP_DIR}"
-
 list_files
