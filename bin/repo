@@ -84,8 +84,6 @@ exit_error() {
 } >&2
 
 import_env() {
-  rm -rf "${TMP_DIR}"
-  mkdir -p "${TMP_DIR}"
   scp -q "surg:/${SRV_DIR}/pkgs/${REPO}/${REPO}.files.tar.xz" "${TMP_DIR}"
   scp -q "surg:/${SRV_DIR}/pkgs/${REPO}/${REPO}.db.tar.xz" "${TMP_DIR}"
   ln -s "${TMP_DIR}/${REPO}.files.tar.xz" "${TMP_DIR}/${REPO}.files"

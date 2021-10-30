@@ -74,7 +74,4 @@ list_orphans() {
 init_variables
 parse_command_line "$@"
 
-rm -rf "${TMP_DIR}"
-mkdir -p "${TMP_DIR}"
-
 list_orphans
