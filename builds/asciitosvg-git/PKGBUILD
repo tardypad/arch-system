@@ -1,5 +1,5 @@
 pkgname=asciitosvg-git
-pkgver=r45.82ac9a9
+pkgver=r49.ca82a5c
 pkgrel=1
 pkgdesc="Create beautiful SVG diagrams from ASCII art"
 arch=("any")
@@ -22,6 +22,12 @@ sha512sums=(
 pkgver() {
   cd asciitosvg
   printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
+
+prepare() {
+  cd asciitosvg
+  go mod init 'github.com/asciitosvg/asciitosvg'
+  go mod tidy
 }
 
 build() {
