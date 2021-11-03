@@ -1,0 +1,136 @@
+#!/bin/sh
+# commands used:
+# - aur
+# - column
+# - mktemp
+# - pacman
+# - pacman-conf
+
+init_variables() {
+  COMMAND=${0##*/}
+
+  TMP_DIR="$( mktemp -d )"
+  trap 'rm -rf "${TMP_DIR}"' EXIT
+
+  TYPE='all'
+}
+
+show_usage() {
+  cat <<- EOF
+	usage: ${COMMAND} [<options>]
+
+	List updatable build packages
+
+	Need to be run from repository root folder
+
+	Options:
+	  -g    list only git packages
+	  -h    show this message only
+	  -v    list only versioned packages
+	EOF
+}
+
+parse_command_line() {
+  while getopts ghv OPT; do
+    case "${OPT}" in
+      g) TYPE='git' ;;
+      h) show_usage; exit 0 ;;
+      v) TYPE='versioned' ;;
+      ?) exit_error ;;
+    esac
+  done
+
+  shift $(( OPTIND - 1 ))
+}
+
+exit_error() {
+  [ -z "$1" ] || echo "${COMMAND}: $1"
+  echo "Try '${COMMAND} -h' for more information."
+  exit 1
+} >&2
+
+list_aur_updates() {
+  IGNORED_PACKAGES=$( pacman-conf IgnorePkg )
+
+  aur repo -d aur -S -u \
+    | grep -vE "^($( echo "${IGNORED_PACKAGES}" | tr '\n' '|' )):" \
+    | grep -vE '\-git:' \
+    | sed 's/: / /' \
+    | cut -d' ' -f1,2,4
+}
+
+get_package_new_version() (
+  cd "${TMP_DIR}/$1" || exit
+
+  . ./PKGBUILD
+
+  SOURCE_URL="$( echo "${source}" | sed -e 's/.*\(https:.*\)$/\1/' )"
+  SOURCE_DIR="$( echo "${source}" | sed -n 's/\(.*\)::.*/\1/p' )"
+  if [ -z "${SOURCE_DIR}" ]; then
+    SOURCE_DIR="$( echo "${source}" | sed -e 's|.*/\([^/]*\)|\1|' -e 's/\.git$//' )"
+  fi
+
+  git clone --bare "${SOURCE_URL}" "${SOURCE_DIR}" 2> /dev/null
+
+  pkgver
+)
+
+list_aur_git_updates() {
+  pacman -Sl aur \
+    | grep 'installed' \
+    | grep '\-git ' \
+    | while read -r LINE; do
+        PACKAGE="$( echo "${LINE}" | cut -d' ' -f2 )"
+        CURRENT_VERSION="$( echo "${LINE}" | cut -d' ' -f3 | sed 's/-[0-9]*//' )"
+
+        (
+          cd "${TMP_DIR}" || exit
+          aur fetch "${PACKAGE}" 2> /dev/null
+        )
+
+        NEW_VERSION="$( get_package_new_version "${PACKAGE}" )"
+        printf '%s\t%s\t%s\n' "${PACKAGE}" "${CURRENT_VERSION}" "${NEW_VERSION}"
+      done
+}
+
+list_tardypad_git_updates() {
+  pacman -Sl tardypad \
+    | grep 'installed' \
+    | grep '\-git ' \
+    | grep -v 'dotfiles' \
+    | while read -r LINE; do
+        PACKAGE="$( echo "${LINE}" | cut -d' ' -f2 )"
+        CURRENT_VERSION="$( echo "${LINE}" | cut -d' ' -f3 | sed 's/-[0-9]*//' )"
+
+        mkdir -p "${TMP_DIR}/${PACKAGE}"
+        cp "builds/${PACKAGE}/PKGBUILD" "${TMP_DIR}/${PACKAGE}"
+
+        NEW_VERSION="$( get_package_new_version "${PACKAGE}" )"
+        printf '%s\t%s\t%s\n' "${PACKAGE}" "${CURRENT_VERSION}" "${NEW_VERSION}"
+      done
+}
+
+list_updates() {
+  case "${TYPE}" in
+    all)
+      list_aur_updates
+      list_aur_git_updates
+      list_tardypad_git_updates
+      ;;
+    git)
+      list_aur_git_updates
+      list_tardypad_git_updates
+      ;;
+    versioned)
+      list_aur_updates
+      ;;
+  esac \
+    | awk '$2!=$3' \
+    | sort \
+    | column -t
+}
+
+init_variables
+parse_command_line "$@"
+
+list_updates
