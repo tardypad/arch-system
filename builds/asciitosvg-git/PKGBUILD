@@ -12,7 +12,7 @@ makedepends=(
 )
 
 source=(
-  "git+https://github.com/asciitosvg/asciitosvg/"
+  "git+https://github.com/asciitosvg/asciitosvg"
 )
 
 sha512sums=(
