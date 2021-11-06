@@ -1,17 +1,21 @@
 #!/bin/sh
 # commands used:
-# - aur
 # - column
+# - curl
 # - git
+# - jq
 # - mktemp
 # - pacman
 # - pacman-conf
+# - vercmp
 
 init_variables() {
   COMMAND=${0##*/}
 
   TMP_DIR="$( mktemp -d )"
   trap 'rm -rf "${TMP_DIR}"' EXIT
+
+  AUR_URL='https://aur.archlinux.org'
 
   TYPE='all'
 }
@@ -53,11 +57,20 @@ exit_error() {
 list_aur_updates() {
   IGNORED_PACKAGES=$( pacman-conf IgnorePkg )
 
-  aur repo -d aur -S -u \
+  pacman -Sl aur \
     | grep -vE "^($( echo "${IGNORED_PACKAGES}" | tr '\n' '|' )):" \
-    | grep -vE '\-git:' \
-    | sed 's/: / /' \
-    | cut -d' ' -f1,2,4
+    | grep -v '\-git ' \
+    | while read -r LINE; do
+        PACKAGE="$( echo "${LINE}" | cut -d' ' -f2 )"
+        CURRENT_VERSION="$( echo "${LINE}" | cut -d' ' -f3 )"
+
+        NEW_VERSION="$(
+          curl -s "${AUR_URL}/rpc?v=5&type=info&arg[]=${PACKAGE}" \
+            | jq -r '.results[0].Version'
+        )"
+
+        printf '%s\t%s\t%s\n' "${PACKAGE}" "${CURRENT_VERSION}" "${NEW_VERSION}"
+      done
 }
 
 get_package_new_version() (
@@ -83,10 +96,7 @@ list_aur_git_updates() {
         PACKAGE="$( echo "${LINE}" | cut -d' ' -f2 )"
         CURRENT_VERSION="$( echo "${LINE}" | cut -d' ' -f3 | sed 's/-[0-9]*//' )"
 
-        (
-          cd "${TMP_DIR}" || exit
-          aur fetch "${PACKAGE}" 2> /dev/null
-        )
+        git clone -q "${AUR_URL}/${PACKAGE}" "${TMP_DIR}/${PACKAGE}"
 
         NEW_VERSION="$( get_package_new_version "${PACKAGE}" )"
         printf '%s\t%s\t%s\n' "${PACKAGE}" "${CURRENT_VERSION}" "${NEW_VERSION}"
@@ -124,7 +134,14 @@ list_updates() {
       list_aur_updates
       ;;
   esac \
-    | awk '$2!=$3' \
+    | while read -r LINE; do
+        CURRENT_VERSION="$( echo "${LINE}" | cut -f2 )"
+        NEW_VERSION="$( echo "${LINE}" | cut -f3 )"
+
+        if [ "$( vercmp "${NEW_VERSION}" "${CURRENT_VERSION}" )" = 1 ]; then
+          echo "${LINE}"
+        fi
+      done \
     | sort \
     | column -t
 }
