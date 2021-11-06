@@ -3,7 +3,7 @@ pkgname=(
   'system-config-light'
   'system-config-dark'
 )
-pkgver=164
+pkgver=165
 pkgrel=1
 pkgdesc='System configurations'
 url='https://github.com/tardypad/arch-packages'
@@ -75,7 +75,6 @@ depends+=(
   aria2
   asciinema
   asciitosvg-git
-  aurutils
   bash-bats
   bc
   bemenu-wayland
