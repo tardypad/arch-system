@@ -2,6 +2,7 @@
 # commands used:
 # - aur
 # - column
+# - git
 # - mktemp
 # - pacman
 # - pacman-conf
@@ -70,7 +71,7 @@ get_package_new_version() (
     SOURCE_DIR="$( echo "${source}" | sed -e 's|.*/\([^/]*\)|\1|' -e 's/\.git$//' )"
   fi
 
-  git clone --bare "${SOURCE_URL}" "${SOURCE_DIR}" 2> /dev/null
+  git clone -q --bare "${SOURCE_URL}" "${SOURCE_DIR}"
 
   pkgver
 )
