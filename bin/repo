@@ -1,6 +1,6 @@
 #!/bin/sh
 # commands used:
-# - aur
+# - git
 # - mktemp
 # - repo-add
 # - repo-remove
@@ -12,6 +12,7 @@ init_variables() {
   TMP_DIR="$( mktemp -d )"
   trap 'rm -rf "${TMP_DIR}"' EXIT
 
+  AUR_URL='https://aur.archlinux.org'
   SRV_DIR='/usr/local/www'
 
   REPO=
@@ -107,10 +108,17 @@ remove_package() {
   repo-remove ${TOOL_OPTIONS} "${TMP_DIR}/${REPO}.db.tar.xz" "${PACKAGE}"
 }
 
-sync_package() {
-  AUR_PAGER='ls -lLR' AUR_CONFIRM_PAGER='yes' \
-  aur sync ${TOOL_OPTIONS} --root "${TMP_DIR}" -d "${REPO}" -rn "${PACKAGE}"
-}
+sync_package() (
+    cd "${TMP_DIR}" || exit
+    git clone -q "${AUR_URL}/${PACKAGE}" "${PACKAGE}"
+    printf '%s %s\n' 'Review the package' "${TMP_DIR}/${PACKAGE}/PKGBUILD"
+    printf '%s\n' 'Press Return to continue, Ctrl-c to abort'
+    read -r
+
+    cd "${PACKAGE}" || exit
+    PKGDEST="${TMP_DIR}" makepkg --noconfirm --syncdeps --rmdeps --clean ${TOOL_OPTIONS}
+    repo-add ../"${REPO}.db.tar.xz" ../"${PACKAGE}"*.tar.zst
+)
 
 init_variables
 parse_command_line "$@"
