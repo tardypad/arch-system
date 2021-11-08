@@ -3,7 +3,7 @@ pkgname=(
   'system-config-light'
   'system-config-dark'
 )
-pkgver=165
+pkgver=166
 pkgrel=1
 pkgdesc='System configurations'
 url='https://github.com/tardypad/arch-packages'
@@ -191,6 +191,7 @@ depends+=(
   xdg-utils
   xorg-xwayland # run X clients within sway
   ydotool
+  youtube-dl
   yubikey-manager
   zathura
   zathura-cb # plugin to read comic books
