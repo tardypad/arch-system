@@ -3,7 +3,7 @@ pkgname=(
   'system-config-light'
   'system-config-dark'
 )
-pkgver=167
+pkgver=168
 pkgrel=1
 pkgdesc='System configurations'
 url='https://github.com/tardypad/arch-packages'
@@ -83,7 +83,6 @@ depends+=(
   bluez-utils
   catimg
   chromium
-  cmark
   cryptsetup
   ctags
   curl
