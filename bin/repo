@@ -85,18 +85,18 @@ exit_error() {
 } >&2
 
 import_env() {
-  scp -q "surg:/${SRV_DIR}/pkgs/${REPO}/${REPO}.files.tar.xz" "${TMP_DIR}"
-  scp -q "surg:/${SRV_DIR}/pkgs/${REPO}/${REPO}.db.tar.xz" "${TMP_DIR}"
+  scp -q "chestnut:/${SRV_DIR}/pkgs/${REPO}/${REPO}.files.tar.xz" "${TMP_DIR}"
+  scp -q "chestnut:/${SRV_DIR}/pkgs/${REPO}/${REPO}.db.tar.xz" "${TMP_DIR}"
   ln -s "${TMP_DIR}/${REPO}.files.tar.xz" "${TMP_DIR}/${REPO}.files"
   ln -s "${TMP_DIR}/${REPO}.db.tar.xz" "${TMP_DIR}/${REPO}.db"
 }
 
 export_env() {
-  scp -q "${TMP_DIR}"/*.tar.xz "surg:/${SRV_DIR}/pkgs/${REPO}/"
-  scp -q "${TMP_DIR}"/*.tar.zst "surg:/${SRV_DIR}/pkgs/${REPO}/" 2> /dev/null
+  scp -q "${TMP_DIR}"/*.tar.xz "chestnut:/${SRV_DIR}/pkgs/${REPO}/"
+  scp -q "${TMP_DIR}"/*.tar.zst "chestnut:/${SRV_DIR}/pkgs/${REPO}/" 2> /dev/null
 
   if [ "${ACTION}" = 'add' ]; then
-    scp -q "${PACKAGE}" "surg:/${SRV_DIR}/pkgs/${REPO}/"
+    scp -q "${PACKAGE}" "chestnut:/${SRV_DIR}/pkgs/${REPO}/"
   fi
 }
 
