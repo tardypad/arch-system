@@ -3,7 +3,7 @@ pkgname=(
   'system-config-light'
   'system-config-dark'
 )
-pkgver=169
+pkgver=170
 pkgrel=1
 pkgdesc='System configurations'
 url='https://github.com/tardypad/arch-packages'
@@ -112,6 +112,7 @@ depends+=(
   inkscape
   jq
   khard
+  ldns
   less
   libpipewire02 # older version needed for screen sharing in chromium
   libqalculate
