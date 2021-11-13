@@ -3,7 +3,7 @@ pkgname=(
   'system-config-light'
   'system-config-dark'
 )
-pkgver=170
+pkgver=171
 pkgrel=1
 pkgdesc='System configurations'
 url='https://github.com/tardypad/arch-packages'
@@ -131,6 +131,7 @@ depends+=(
   mtools # needed for syslinux to create an Arch installer on USB
   ncdu
   networkmanager
+  ntfs-3g
   oath-toolkit
   openssh
   otf-font-awesome
