@@ -3,7 +3,7 @@ pkgname=(
   'system-config-light'
   'system-config-dark'
 )
-pkgver=171
+pkgver=172
 pkgrel=1
 pkgdesc='System configurations'
 url='https://github.com/tardypad/arch-packages'
@@ -67,8 +67,8 @@ depends=(
 depends+=(
   adobe-source-code-pro-fonts
   adobe-source-han-sans-jp-fonts # needed for some emojis characters ¯\_(ツ)_/¯
-  adobe-source-sans-pro-fonts
-  adobe-source-serif-pro-fonts
+  adobe-source-sans-fonts
+  adobe-source-serif-fonts
   aerc
   alacritty
   amfora
