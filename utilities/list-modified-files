@@ -6,15 +6,30 @@
 init_variables() {
   COMMAND=${0##*/}
 
-  BLACKLIST='/etc/fstab'
+
+  # modified at installation
+  BLACKLIST="/boot/grub/grub.cfg"
+  BLACKLIST="${BLACKLIST}:/etc/crypttab"
+  BLACKLIST="${BLACKLIST}:/etc/default/grub"
+  BLACKLIST="${BLACKLIST}:/etc/fstab"
   BLACKLIST="${BLACKLIST}:/etc/group"
   BLACKLIST="${BLACKLIST}:/etc/gshadow"
-  BLACKLIST="${BLACKLIST}:/etc/shadow"
-  BLACKLIST="${BLACKLIST}:/etc/passwd"
-  BLACKLIST="${BLACKLIST}:/etc/resolv.conf"
-  BLACKLIST="${BLACKLIST}:/etc/shells"
+  BLACKLIST="${BLACKLIST}:/etc/hosts"
   BLACKLIST="${BLACKLIST}:/etc/locale.gen"
+  BLACKLIST="${BLACKLIST}:/etc/mkinitcpio.conf"
   BLACKLIST="${BLACKLIST}:/etc/pacman.d/mirrorlist"
+  BLACKLIST="${BLACKLIST}:/etc/passwd"
+  BLACKLIST="${BLACKLIST}:/etc/shadow"
+  BLACKLIST="${BLACKLIST}:/etc/shells"
+
+  # modified by own system-config package
+  BLACKLIST="${BLACKLIST}:/etc/bluetooth/main.conf"
+  BLACKLIST="${BLACKLIST}:/etc/issue"
+  BLACKLIST="${BLACKLIST}:/etc/logrotate.conf"
+  BLACKLIST="${BLACKLIST}:/etc/pacman.conf"
+
+  # misc
+  BLACKLIST="${BLACKLIST}:/etc/resolv.conf"
 }
 
 show_usage() {
@@ -22,7 +37,7 @@ show_usage() {
 	usage: ${COMMAND} [<options>]
 
 	List modified package files alongside the package they belong to.
-	Some blacklisted paths are ignored
+	Valid known modifications are ignored
 
 	Needs to be run as a root user
 
