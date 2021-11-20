@@ -52,11 +52,16 @@ list_files() {
     > "${TMP_DIR}/packages_files"
 
   find /boot /etc /opt /usr /var ! \( \
-         -path '/boot/EFI' -prune \
+         -path '/boot/efi' -prune \
       -o -path '/boot/grub' -prune \
       -o -path '/boot/initramfs-*' -prune \
+      -o -path '/boot/lost+found' -prune \
+      -o -path '/boot/vmlinuz-linux' -prune \
       -o -path '/etc/adjtime' -prune \
       -o -path '/etc/ca-certificates' -prune \
+      -o -path '/etc/conf.d/lm_sensors' -prune \
+      -o -path '/etc/cups' -prune \
+      -o -path '/etc/fonts/conf.d' -prune \
       -o -path '/etc/group.OLD-' -prune \
       -o -path '/etc/group-' -prune \
       -o -path '/etc/gshadow.OLD-' -prune \
@@ -65,11 +70,13 @@ list_files() {
       -o -path '/etc/ld.so.cache' -prune \
       -o -path '/etc/localtime' -prune \
       -o -path '/etc/machine-id' -prune \
+      -o -path '/etc/mkinitcpio.d/linux.preset' -prune \
       -o -path '/etc/NetworkManager/system-connections' -prune \
       -o -path '/etc/os-release' -prune \
       -o -path '/etc/pacman.d/gnupg' -prune \
       -o -path '/etc/passwd.OLD' -prune \
       -o -path '/etc/passwd-' -prune \
+      -o -path '/etc/printcap' -prune \
       -o -path '/etc/.pwd.lock' -prune \
       -o -path '/etc/shadow.OLD-' -prune \
       -o -path '/etc/shadow-' -prune \
@@ -80,6 +87,7 @@ list_files() {
       -o -path '/usr/lib/gdk-pixbuf-*/*/loaders.cache' -prune \
       -o -path '/usr/lib/ghc-*/package.conf.d/*.conf' -prune \
       -o -path '/usr/lib/gio/modules/giomodule.cache' -prune \
+      -o -path '/usr/lib/graphviz/config6' -prune \
       -o -path '/usr/lib/gtk-*/*/immodules.cache' -prune \
       -o -path '/usr/lib/locale/locale-archive' -prune \
       -o -path '/usr/lib/udev/hwdb.bin' -prune \
@@ -87,6 +95,7 @@ list_files() {
       -o -path '/usr/share/fonts/*/fonts.dir' -prune \
       -o -path '/usr/share/fonts/*/fonts.scale' -prune \
       -o -path '/usr/share/glib-2.0/schemas/gschemas.compiled' -prune \
+      -o -path '/usr/share/hplip' -prune \
       -o -path '/usr/share/icons/*/icon-theme.cache' -prune \
       -o -path '/usr/share/info/dir' -prune \
       -o -path '/usr/share/mime' -prune \
@@ -94,7 +103,7 @@ list_files() {
       -o -path '/var/db/sudo/lectured' -prune \
       -o -path '/var/lib' -prune \
       -o -path '/var/log' -prune \
-      -o -path '/var/spool' -prune \
+      -o -path '/var/spool/cups' -prune \
       -o -path '/var/tmp' -prune \
       -o -path '/var/.updated' -prune \
     \) \
