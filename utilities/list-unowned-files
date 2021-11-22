@@ -61,6 +61,7 @@ list_files() {
       -o -path '/etc/ca-certificates' -prune \
       -o -path '/etc/conf.d/lm_sensors' -prune \
       -o -path '/etc/cups' -prune \
+      -o -path '/etc/docker' -prune \
       -o -path '/etc/fonts/conf.d' -prune \
       -o -path '/etc/group.OLD-' -prune \
       -o -path '/etc/group-' -prune \
@@ -84,6 +85,7 @@ list_files() {
       -o -path '/etc/systemd/system' -prune \
       -o -path '/etc/systemd/user/sockets.target.wants' -prune \
       -o -path '/etc/.updated' -prune \
+      -o -path '/opt/containerd' -prune \
       -o -path '/usr/lib/gdk-pixbuf-*/*/loaders.cache' -prune \
       -o -path '/usr/lib/ghc-*/package.conf.d/*.conf' -prune \
       -o -path '/usr/lib/gio/modules/giomodule.cache' -prune \
