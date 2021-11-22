@@ -78,7 +78,7 @@ depends+=(
   bc
   bemenu-wayland
   bluez
-  bluez-tools # contains bt-obex needed to receive files via bluetooth
+  bluez-tools
   bluez-utils
   catimg
   chromium
@@ -141,10 +141,10 @@ depends+=(
   perl-authen-sasl # git email
   perl-net-smtp-ssl # git email
   perl-mime-tools # git email
-  pipewire-media-session # needed for screen sharing in browsers
+  pipewire-media-session
   pipewire-pulse
   pulsemixer
-  python-adblock # needed for qutebrowser adblocking
+  python-adblock
   qutebrowser
   remind
   ripgrep
@@ -191,13 +191,13 @@ depends+=(
   wl-clipboard
   xdg-desktop-portal-wlr
   xdg-utils
-  xorg-xwayland # run X clients within sway
+  xorg-xwayland
   ydotool
   youtube-dl
   yubikey-manager
   zathura
-  zathura-cb # plugin to read comic books
-  zathura-pdf-mupdf # plugin to read PDF files
+  zathura-cb
+  zathura-pdf-mupdf
   zip
   zsh
   zsh-autosuggestions
