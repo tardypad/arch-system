@@ -6,43 +6,26 @@
 init_variables() {
   COMMAND=${0##*/}
 
+  TMP_DIR="$( mktemp -d )"
+  trap 'rm -rf "${TMP_DIR}"' EXIT
 
-  # modified at installation
-  BLACKLIST="/boot/grub/grub.cfg"
-  BLACKLIST="${BLACKLIST}:/etc/crypttab"
-  BLACKLIST="${BLACKLIST}:/etc/default/grub"
-  BLACKLIST="${BLACKLIST}:/etc/fstab"
-  BLACKLIST="${BLACKLIST}:/etc/group"
-  BLACKLIST="${BLACKLIST}:/etc/gshadow"
-  BLACKLIST="${BLACKLIST}:/etc/hosts"
-  BLACKLIST="${BLACKLIST}:/etc/locale.gen"
-  BLACKLIST="${BLACKLIST}:/etc/mkinitcpio.conf"
-  BLACKLIST="${BLACKLIST}:/etc/pacman.d/mirrorlist"
-  BLACKLIST="${BLACKLIST}:/etc/passwd"
-  BLACKLIST="${BLACKLIST}:/etc/shadow"
-  BLACKLIST="${BLACKLIST}:/etc/shells"
-
-  # modified by own system-config package
-  BLACKLIST="${BLACKLIST}:/etc/bluetooth/main.conf"
-  BLACKLIST="${BLACKLIST}:/etc/issue"
-  BLACKLIST="${BLACKLIST}:/etc/logrotate.conf"
-  BLACKLIST="${BLACKLIST}:/etc/pacman.conf"
-
-  # misc
-  BLACKLIST="${BLACKLIST}:/etc/resolv.conf"
+  IGNORE_FILE='/dev/null'
 }
 
 show_usage() {
   cat <<- EOF
-	usage: ${COMMAND} [<options>]
+	usage: ${COMMAND} [<options>] [ignore_file]
 
 	List modified package files alongside the package they belong to.
-	Valid known modifications are ignored
 
 	Needs to be run as a root user
 
 	Options:
 	  -h    show this message only
+
+	Operands:
+	  ignore_file  file containing a list of file paths to ignore
+	               lines starting with # are ignored
 	EOF
 }
 
@@ -55,6 +38,8 @@ parse_command_line() {
   done
 
   shift $(( OPTIND - 1 ))
+
+  [ -n "$1" ] && IGNORE_FILE="$1"
 }
 
 exit_error() {
@@ -70,7 +55,14 @@ check_root_user() {
 list_files() {
   pacman -Qii \
     | awk '/^MODIFIED/ { print $2 }' \
-    | grep -vE "$( echo "${BLACKLIST}" | tr ':' '|' )" \
+    | sort \
+    > "${TMP_DIR}/modified_files"
+
+  grep -vE '^$|^#' "${IGNORE_FILE}" \
+    | sort \
+    > "${TMP_DIR}/ignore_files"
+
+  comm -23 "${TMP_DIR}/modified_files" "${TMP_DIR}/ignore_files" \
     | xargs -I{} sh -c "{ pacman -Qoq {}; echo {}; } | paste -s -" \
     | sort \
     | column -t

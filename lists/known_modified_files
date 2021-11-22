@@ -1,0 +1,23 @@
+# modified at installation
+/boot/grub/grub.cfg
+/etc/crypttab
+/etc/default/grub
+/etc/fstab
+/etc/group
+/etc/gshadow
+/etc/hosts
+/etc/locale.gen
+/etc/mkinitcpio.conf
+/etc/pacman.d/mirrorlist
+/etc/passwd
+/etc/shadow
+/etc/shells
+
+# modified by own system-config package
+/etc/bluetooth/main.conf
+/etc/issue
+/etc/logrotate.conf
+/etc/pacman.conf
+
+# misc
+/etc/resolv.conf
