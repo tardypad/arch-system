@@ -8,19 +8,25 @@ init_variables() {
 
   TMP_DIR="$( mktemp -d )"
   trap 'rm -rf "${TMP_DIR}"' EXIT
+
+  IGNORE_FILE='/dev/null'
 }
 
 show_usage() {
   cat <<- EOF
-	usage: ${COMMAND} [<options>]
+	usage: ${COMMAND} [<options>] [ignore_file}
 
 	List files not owned by any package.
-	It only checks a few root folders and ignore some blacklisted paths
+	It only checks a few root folders.
 
 	Needs to be run as a root user
 
 	Options:
 	  -h    show this message only
+
+	Operands:
+	  ignore_file  file containing a list of file paths to ignore
+	               lines starting with # are ignored
 	EOF
 }
 
@@ -33,6 +39,8 @@ parse_command_line() {
   done
 
   shift $(( OPTIND - 1 ))
+
+  [ -n "$1" ] && IGNORE_FILE="$1"
 }
 
 exit_error() {
@@ -51,64 +59,11 @@ list_files() {
     | sort -u \
     > "${TMP_DIR}/packages_files"
 
-  find /boot /etc /opt /usr /var ! \( \
-         -path '/boot/efi' -prune \
-      -o -path '/boot/grub' -prune \
-      -o -path '/boot/initramfs-*' -prune \
-      -o -path '/boot/lost+found' -prune \
-      -o -path '/boot/vmlinuz-linux' -prune \
-      -o -path '/etc/adjtime' -prune \
-      -o -path '/etc/ca-certificates' -prune \
-      -o -path '/etc/conf.d/lm_sensors' -prune \
-      -o -path '/etc/cups' -prune \
-      -o -path '/etc/docker' -prune \
-      -o -path '/etc/fonts/conf.d' -prune \
-      -o -path '/etc/group.OLD-' -prune \
-      -o -path '/etc/group-' -prune \
-      -o -path '/etc/gshadow.OLD-' -prune \
-      -o -path '/etc/gshadow-' -prune \
-      -o -path '/etc/hostname' -prune \
-      -o -path '/etc/ld.so.cache' -prune \
-      -o -path '/etc/localtime' -prune \
-      -o -path '/etc/machine-id' -prune \
-      -o -path '/etc/mkinitcpio.d/linux.preset' -prune \
-      -o -path '/etc/NetworkManager/system-connections' -prune \
-      -o -path '/etc/os-release' -prune \
-      -o -path '/etc/pacman.d/gnupg' -prune \
-      -o -path '/etc/passwd.OLD' -prune \
-      -o -path '/etc/passwd-' -prune \
-      -o -path '/etc/printcap' -prune \
-      -o -path '/etc/.pwd.lock' -prune \
-      -o -path '/etc/shadow.OLD-' -prune \
-      -o -path '/etc/shadow-' -prune \
-      -o -path '/etc/ssl/certs' -prune \
-      -o -path '/etc/systemd/system' -prune \
-      -o -path '/etc/systemd/user/sockets.target.wants' -prune \
-      -o -path '/etc/.updated' -prune \
-      -o -path '/opt/containerd' -prune \
-      -o -path '/usr/lib/gdk-pixbuf-*/*/loaders.cache' -prune \
-      -o -path '/usr/lib/ghc-*/package.conf.d/*.conf' -prune \
-      -o -path '/usr/lib/gio/modules/giomodule.cache' -prune \
-      -o -path '/usr/lib/graphviz/config6' -prune \
-      -o -path '/usr/lib/gtk-*/*/immodules.cache' -prune \
-      -o -path '/usr/lib/locale/locale-archive' -prune \
-      -o -path '/usr/lib/udev/hwdb.bin' -prune \
-      -o -path '/usr/share/applications/mimeinfo.cache' -prune \
-      -o -path '/usr/share/fonts/*/fonts.dir' -prune \
-      -o -path '/usr/share/fonts/*/fonts.scale' -prune \
-      -o -path '/usr/share/glib-2.0/schemas/gschemas.compiled' -prune \
-      -o -path '/usr/share/hplip' -prune \
-      -o -path '/usr/share/icons/*/icon-theme.cache' -prune \
-      -o -path '/usr/share/info/dir' -prune \
-      -o -path '/usr/share/mime' -prune \
-      -o -path '/var/cache' -prune \
-      -o -path '/var/db/sudo/lectured' -prune \
-      -o -path '/var/lib' -prune \
-      -o -path '/var/log' -prune \
-      -o -path '/var/spool/cups' -prune \
-      -o -path '/var/tmp' -prune \
-      -o -path '/var/.updated' -prune \
-    \) \
+  IGNORE_PATH_ARGS="$(
+    printf -- "-path '%s' -prune -o " $( sed 's/\*/\\*/g' "${IGNORE_FILE}" | grep -vE '^$|^#' ) \
+      | sed -e 's/\\//g' -e 's/ -o $//'
+  )"
+  eval find /boot /etc /opt /usr /var ! \\\( "${IGNORE_PATH_ARGS}" \\\) \
     | sort -u \
     > "${TMP_DIR}/all_files"
 
