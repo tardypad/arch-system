@@ -19,5 +19,3 @@
 ## New Features
 
 ## Research
-  - [aconfmgr](https://github.com/CyberShadow/aconfmgr) configuration manager  
-    maybe to replace our system-config package
