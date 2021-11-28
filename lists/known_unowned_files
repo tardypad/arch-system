@@ -85,6 +85,11 @@
 # logrotate
 /var/lib/logrotate.status
 
+# lvm
+/etc/lvm/archive/*.vg
+/etc/lvm/backup/*
+/etc/lvm/cache
+
 # mkinitcpio
 /etc/mkinitcpio.d/linux.preset
 
