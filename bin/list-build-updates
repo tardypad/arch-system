@@ -29,18 +29,18 @@ show_usage() {
 	Need to be run from repository root folder
 
 	Options:
-	  -g    list only git packages
 	  -h    show this message only
-	  -v    list only versioned packages
+	  -r    list only rolling packages (*-git)
+	  -t    list only tagged packages
 	EOF
 }
 
 parse_command_line() {
-  while getopts ghv OPT; do
+  while getopts hrt OPT; do
     case "${OPT}" in
-      g) TYPE='git' ;;
       h) show_usage; exit 0 ;;
-      v) TYPE='versioned' ;;
+      r) TYPE='rolling' ;;
+      t) TYPE='tagged' ;;
       ?) exit_error ;;
     esac
   done
@@ -126,11 +126,11 @@ list_updates() {
       list_aur_git_updates
       list_tardypad_git_updates
       ;;
-    git)
+    rolling)
       list_aur_git_updates
       list_tardypad_git_updates
       ;;
-    versioned)
+    tagged)
       list_aur_updates
       ;;
   esac \
