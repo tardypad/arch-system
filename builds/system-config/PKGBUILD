@@ -3,7 +3,7 @@ pkgname=(
   'system-config-light'
   'system-config-dark'
 )
-pkgver=176
+pkgver=177
 pkgrel=1
 pkgdesc='System configurations'
 url='https://github.com/tardypad/arch-packages'
@@ -90,6 +90,7 @@ depends+=(
   dosfstools # FAT filesystem utilities
   e2fsprogs
   entr
+  fd
   firefox
   fzf
   gimp
