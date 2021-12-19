@@ -1,6 +1,6 @@
 pkgname=weechat-wee-most-git
 pkgver=r366.b3c9943
-pkgrel=1
+pkgrel=2
 pkgdesc='A WeeChat plugin for Mattermost'
 url='https://sr.ht/~tardypad/wee-most/'
 arch=('any')
@@ -11,6 +11,7 @@ makedepends=(
 )
 
 depends=(
+  'python-websocket-client'
   'weechat'
 )
 
