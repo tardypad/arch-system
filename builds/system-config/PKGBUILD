@@ -3,7 +3,7 @@ pkgname=(
   'system-config-light'
   'system-config-dark'
 )
-pkgver=177
+pkgver=178
 pkgrel=1
 pkgdesc='System configurations'
 url='https://github.com/tardypad/arch-packages'
@@ -195,7 +195,7 @@ depends+=(
   xdg-utils
   xorg-xwayland
   ydotool
-  youtube-dl
+  yt-dlp
   yubikey-manager
   zathura
   zathura-cb
