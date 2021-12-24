@@ -3,7 +3,7 @@ pkgname=(
   'system-config-light'
   'system-config-dark'
 )
-pkgver=178
+pkgver=179
 pkgrel=1
 pkgdesc='System configurations'
 url='https://github.com/tardypad/arch-packages'
@@ -69,7 +69,6 @@ depends+=(
   adobe-source-sans-fonts
   adobe-source-serif-fonts
   aerc
-  alacritty
   amfora
   aria2
   asciinema
@@ -92,6 +91,7 @@ depends+=(
   entr
   fd
   firefox
+  foot
   fzf
   gimp
   git
