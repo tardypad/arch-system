@@ -3,7 +3,7 @@ pkgname=(
   'dotfiles-light-git'
   'dotfiles-dark-git'
 )
-pkgver=r2977.51fbce60
+pkgver=r3004.cebf66a1
 pkgrel=1
 pkgdesc="My dotfiles"
 arch=('any')
