@@ -18,12 +18,15 @@ init_variables() {
   REPO=
   ACTION=
   PACKAGE=
+  PACKAGES=
   TOOL_OPTIONS=
 }
 
 show_usage() {
   cat <<- EOF
-	usage: ${COMMAND} [<options>] <repo> (add|remove|sync) (package_file|package_name) [<tool options>...]
+	usage: ${COMMAND} [<options>] <repo> add <package_file> [<package_file>...] [-- <tool options>...]
+	       ${COMMAND} [<options>] <repo> remove <package_name> [<package_name>...] [-- <tool options>...]
+	       ${COMMAND} [<options>] <repo> sync <package_name> [-- <tool options>...]
 
 	Manage personal remote repository packages
 
@@ -44,10 +47,23 @@ parse_command_line() {
 
   REPO="$1"
   ACTION="$2"
-  PACKAGE="$3"
 
-  shift 3 2> /dev/null
-  TOOL_OPTIONS="$*"
+  [ $# -lt 2 ] && return
+  shift 2
+
+  while [ "$#" -gt 0 ] && [ "$1" != '--' ]; do
+    if [ "${ACTION}" = 'sync' ]; then
+      PACKAGE="$1"
+    else
+      PACKAGES="${PACKAGES} $1"
+    fi
+    shift
+  done
+
+  if [ "$1" = '--' ]; then
+    shift
+    TOOL_OPTIONS="$*"
+  fi
 }
 
 validate_command_line() {
@@ -70,12 +86,14 @@ validate_command_line() {
     exit_error "invalid action '${ACTION}'"
   fi
 
-  if [ -z "${PACKAGE}" ]; then
-    exit_error 'missing package operand'
-  fi
-
-  if [ "${ACTION}" = 'add' ] && [ ! -f "${PACKAGE}" ]; then
-    exit_error "invalid package file '${PACKAGE}'"
+  if [ "${ACTION}" = 'sync' ]; then
+    if [ -z "${PACKAGE}" ]; then
+      exit_error 'missing package operand'
+    fi
+  else
+    if [ -z "${PACKAGES}" ]; then
+      exit_error 'missing package operands'
+    fi
   fi
 }
 
@@ -96,16 +114,16 @@ export_env() {
   scp -q "${TMP_DIR}"/*.tar.zst "chestnut:/${SRV_DIR}/pkgs/${REPO}/" 2> /dev/null
 
   if [ "${ACTION}" = 'add' ]; then
-    scp -q "${PACKAGE}" "chestnut:/${SRV_DIR}/pkgs/${REPO}/"
+    scp -q ${PACKAGES} "chestnut:/${SRV_DIR}/pkgs/${REPO}/"
   fi
 }
 
 add_package() {
-  repo-add ${TOOL_OPTIONS} "${TMP_DIR}/${REPO}.db.tar.xz" "${PACKAGE}"
+  repo-add ${TOOL_OPTIONS} "${TMP_DIR}/${REPO}.db.tar.xz" ${PACKAGES}
 }
 
 remove_package() {
-  repo-remove ${TOOL_OPTIONS} "${TMP_DIR}/${REPO}.db.tar.xz" "${PACKAGE}"
+  repo-remove ${TOOL_OPTIONS} "${TMP_DIR}/${REPO}.db.tar.xz" ${PACKAGES}
 }
 
 sync_package() (
