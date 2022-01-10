@@ -3,7 +3,7 @@ pkgname=(
   'system-config-light'
   'system-config-dark'
 )
-pkgver=179
+pkgver=180
 pkgrel=1
 pkgdesc='System configurations'
 url='https://github.com/tardypad/arch-packages'
@@ -124,6 +124,7 @@ depends+=(
   mako
   man-db
   man-pages
+  meson
   mitmproxy
   mpc
   mpd
@@ -131,6 +132,7 @@ depends+=(
   mtools # needed for syslinux to create an Arch installer on USB
   ncdu
   networkmanager
+  ninja
   nmap
   ntfs-3g
   oath-toolkit
