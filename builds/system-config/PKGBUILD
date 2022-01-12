@@ -3,7 +3,7 @@ pkgname=(
   'system-config-light'
   'system-config-dark'
 )
-pkgver=180
+pkgver=181
 pkgrel=1
 pkgdesc='System configurations'
 url='https://github.com/tardypad/arch-packages'
@@ -180,6 +180,7 @@ depends+=(
   vim-gutentags-git
   vim-nerdcommenter
   vim-oscyank-git
+  vim-repeat
   vim-sayonara-git
   vim-surround
   vim-taboo-git
