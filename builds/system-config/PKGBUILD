@@ -3,7 +3,7 @@ pkgname=(
   'system-config-light'
   'system-config-dark'
 )
-pkgver=181
+pkgver=182
 pkgrel=1
 pkgdesc='System configurations'
 url='https://github.com/tardypad/arch-packages'
@@ -149,6 +149,7 @@ depends+=(
   pulsemixer
   pv
   python-adblock
+  qrencode
   qutebrowser
   remind
   ripgrep
