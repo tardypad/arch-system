@@ -2,7 +2,14 @@
 # commands used:
 # - pacman
 
-sudo pacman -Syu "$@" \
+COMMAND=${0##*/}
+
+if  [ "$( id -u )" -ne 0 ]; then
+  printf '%s: %s\n' "${COMMAND}" 'The script must be run as root'
+  exit 1
+fi
+
+pacman -Syu "$@" \
 && tput setaf 3 \
 && echo '-----------------------------' \
 && echo 'Review carefully the messages' \
