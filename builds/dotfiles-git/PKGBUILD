@@ -31,7 +31,7 @@ makedepends=(
 
 depends=(
   'fontconfig'
-  'sudo'
+  'opendoas'
   'systemd'
   'vim'
 )

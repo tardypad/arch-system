@@ -1,6 +1,6 @@
 generate_vim_spell_files() {
   echo ':: Generating vim spell files...'
-  sudo --user damien \
+  doas -u damien \
     vim --clean \
       -c 'mkspell /home/damien/.vim/spell/en.utf-8.add.spl /home/damien/.vim/spell/en.utf-8.add' \
       +qall \
@@ -10,7 +10,7 @@ generate_vim_spell_files() {
 reload_systemd() {
   echo ':: Reloading systemd user daemon...'
   # HACK: not sure if possible to retrieve such environment variables properly
-  sudo --user damien \
+  doas -u damien \
     XDG_RUNTIME_DIR=/run/user/1000 \
     DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus \
     systemctl --user daemon-reload
