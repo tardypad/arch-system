@@ -59,7 +59,6 @@ depends=(
   patch
   pkgconf
   sed
-  sudo
   texinfo
   which
 )
@@ -161,7 +160,6 @@ depends+=(
   slurp
   s-nail
   speedtest-cli
-  sudo
   sway
   swayidle
   swaylock
@@ -216,8 +214,6 @@ _rootdir=$PWD
 
 package_common() {
   cp -R "$_rootdir"/files/* "$pkgdir"
-  chmod 0750 "$pkgdir"/etc/sudoers.d
-  chmod 0600 "$pkgdir"/etc/sudoers.d/*
   chmod 0400  "$pkgdir"/etc/doas.conf
 }
 
