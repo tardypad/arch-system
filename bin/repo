@@ -110,12 +110,13 @@ import_env() {
 }
 
 export_env() {
-  scp -q "${TMP_DIR}"/*.tar.xz "chestnut:/${SRV_DIR}/pkgs/${REPO}/"
   scp -q "${TMP_DIR}"/*.tar.zst "chestnut:/${SRV_DIR}/pkgs/${REPO}/" 2> /dev/null
 
   if [ "${ACTION}" = 'add' ]; then
     scp -q ${PACKAGES} "chestnut:/${SRV_DIR}/pkgs/${REPO}/"
   fi
+
+  scp -q "${TMP_DIR}"/*.tar.xz "chestnut:/${SRV_DIR}/pkgs/${REPO}/"
 }
 
 add_package() {
