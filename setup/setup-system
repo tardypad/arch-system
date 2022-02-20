@@ -52,11 +52,11 @@ setup_repositories() {
   cat >> /etc/pacman.conf <<- EOF
 	[tardypad]
 	SigLevel = Optional TrustAll
-	Server = https://${USERNAME}:${PASSWORD}@pkgs.tardypad.me/tardypad
+	Server = https://${USERNAME}:${PASSWORD}@pkgs.tardypad.me/arch/tardypad
 
 	[aur]
 	SigLevel = Optional TrustAll
-	Server = https://${USERNAME}:${PASSWORD}@pkgs.tardypad.me/aur
+	Server = https://${USERNAME}:${PASSWORD}@pkgs.tardypad.me/arch/aur
 	EOF
 }
 

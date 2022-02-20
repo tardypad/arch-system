@@ -1,2 +1,2 @@
 SigLevel = Never
-Server = https://{USERNAME}:{PASSWORD}@pkgs.tardypad.me/$repo
+Server = https://{USERNAME}:{PASSWORD}@pkgs.tardypad.me/arch/$repo
