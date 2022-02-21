@@ -13,7 +13,7 @@ init_variables() {
   trap 'rm -rf "${TMP_DIR}"' EXIT
 
   AUR_URL='https://aur.archlinux.org'
-  SRV_DIR='/srv'
+  SRV_DIR='/srv/http'
 
   REPO=
   ACTION=
