@@ -12,8 +12,9 @@ post_install() {
     # Weekly delete cached versions of packages, except most recent 3
     systemctl enable paccache.timer
 
-    # LXC network
-    systemctl enable --now lxc-net.service
+    # LXD
+    systemctl enable --now lxd.service
+    lxd init --minimal
 
     echo ':: You need to update pacman personal server config with the correct'
     echo '   HTTP credentials'

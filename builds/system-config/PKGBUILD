@@ -3,7 +3,7 @@ pkgname=(
   'system-config-light'
   'system-config-dark'
 )
-pkgver=187
+pkgver=188
 pkgrel=1
 pkgdesc='System configurations'
 url='https://github.com/tardypad/arch-packages'
@@ -85,7 +85,6 @@ depends+=(
   curl
   device-mapper
   diffutils
-  dnsmasq # required for lxc-net usage
   dosfstools # FAT filesystem utilities
   e2fsprogs
   entr
@@ -120,7 +119,7 @@ depends+=(
   light
   logrotate
   lvm2
-  lxc
+  lxd
   mako
   man-db
   man-pages
