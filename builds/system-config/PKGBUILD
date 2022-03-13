@@ -3,8 +3,8 @@ pkgname=(
   'system-config-light'
   'system-config-dark'
 )
-pkgver=190
-pkgrel=2
+pkgver=191
+pkgrel=1
 pkgdesc='System configurations'
 url='https://github.com/tardypad/arch-packages'
 arch=('any')
