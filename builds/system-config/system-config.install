@@ -1,28 +1,28 @@
 echo_pacman_warning() {
-    echo ':: You need to update pacman personal server password'
+  echo ':: You need to update pacman personal server password'
 }
 
 post_install() {
-    # logs
-    install -dm0755 -o damien -g damien /var/log/sway
-    install -Dm0644 -o damien -g damien /dev/null /var/log/sway/sway.log
+  # logs
+  install -dm0755 -o damien -g damien /var/log/sway
+  install -Dm0644 -o damien -g damien /dev/null /var/log/sway/sway.log
 
-    systemctl enable --now NetworkManager.service
-    systemctl enable --now bluetooth.service
+  systemctl enable --now NetworkManager.service
+  systemctl enable --now bluetooth.service
 
-    # Yubikey usage
-    systemctl enable --now pcscd.service
+  # Yubikey usage
+  systemctl enable --now pcscd.service
 
-    # Weekly delete cached versions of packages, except most recent 3
-    systemctl enable paccache.timer
+  # Weekly delete cached versions of packages, except most recent 3
+  systemctl enable paccache.timer
 
-    # LXD setup
-    systemctl start lxd.service
-    lxd init --minimal
+  # LXD setup
+  systemctl start lxd.service
+  lxd init --minimal
 
-    echo_pacman_warning
+  echo_pacman_warning
 }
 
 post_upgrade() {
-    echo_pacman_warning
+  echo_pacman_warning
 }
