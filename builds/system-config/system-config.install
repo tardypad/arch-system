@@ -1,3 +1,7 @@
+echo_pacman_warning() {
+    echo ':: You need to update pacman personal server password'
+}
+
 post_install() {
     # logs
     install -dm0755 -o damien -g damien /var/log/sway
@@ -16,9 +20,9 @@ post_install() {
     systemctl start lxd.service
     lxd init --minimal
 
-    echo ':: You need to update pacman personal server password'
+    echo_pacman_warning
 }
 
 post_upgrade() {
-  post_install
+    echo_pacman_warning
 }
