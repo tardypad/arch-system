@@ -9,11 +9,7 @@ generate_vim_spell_files() {
 
 reload_systemd() {
   echo ':: Reloading systemd user daemon...'
-  # HACK: not sure if possible to retrieve such environment variables properly
-  doas -u damien \
-    XDG_RUNTIME_DIR=/run/user/1000 \
-    DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus \
-    systemctl --user daemon-reload
+  su -c 'XDG_RUNTIME_DIR=/run/user/1000  DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus systemctl --user daemon-reload' damien
 }
 
 regenerate_fonts() {
