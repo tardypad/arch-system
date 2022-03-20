@@ -4,7 +4,7 @@ pkgname=(
   'dotfiles-dark-git'
 )
 pkgver=r3004.cebf66a1
-pkgrel=3
+pkgrel=4
 pkgdesc="My dotfiles"
 arch=('any')
 url="https://github.com/tardypad/dotfiles"
@@ -35,7 +35,6 @@ makedepends=(
 
 depends=(
   'fontconfig'
-  'opendoas'
   'systemd'
   'vim'
 )
