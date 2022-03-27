@@ -2,6 +2,20 @@ echo_pacman_warning() {
   echo ':: You need to update pacman personal server password'
 }
 
+setup_mount_devices() {
+  mkdir /mnt/toshiba /mnt/lacie /mnt/tdk_secret /mnt/tdk_data /mnt/kobo
+
+  cat << EOF >> /etc/fstab
+
+# mount-device
+/dev/mapper/toshiba    /mnt/toshiba    ext4 noauto,user
+/dev/mapper/lacie      /mnt/lacie      ext4 noauto,user
+/dev/mapper/tdk_secret /mnt/tdk_secret ext4 noauto,user
+UUID=AFE8-B122         /mnt/tdk_data   vfat noauto,user
+UUID=5BBA-D17          /mnt/kobo       vfat noauto,user
+EOF
+}
+
 post_install() {
   # logs
   install -dm0755 -o damien -g damien /var/log/sway
@@ -19,6 +33,8 @@ post_install() {
   # LXD setup
   systemctl start lxd.service
   lxd init --minimal
+
+  setup_mount_devices
 
   echo_pacman_warning
 }
