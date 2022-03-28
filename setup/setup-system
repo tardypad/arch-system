@@ -78,6 +78,7 @@ setup_users() {
   mkdir -p /home/damien/Notes
   mkdir -p /home/damien/Pictures
   mkdir -p /home/damien/Projects
+  mkdir -p /home/damien/Todo
   mkdir -p /home/damien/Videos
 
   chown -R damien:damien /home/damien
