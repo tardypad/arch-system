@@ -1,6 +1,7 @@
 #!/bin/sh
 # commands used:
 # - column
+# - mktemp
 # - pacman
 
 init_variables() {
