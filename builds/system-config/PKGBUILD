@@ -3,7 +3,7 @@ pkgname=(
   'system-config-light'
   'system-config-dark'
 )
-pkgver=194
+pkgver=195
 pkgrel=1
 pkgdesc='System configurations'
 url='https://sr.ht/~tardypad/arch-system'
@@ -40,7 +40,7 @@ depends=(
 )
 
 # base-devel group packages
-depends=(
+depends+=(
   autoconf
   automake
   binutils
