@@ -3,8 +3,8 @@ pkgname=(
   'dotfiles-light-git'
   'dotfiles-dark-git'
 )
-pkgver=r3004.cebf66a1
-pkgrel=5
+pkgver=r3065.01263c22
+pkgrel=1
 pkgdesc="My dotfiles"
 arch=('any')
 url="https://sr.ht/~tardypad/dotfiles/"
