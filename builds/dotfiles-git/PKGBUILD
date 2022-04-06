@@ -4,7 +4,7 @@ pkgname=(
   'dotfiles-dark-git'
 )
 pkgver=r3065.01263c22
-pkgrel=1
+pkgrel=2
 pkgdesc="My dotfiles"
 arch=('any')
 url="https://sr.ht/~tardypad/dotfiles/"
@@ -76,7 +76,7 @@ package_dotfiles-dark-git() {
 
 adjust_permissions() {
   chown -R damien:damien "$pkgdir/home/damien"
-  chmod 711 "$pkgdir/home/damien"
+  chmod 700 "$pkgdir/home/damien"
   chmod 700 "$pkgdir/home/damien/.config"
 }
 
