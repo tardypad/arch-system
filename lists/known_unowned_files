@@ -90,11 +90,18 @@
 /etc/lvm/backup/*
 /etc/lvm/cache
 
+# lxd
+/var/lib/lxd
+/var/lib/misc/dnsmasq.*.leases
+
 # mkinitcpio
 /etc/mkinitcpio.d/linux.preset
 
 # mpd
 /var/lib/mpd
+
+# mysql
+/var/lib/mysql
 
 # networkmanager
 /etc/NetworkManager/system-connections/*
@@ -109,6 +116,9 @@
 /etc/pacman.d/gnupg
 /var/lib/pacman/local
 /var/lib/pacman/sync
+
+# postgresql
+/var/lib/postgres
 
 # shadow
 /etc/group-
@@ -156,6 +166,9 @@
 
 # update-mime-database
 /usr/share/mime
+
+# vim
+/usr/share/vim/vimfiles/doc/tags
 
 # xdg-utils
 /usr/share/applications/mimeinfo.cache
