@@ -14,8 +14,7 @@ show_usage() {
   cat <<- EOF
 	usage: ${COMMAND} [<options>]
 
-	Display a diff of the system-config package list of dependencies compared to
-	the list of the explicitely installed packages in the system
+	List packages not part of the system-config package dependencies
 
 	Options:
 	  -h    show this message only
@@ -39,7 +38,7 @@ exit_error() {
   exit 1
 } >&2
 
-diff_packages_lists() {
+list_packages() {
   pacman -Qqe \
     | sort \
     > "${TMP_DIR}/explicit_pkgs"
@@ -51,10 +50,11 @@ diff_packages_lists() {
     | sort \
     > "${TMP_DIR}/system_pkgs"
 
-  diff "${TMP_DIR}/system_pkgs" "${TMP_DIR}/explicit_pkgs"
+  comm -13 "${TMP_DIR}/system_pkgs" "${TMP_DIR}/explicit_pkgs" \
+    | grep -v '^system-config'
 }
 
 init_variables
 parse_command_line "$@"
 
-diff_packages_lists
+list_packages
