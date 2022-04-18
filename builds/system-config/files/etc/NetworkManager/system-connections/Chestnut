@@ -2,6 +2,7 @@
 id=Chestnut
 type=wireguard
 interface-name=wg0
+autoconnect=false
 
 [wireguard]
 listen-port=51820
