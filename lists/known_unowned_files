@@ -104,7 +104,7 @@
 /var/lib/mysql
 
 # networkmanager
-/etc/NetworkManager/system-connections/*
+/etc/NetworkManager/system-connections/*.nmconnection
 /var/lib/NetworkManager/NetworkManager-intern.conf
 /var/lib/NetworkManager/NetworkManager.state
 /var/lib/NetworkManager/internal-*
