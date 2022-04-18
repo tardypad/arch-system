@@ -1,5 +1,9 @@
-echo_pacman_warning() {
-  echo ':: You need to update pacman personal server password'
+list_manual_updates() {
+  cat <<- EOF
+	:: You need to manually update:
+	:: - pacman personal server password
+	:: - private key for Chestnut WireGuard connection
+	EOF
 }
 
 setup_mount_devices() {
@@ -36,9 +40,9 @@ post_install() {
 
   setup_mount_devices
 
-  echo_pacman_warning
+  list_manual_updates
 }
 
 post_upgrade() {
-  echo_pacman_warning
+  list_manual_updates
 }

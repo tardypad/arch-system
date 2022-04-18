@@ -3,7 +3,7 @@ pkgname=(
   'system-config-light'
   'system-config-dark'
 )
-pkgver=196
+pkgver=197
 pkgrel=1
 pkgdesc='System configurations'
 url='https://sr.ht/~tardypad/arch-system'
@@ -198,6 +198,7 @@ depends+=(
   weechat-vimode-git
   weechat-wee-most-git
   wf-recorder
+  wireguard-tools
   wl-clipboard
   xdg-desktop-portal-wlr
   xdg-utils
@@ -220,6 +221,8 @@ _rootdir=$PWD
 package_common() {
   cp -R "$_rootdir"/files/* "$pkgdir"
   chmod 0400  "$pkgdir"/etc/doas.conf
+  chmod 700  "$pkgdir"/etc/NetworkManager/system-connections
+  chmod 600  "$pkgdir"/etc/NetworkManager/system-connections/*
 }
 
 package_system-config-light() {
