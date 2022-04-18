@@ -1,7 +1,7 @@
 list_manual_updates() {
   cat <<- EOF
 	:: You need to manually update:
-	:: - pacman personal server password
+	:: - password for Chestnut pacman repository
 	:: - private key for Chestnut WireGuard connection
 	EOF
 }
