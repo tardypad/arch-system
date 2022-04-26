@@ -10,7 +10,7 @@ private-key={PRIVATE_KEY}
 
 [wireguard-peer.uF1hME7kIeTCUD1lqhexT5ZlbSlAgHwbEmhc1Nj2MS0=]
 endpoint=tardypad.me:51820
-allowed-ips=192.168.144.1/32
+allowed-ips=0.0.0.0/0;::/0
 
 [ipv4]
 address1=192.168.144.2/24
