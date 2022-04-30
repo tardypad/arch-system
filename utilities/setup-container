@@ -1,0 +1,47 @@
+#!/bin/sh
+
+CONTAINER_NAME='arch-builds'
+
+lxc launch "images:archlinux" "${CONTAINER_NAME}"
+
+# wait for network
+sleep 2
+
+cat << EOF | lxc exec "${CONTAINER_NAME}" -- /bin/sh
+  pacman -S --noconfirm base-devel git
+  useradd -mU damien
+  echo 'damien ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+EOF
+
+# share builds folder with rw permissions
+lxc config device add "${CONTAINER_NAME}" builds disk \
+  source="$( project-path repo arch-system )/builds" \
+  path="/home/damien/builds"
+lxc config set "${CONTAINER_NAME}" raw.idmap='both 1000 1000'
+
+# share SSH agent
+lxc config device add "${CONTAINER_NAME}" ssh-agent proxy \
+  "connect=unix:$( echo "${SSH_AUTH_SOCK}" | cut -f2 -d= )" \
+  listen=unix:/home/damien/.ssh-agent.sock \
+  bind=container \
+  uid=1000 \
+  gid=1000 \
+  mode=0600 \
+  security.uid=1000 \
+  security.gid=1000
+
+# rsync usage to chestnut
+cat << EOF | lxc exec "${CONTAINER_NAME}" -- /bin/sh
+  pacman -S --noconfirm openssh rsync
+  echo 'export SSH_AUTH_SOCK=/home/damien/.ssh-agent.sock' >> /home/damien/.bash_profile
+  mkdir /home/damien/.ssh
+  cat <<- EOF2 > /home/damien/.ssh/config
+		Host chestnut
+		    Hostname tardypad.me
+		    User damien
+		    Port 11235
+EOF2
+  chown -R damien:damien /home/damien/.ssh
+EOF
+
+lxc restart "${CONTAINER_NAME}"
