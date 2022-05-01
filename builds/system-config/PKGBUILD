@@ -4,7 +4,7 @@ pkgname=(
   'system-config-dark'
 )
 pkgver=203
-pkgrel=1
+pkgrel=2
 pkgdesc='System configurations'
 url='https://sr.ht/~tardypad/arch-system'
 arch=('any')
@@ -42,7 +42,6 @@ depends=(
 # development
 depends+=(
   fakeroot
-  gammastep
   gcc
   make
   patch
@@ -78,6 +77,7 @@ depends+=(
   firefox
   foot
   fzf
+  gammastep
   gimp
   git
   gmni-git
