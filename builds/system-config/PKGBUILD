@@ -3,8 +3,8 @@ pkgname=(
   'system-config-light'
   'system-config-dark'
 )
-pkgver=203
-pkgrel=2
+pkgver=204
+pkgrel=1
 pkgdesc='System configurations'
 url='https://sr.ht/~tardypad/arch-system'
 arch=('any')
@@ -39,102 +39,48 @@ depends=(
   os-prober
 )
 
-# development
+# dotfiles
 depends+=(
-  fakeroot
-  gcc
-  make
-  patch
-  which
-)
-
-depends+=(
-  adobe-source-code-pro-fonts
-  adobe-source-sans-fonts
-  adobe-source-serif-fonts
   aerc
   amfora
   aria2
-  asciinema
-  asciitosvg-git
-  bash-bats
-  bc
   bemenu-wayland
-  bluez
   bluez-tools
   bluez-utils
   catimg
-  chromium
-  cryptsetup
   ctags
   curl
-  device-mapper
-  diffutils
-  dosfstools # FAT filesystem utilities
-  e2fsprogs
   entr
-  fd
-  firefox
+  fontconfig
   foot
   fzf
   gammastep
-  gimp
   git
-  gmni-git
-  go
-  go-yq
-  gopls
+  gnupg
   grim
-  gron-bin
   htop
   httpie
-  hyperfine
   i3blocks
   imagemagick
   imv
-  inetutils
-  inkscape
   jq
   khard
-  ldns
   less
-  libpipewire02 # older version needed for screen sharing in chromium
+  libpulse
   libqalculate
-  libreoffice-fresh
   libxml2
   light
-  logrotate
-  lvm2
-  lxd
   mako
-  man-db
-  man-pages
-  meson
-  mitmproxy
   mpc
   mpd
   mpv
-  mtools # needed for syslinux to create an Arch installer on USB
-  ncdu
   networkmanager
-  ninja
-  nmap
-  ntfs-3g
-  oath-toolkit
   opendoas
   openssh
   otf-font-awesome
-  p7zip # extract ZIP archives using encryptions not supported by unzip
-  pacman-contrib # needed for paccache service
   pass
-  perl-authen-sasl # git email
-  perl-net-smtp-ssl # git email
-  perl-mime-tools # git email
-  pipewire-media-session
-  pipewire-pulse
   pulsemixer
   pv
-  python-adblock
   qrencode
   qutebrowser
   remind
@@ -142,25 +88,28 @@ depends+=(
   rsync
   scdoc
   sfeed
-  shellcheck-bin
   slurp
-  s-nail
-  speedtest-cli
   sway
   swayidle
   swaylock
-  syslinux # needed to create an Arch installer on USB
-  termshark
   tmux
   tmux-xpanes
   translate-shell
-  tree
-  unrar
-  unzip
-  usbutils
   vdirsyncer
-  vi
   vim
+  w3m
+  weechat
+  wf-recorder
+  wl-clipboard
+  xdg-utils
+  ydotool
+  yubikey-manager
+  zathura
+  zsh
+)
+
+# dotfiles plugins
+depends+=(
   vim-ale
   vim-go
   vim-goyo-git
@@ -175,27 +124,89 @@ depends+=(
   vim-tmux-navigator-git
   vim-ultisnips
   vim-undotree
-  w3m
-  weechat
   weechat-vimode-git
   weechat-wee-most-git
-  wf-recorder
-  wireguard-tools
-  wl-clipboard
-  xdg-desktop-portal-wlr
-  xdg-utils
-  xorg-xwayland
-  ydotool
-  yt-dlp
-  yubikey-manager
-  zathura
-  zathura-cb
-  zathura-pdf-mupdf
-  zip
-  zsh
   zsh-autosuggestions
   zsh-history-substring-search
   zsh-syntax-highlighting
+)
+
+# development
+depends+=(
+  fakeroot
+  gcc
+  make
+  patch
+  which
+)
+
+depends+=(
+  adobe-source-code-pro-fonts
+  adobe-source-sans-fonts
+  adobe-source-serif-fonts
+  asciinema
+  asciitosvg-git
+  bash-bats
+  bc
+  bluez
+  chromium
+  cryptsetup
+  device-mapper
+  diffutils
+  dosfstools # FAT filesystem utilities
+  e2fsprogs
+  fd
+  firefox
+  gimp
+  gmni-git
+  go
+  go-yq
+  gopls
+  gron-bin
+  hyperfine
+  inetutils
+  inkscape
+  ldns
+  libpipewire02 # older version needed for screen sharing in chromium
+  libreoffice-fresh
+  logrotate
+  lvm2
+  lxd
+  man-db
+  man-pages
+  meson
+  mitmproxy
+  mtools # needed for syslinux to create an Arch installer on USB
+  ncdu
+  ninja
+  nmap
+  ntfs-3g
+  oath-toolkit
+  p7zip # extract ZIP archives using encryptions not supported by unzip
+  pacman-contrib # needed for paccache service
+  perl-authen-sasl # git email
+  perl-net-smtp-ssl # git email
+  perl-mime-tools # git email
+  pipewire-media-session
+  pipewire-pulse
+  python-adblock
+  shellcheck-bin
+  s-nail
+  speedtest-cli
+  syslinux # needed to create an Arch installer on USB
+  termshark
+  tree
+  unrar
+  unzip
+  usbutils
+  vi
+  wireguard-tools
+  xdg-desktop-portal-wlr
+  xorg-xwayland
+  yt-dlp
+  zathura-cb
+  zathura-pdf-mupdf
+  zip
 )
 
 _rootdir=$PWD
