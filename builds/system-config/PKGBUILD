@@ -3,7 +3,7 @@ pkgname=(
   'system-config-light'
   'system-config-dark'
 )
-pkgver=204
+pkgver=205
 pkgrel=1
 pkgdesc='System configurations'
 url='https://sr.ht/~tardypad/arch-system'
@@ -36,7 +36,6 @@ depends=(
   efibootmgr
   grub
   intel-ucode
-  os-prober
 )
 
 # dotfiles
