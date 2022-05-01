@@ -3,7 +3,7 @@ pkgname=(
   'system-config-light'
   'system-config-dark'
 )
-pkgver=202
+pkgver=203
 pkgrel=1
 pkgdesc='System configurations'
 url='https://sr.ht/~tardypad/arch-system'
@@ -39,23 +39,13 @@ depends=(
   os-prober
 )
 
-# base-devel group packages
+# development
 depends+=(
-  autoconf
-  automake
-  binutils
-  bison
   fakeroot
-  flex
   gammastep
   gcc
-  groff
-  libtool
-  m4
   make
   patch
-  pkgconf
-  texinfo
   which
 )
 
