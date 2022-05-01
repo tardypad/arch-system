@@ -3,7 +3,7 @@ pkgname=(
   'system-config-light'
   'system-config-dark'
 )
-pkgver=201
+pkgver=202
 pkgrel=1
 pkgdesc='System configurations'
 url='https://sr.ht/~tardypad/arch-system'
@@ -46,23 +46,15 @@ depends+=(
   binutils
   bison
   fakeroot
-  file
-  findutils
   flex
   gammastep
-  gawk
   gcc
-  gettext
-  grep
   groff
-  gzip
   libtool
   m4
   make
-  pacman
   patch
   pkgconf
-  sed
   texinfo
   which
 )
