@@ -4,7 +4,7 @@ pkgname=(
   'system-config-dark'
 )
 pkgver=205
-pkgrel=1
+pkgrel=2
 pkgdesc='System configurations'
 url='https://sr.ht/~tardypad/arch-system'
 arch=('any')
@@ -107,7 +107,7 @@ depends+=(
   zsh
 )
 
-# dotfiles plugins
+# plugins
 depends+=(
   vim-ale
   vim-go
@@ -125,87 +125,120 @@ depends+=(
   vim-undotree
   weechat-vimode-git
   weechat-wee-most-git
+  zathura-cb
+  zathura-pdf-mupdf
   zsh-autosuggestions
   zsh-history-substring-search
   zsh-syntax-highlighting
 )
 
-# development
+# system
 depends+=(
-  fakeroot
-  gcc
-  make
-  patch
-  which
-)
-
-depends+=(
-  adobe-source-code-pro-fonts
-  adobe-source-sans-fonts
-  adobe-source-serif-fonts
-  asciinema
-  asciitosvg-git
-  bash-bats
-  bc
   bluez
-  chromium
   cryptsetup
   device-mapper
-  diffutils
-  dosfstools # FAT filesystem utilities
+  dosfstools
   e2fsprogs
-  fd
-  firefox
-  gimp
-  gmni-git
-  go
-  go-yq
-  gopls
-  gron-bin
-  hyperfine
-  inetutils
-  inkscape
-  ldns
-  libpipewire02 # older version needed for screen sharing in chromium
-  libreoffice-fresh
   logrotate
   lvm2
   lxd
   man-db
   man-pages
-  meson
-  mitmproxy
-  mtools # needed for syslinux to create an Arch installer on USB
-  ncdu
-  ninja
-  nmap
   ntfs-3g
-  oath-toolkit
-  p7zip # extract ZIP archives using encryptions not supported by unzip
-  pacman-contrib # needed for paccache service
-  perl-authen-sasl # git email
-  perl-net-smtp-ssl # git email
-  perl-mime-tools # git email
-  pipewire-media-session
   pipewire-pulse
-  python-adblock
-  shellcheck-bin
   s-nail
+  usbutils
+)
+
+# network
+depends+=(
+  inetutils
+  ldns
+  mitmproxy
+  nmap
   speedtest-cli
-  syslinux # needed to create an Arch installer on USB
   termshark
+  wireguard-tools
+)
+
+# development
+depends+=(
+  bash-bats
+  diffutils
+  fakeroot
+  gcc
+  go
+  gopls
+  make
+  meson
+  ninja
+  patch
+  shellcheck-bin
+  which
+)
+
+# GUI
+depends+=(
+  chromium
+  firefox
+  gimp
+  inkscape
+  libreoffice-fresh
+  xorg-xwayland
+)
+
+# extra
+depends+=(
+  asciinema
+  asciitosvg-git
+  bc
+  fd
+  gmni-git
+  go-yq
+  gron-bin
+  hyperfine
+  ncdu
+  oath-toolkit
+  pacman-contrib # needed for paccache service
+  python-adblock
   tree
+  vi # used as backup editor
+  yt-dlp
+)
+
+# fonts
+depends+=(
+  adobe-source-code-pro-fonts
+  adobe-source-sans-fonts
+  adobe-source-serif-fonts
+)
+
+# screen sharing
+depends+=(
+  libpipewire02 # older version needed for chromium
+  pipewire-media-session
+  xdg-desktop-portal-wlr
+)
+
+# extra archive formats
+depends+=(
+  p7zip
   unrar
   unzip
-  usbutils
-  vi
-  wireguard-tools
-  xdg-desktop-portal-wlr
-  xorg-xwayland
-  yt-dlp
-  zathura-cb
-  zathura-pdf-mupdf
   zip
+)
+
+# git email
+depends+=(
+  perl-authen-sasl
+  perl-net-smtp-ssl
+  perl-mime-tools
+)
+
+# Arch USB installer creation
+depends+=(
+  mtools
+  syslinux
 )
 
 _rootdir=$PWD
