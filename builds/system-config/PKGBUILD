@@ -3,8 +3,8 @@ pkgname=(
   'system-config-light'
   'system-config-dark'
 )
-pkgver=205
-pkgrel=2
+pkgver=206
+pkgrel=1
 pkgdesc='System configurations'
 url='https://sr.ht/~tardypad/arch-system'
 arch=('any')
@@ -215,7 +215,6 @@ depends+=(
 
 # screen sharing
 depends+=(
-  libpipewire02 # older version needed for chromium
   pipewire-media-session
   xdg-desktop-portal-wlr
 )
