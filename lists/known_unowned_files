@@ -120,6 +120,9 @@
 # postgresql
 /var/lib/postgres
 
+# redis
+/var/lib/redis
+
 # shadow
 /etc/group-
 /etc/group.OLD
@@ -129,6 +132,8 @@
 /etc/passwd.OLD
 /etc/shadow-
 /etc/shadow.OLD
+/etc/subgid-
+/etc/subuid-
 
 # sudo
 /var/db/sudo/lectured/*
@@ -160,6 +165,9 @@
 
 # tlp
 /var/lib/tlp
+
+# tpm2-tss
+/var/lib/tpm2-tss
 
 # tzdata
 /etc/localtime
