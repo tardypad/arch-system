@@ -12,6 +12,8 @@ doas pacman -S --noconfirm wine winetricks lib32-gnutls
 export WINEPREFIX="${HOME}/.wine-ade"
 export WINEARCH=win32
 
+BIN_DIR="${HOME}/.local/bin"
+
 wineboot
 winetricks -q corefonts
 winetricks -q windowscodecs
@@ -22,8 +24,9 @@ curl -L http://download.adobe.com/pub/adobe/digitaleditions/ADE_2.0_Installer.ex
 
 wine "${TMP_DIR}/ade_installer.exe"
 
-cat << EOF | doas tee /usr/local/bin/adobe-digital-editions
+mkdir -p "${BIN_DIR}"
+cat << EOF | doas tee "${BIN_DIR}/adobe-digital-editions"
 #!/bin/sh
 WINEPREFIX="${WINEPREFIX}" wine "${WINEPREFIX}/drive_c/Program Files/Adobe/Adobe Digital Editions 2.0/DigitalEditions.exe"
 EOF
-doas chmod +x /usr/local/bin/adobe-digital-editions
+doas chmod +x "${BIN_DIR}/adobe-digital-editions"
