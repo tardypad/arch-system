@@ -42,7 +42,3 @@ post_install() {
 
   list_manual_updates
 }
-
-post_upgrade() {
-  list_manual_updates
-}

@@ -4,7 +4,7 @@ pkgname=(
   'system-config-dark'
 )
 pkgver=207
-pkgrel=1
+pkgrel=2
 pkgdesc='System configurations'
 url='https://sr.ht/~tardypad/arch-system'
 arch=('any')
@@ -24,6 +24,11 @@ provides=(
 
 replaces=(
   'system-config'
+)
+
+backup=(
+  etc/NetworkManager/system-connections/Chestnut
+  etc/pacmand.d/chestnut
 )
 
 install=system-config.install
