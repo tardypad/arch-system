@@ -3,7 +3,7 @@ pkgname=(
   'system-config-light'
   'system-config-dark'
 )
-pkgver=206
+pkgver=207
 pkgrel=1
 pkgdesc='System configurations'
 url='https://sr.ht/~tardypad/arch-system'
@@ -215,7 +215,7 @@ depends+=(
 
 # screen sharing
 depends+=(
-  pipewire-media-session
+  wireplumber
   xdg-desktop-portal-wlr
 )
 
