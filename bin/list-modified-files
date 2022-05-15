@@ -18,6 +18,7 @@ show_usage() {
 	usage: ${COMMAND} [<options>] [ignore_file]
 
 	List modified package files alongside the package they belong to.
+	Only the backup configuration files are checked.
 
 	Needs to be run as a root user
 
