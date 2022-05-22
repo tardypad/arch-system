@@ -3,8 +3,8 @@ pkgname=(
   'system-config-light'
   'system-config-dark'
 )
-pkgver=207
-pkgrel=2
+pkgver=208
+pkgrel=1
 pkgdesc='System configurations'
 url='https://sr.ht/~tardypad/arch-system'
 arch=('any')
@@ -94,6 +94,7 @@ depends+=(
   sfeed
   slurp
   sway
+  swaybg
   swayidle
   swaylock
   tmux
