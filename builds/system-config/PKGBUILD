@@ -1,9 +1,5 @@
-pkgbase=system-config
-pkgname=(
-  'system-config-light'
-  'system-config-dark'
-)
-pkgver=208
+pkgname=system-config
+pkgver=209
 pkgrel=1
 pkgdesc='System configurations'
 url='https://sr.ht/~tardypad/arch-system'
@@ -12,18 +8,6 @@ license=('custom')
 
 groups=(
   'tardypad'
-)
-
-conflicts=(
-  'system-config'
-)
-
-provides=(
-  'system-config'
-)
-
-replaces=(
-  'system-config'
 )
 
 backup=(
@@ -248,29 +232,11 @@ depends+=(
 
 _rootdir=$PWD
 
-package_common() {
+package_system-config() {
   cp -R "$_rootdir"/files/* "$pkgdir"
-  chmod 0400  "$pkgdir"/etc/doas.conf
-  chmod 700  "$pkgdir"/etc/NetworkManager/system-connections
-  chmod 600  "$pkgdir"/etc/NetworkManager/system-connections/*
-}
 
-package_system-config-light() {
-  depends+=(
-    dotfiles-light-git
-  )
-
-  package_common
-
-  ln -sf issue_light "$pkgdir"/etc/issue
-}
-
-package_system-config-dark() {
-  depends+=(
-    dotfiles-dark-git
-  )
-
-  package_common
-
-  ln -sf issue_dark "$pkgdir"/etc/issue
+  # adjust permissions
+  chmod 0400 "$pkgdir"/etc/doas.conf
+  chmod 700 "$pkgdir"/etc/NetworkManager/system-connections
+  chmod 600 "$pkgdir"/etc/NetworkManager/system-connections/*
 }
