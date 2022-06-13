@@ -29,4 +29,4 @@ cat << EOF | doas tee "${BIN_DIR}/adobe-digital-editions"
 #!/bin/sh
 WINEPREFIX="${WINEPREFIX}" wine "${WINEPREFIX}/drive_c/Program Files/Adobe/Adobe Digital Editions 2.0/DigitalEditions.exe"
 EOF
-doas chmod +x "${BIN_DIR}/adobe-digital-editions"
+chmod +x "${BIN_DIR}/adobe-digital-editions"
