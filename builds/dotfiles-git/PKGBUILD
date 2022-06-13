@@ -1,9 +1,5 @@
-pkgbase=dotfiles-git
-pkgname=(
-  'dotfiles-light-git'
-  'dotfiles-dark-git'
-)
-pkgver=r3098.d86d87e7
+pkgname=dotfiles-git
+pkgver=r3149.d6d044aa
 pkgrel=1
 pkgdesc="My dotfiles"
 arch=('any')
@@ -12,18 +8,6 @@ license=('custom')
 
 groups=(
   'tardypad'
-)
-
-conflicts=(
-  'dotfiles-git'
-)
-
-provides=(
-  'dotfiles-git'
-)
-
-replaces=(
-  'dotfiles-git'
 )
 
 makedepends=(
@@ -58,29 +42,16 @@ pkgver() {
   printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
 }
 
-package_dotfiles-light-git() {
+package_dotfiles-git() {
   cd dotfiles
-  make DESTDIR="$pkgdir" THEME=light all
+  make DESTDIR="$pkgdir" all
 
-  adjust_permissions
-  hush_login
-}
-
-package_dotfiles-dark-git() {
-  cd dotfiles
-  make DESTDIR="$pkgdir" THEME=dark all
-
-  adjust_permissions
-  hush_login
-}
-
-adjust_permissions() {
+  # adjust permissions
   chown -R damien:damien "$pkgdir/home/damien"
   chmod 700 "$pkgdir/home/damien"
   chmod 700 "$pkgdir/home/damien/.config"
-}
 
-hush_login() {
+  # hush login
   printf '' > "$pkgdir/home/damien/.hushlogin"
   chown damien:damien "$pkgdir/home/damien/.hushlogin"
 }
