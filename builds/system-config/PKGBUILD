@@ -1,5 +1,5 @@
 pkgname=system-config
-pkgver=210
+pkgver=211
 pkgrel=1
 pkgdesc='System configurations'
 url='https://sr.ht/~tardypad/arch-system'
@@ -223,12 +223,6 @@ depends+=(
   perl-authen-sasl
   perl-net-smtp-ssl
   perl-mime-tools
-)
-
-# Arch USB installer creation
-depends+=(
-  mtools
-  syslinux
 )
 
 _rootdir=$PWD
