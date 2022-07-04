@@ -64,10 +64,16 @@ install_packages() {
   pacman -S --overwrite '*' system-config
 }
 
-setup_users() {
-  useradd -mU -s /usr/bin/zsh -G uucp,video,wheel,input,wireshark,lxd damien
+setup_users_1() {
+  # damien user is needed before the installation of system-config and dotfiles-git packages
+  useradd -mU damien
+}
+
+setup_users_2() {
+  usermod -aG uucp,video,wheel,input,wireshark,lxd damien
   passwd damien
 
+  chsh -s /usr/bin/zsh damien
   chsh -s /usr/bin/zsh root
 
   mkdir -p /home/damien/Contacts
@@ -91,5 +97,6 @@ check_root_user
 
 setup_repositories
 upgrade_current_packages
+setup_users_1
 install_packages
-setup_users
+setup_users_2
