@@ -1,5 +1,5 @@
 pkgname=system-config
-pkgver=209
+pkgver=210
 pkgrel=1
 pkgdesc='System configurations'
 url='https://sr.ht/~tardypad/arch-system'
@@ -182,6 +182,7 @@ depends+=(
   asciinema
   asciitosvg-git
   bc
+  dotfiles-git
   fd
   gmni-git
   go-yq
