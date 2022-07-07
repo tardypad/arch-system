@@ -1,0 +1,111 @@
+#!/bin/sh
+# commands used:
+# - bsdtar
+# - curl
+# - fatlabel
+# - md5sum
+# - mktemp
+
+init_variables() {
+  COMMAND=${0##*/}
+
+  TMP_DIR="$( mktemp -d )"
+  trap 'rm -rf "${TMP_DIR}"' EXIT
+
+  DOWNLOAD_BASE_URL='https://geo.mirror.pkgbuild.com/iso'
+  MOUNTPOINT='/mnt/usb_installer'
+  USB_PARTITION='/dev/disk/by-uuid/19BC-8847'
+}
+
+show_usage() {
+  cat <<- EOF
+	usage: ${COMMAND} [<options>] VERSION
+
+	Create an Arch Linux Installer USB drive on already partitioned USB stick
+	UEFI-only booting
+
+	Needs to be run as a root user
+
+	Operands:
+	  VERSION  should be in YYYY.MM.DD format
+
+	Options:
+	  -h    show this message only
+	EOF
+}
+
+parse_command_line() {
+  while getopts h OPT; do
+    case "${OPT}" in
+      h) show_usage; exit 0 ;;
+      ?) exit_error ;;
+    esac
+  done
+
+  shift $(( OPTIND - 1 ))
+
+  VERSION="$1"
+}
+
+validate_command_line() {
+  if [ -z "${VERSION}" ]; then
+    exit_error 'missing version operand'
+  fi
+
+  case "${VERSION}" in
+    [0-9][0-9][0-9][0-9].[0-9][0-9].[0-9][0-9]) return 0 ;;
+    *) exit_error 'Invalid version format' ;;
+  esac
+}
+
+exit_error() {
+  [ -z "$1" ] || echo "${COMMAND}: $1"
+  echo "Try '${COMMAND} -h' for more information."
+  exit 1
+} >&2
+
+check_root_user() {
+  [ "$( id -u )" -ne 0 ] && exit_error 'The script must be run as root'
+}
+
+check_usb_present() {
+  [ ! -e "${USB_PARTITION}" ] && exit_error 'The USB partition is not present'
+}
+
+download_iso() (
+  cd "${TMP_DIR}" || return 1
+
+  curl -fL "${DOWNLOAD_BASE_URL}/${VERSION}/archlinux-${VERSION}-x86_64.iso" \
+    -o "archlinux-${VERSION}-x86_64.iso"
+
+  # shellcheck disable=SC2181
+  if [ "$?" -ne 0 ]; then
+    exit_error "Cannot download ISO"
+  fi
+
+  curl -fL "${DOWNLOAD_BASE_URL}/${VERSION}/md5sums.txt" \
+    | grep "archlinux-${VERSION}-x86_64.iso" \
+    > md5sums.txt
+
+  md5sum -c md5sums.txt
+)
+
+flash_usb() {
+  mkdir -p "${MOUNTPOINT}"
+  mount "${USB_PARTITION}" "${MOUNTPOINT}"
+  bsdtar -x --exclude=syslinux/ -f "${TMP_DIR}/archlinux-${VERSION}-x86_64.iso" -C "${MOUNTPOINT}"
+  umount "${MOUNTPOINT}"
+  rm -rf "${MOUNTPOINT}"
+
+  LABEL="ARCH_$( printf '%s' "${VERSION}" | cut -d. -f1-2 | tr -d '.' )"
+  fatlabel "${USB_PARTITION}" "${LABEL}"
+}
+
+init_variables
+parse_command_line "$@"
+validate_command_line
+
+check_root_user
+check_usb_present
+
+download_iso && flash_usb
