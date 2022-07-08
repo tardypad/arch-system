@@ -1,4 +1,7 @@
 #!/bin/sh
+# commands used:
+# - curl
+# - gpg
 
 init_variables() {
   COMMAND=${0##*/}
@@ -49,9 +52,16 @@ setup_home_dirs() {
   mkdir -p /home/damien/Videos
 }
 
+setup_gnupg() {
+  curl -sL https://tardypad.me/public_key.txt | gpg --import -
+  GPG_PUB_KEY_FINGERPRINT="$( gpg --list-keys --with-colons damien@tardypad.me | awk -F: '/^pub:/ {print $5}' )"
+  printf '5\ny\n' | gpg --command-fd 0 --edit-key "${GPG_PUB_KEY_FINGERPRINT}" trust
+}
+
 init_variables
 parse_command_line "$@"
 
 check_damien_user
 
 setup_home_dirs
+setup_gnupg
