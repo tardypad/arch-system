@@ -2,6 +2,8 @@
 # commands used:
 # - curl
 # - gpg
+# - pass
+# - weechat
 
 init_variables() {
   COMMAND=${0##*/}
@@ -58,6 +60,10 @@ setup_gnupg() {
   printf '5\ny\n' | gpg --command-fd 0 --edit-key "${GPG_PUB_KEY_FINGERPRINT}" trust
 }
 
+setup_weechat() {
+  weechat -ap -r "/secure passphrase $( pass perso/weechat )" -r '/quit'
+}
+
 init_variables
 parse_command_line "$@"
 
@@ -65,3 +71,4 @@ check_damien_user
 
 setup_home_dirs
 setup_gnupg
+setup_weechat
