@@ -1,0 +1,57 @@
+#!/bin/sh
+
+init_variables() {
+  COMMAND=${0##*/}
+}
+
+show_usage() {
+  cat <<- EOF
+	usage: ${COMMAND} [<options>]
+
+	Setup some parts of the user environment
+
+	Options:
+	  -h    show this message only
+	EOF
+}
+
+parse_command_line() {
+  while getopts h OPT; do
+    case "${OPT}" in
+      h) show_usage; exit 0 ;;
+      ?) exit_error ;;
+    esac
+  done
+
+  shift $(( OPTIND - 1 ))
+}
+
+exit_error() {
+  [ -z "$1" ] || echo "${COMMAND}: $1"
+  echo "Try '${COMMAND} -h' for more information."
+  exit 1
+} >&2
+
+check_damien_user() {
+  [ "$( id -un )" != 'damien' ] && exit_error 'The script must be run as damien'
+}
+
+setup_home_dirs() {
+  mkdir -p /home/damien/Contacts
+  mkdir -p /home/damien/Desktop
+  mkdir -p /home/damien/Downloads
+  mkdir -p /home/damien/Documents
+  mkdir -p /home/damien/Music
+  mkdir -p /home/damien/Notes
+  mkdir -p /home/damien/Pictures
+  mkdir -p /home/damien/Projects
+  mkdir -p /home/damien/Todo
+  mkdir -p /home/damien/Videos
+}
+
+init_variables
+parse_command_line "$@"
+
+check_damien_user
+
+setup_home_dirs

@@ -75,19 +75,6 @@ setup_users_2() {
 
   chsh -s /usr/bin/zsh damien
   chsh -s /usr/bin/zsh root
-
-  mkdir -p /home/damien/Contacts
-  mkdir -p /home/damien/Desktop
-  mkdir -p /home/damien/Downloads
-  mkdir -p /home/damien/Documents
-  mkdir -p /home/damien/Music
-  mkdir -p /home/damien/Notes
-  mkdir -p /home/damien/Pictures
-  mkdir -p /home/damien/Projects
-  mkdir -p /home/damien/Todo
-  mkdir -p /home/damien/Videos
-
-  chown -R damien:damien /home/damien
 }
 
 init_variables
