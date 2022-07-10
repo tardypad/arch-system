@@ -20,6 +20,14 @@ UUID=5BBA-D17          /mnt/kobo       vfat noauto,user
 EOF
 }
 
+setup_silent_grub() {
+  sed -e 's/^GRUB_TIMEOUT=.*/GRUB_TIMEOUT=3/' \
+      -e 's/^GRUB_TIMEOUT_STYLE=.*/GRUB_TIMEOUT_STYLE=hidden/' \
+      -i /etc/default/grub
+
+  grub-mkconfig -o /boot/grub/grub.cfg
+}
+
 post_install() {
   # logs
   install -dm0755 -o damien -g damien /var/log/sway
@@ -39,6 +47,7 @@ post_install() {
   lxd init --minimal
 
   setup_mount_devices
+  setup_silent_grub
 
   list_manual_updates
 }
