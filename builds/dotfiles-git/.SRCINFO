@@ -1,6 +1,6 @@
 pkgbase = dotfiles-git
 	pkgdesc = My dotfiles
-	pkgver = r3098.d86d87e7
+	pkgver = r3171.d471b6f9
 	pkgrel = 1
 	url = https://sr.ht/~tardypad/dotfiles/
 	install = dotfiles-git.install
@@ -14,12 +14,7 @@ pkgbase = dotfiles-git
 	depends = fontconfig
 	depends = systemd
 	depends = vim
-	provides = dotfiles-git
-	conflicts = dotfiles-git
-	replaces = dotfiles-git
 	source = git+ssh://damien@tardypad.me:11235/~/repos/dotfiles#branch=master
 	sha512sums = SKIP
 
-pkgname = dotfiles-light-git
-
-pkgname = dotfiles-dark-git
+pkgname = dotfiles-git
