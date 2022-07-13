@@ -1,6 +1,6 @@
 pkgname=system-config
 pkgver=212
-pkgrel=1
+pkgrel=2
 pkgdesc='System configurations'
 url='https://sr.ht/~tardypad/arch-system'
 arch=('any')
@@ -12,7 +12,7 @@ groups=(
 
 backup=(
   etc/NetworkManager/system-connections/Chestnut
-  etc/pacmand.d/chestnut
+  etc/pacman.d/chestnut
 )
 
 install=system-config.install
