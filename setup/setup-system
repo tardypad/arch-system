@@ -1,8 +1,12 @@
 #!/bin/sh
 # commands used:
 # - chsh
+# - doas
+# - mitmproxy
 # - pacman
 # - passwd
+# - timeout
+# - trust
 # - useradd
 # - usermod
 
@@ -82,6 +86,17 @@ setup_users_2() {
   chsh -s /usr/bin/zsh root
 }
 
+setup_proxy() {
+  # creates keys for CA and trust it
+  useradd -m proxyer
+  timeout 1s doas -u proxyer mitmproxy
+  trust anchor --store /home/proxyer/.mitmproxy/mitmproxy-ca.pem
+
+  # reuse same keys locally (creating new ones seems to create issues on usage)
+  cp -r /home/proxyer/.mitmproxy/ /home/damien/.mitmproxy
+  chown -R damien:damien /home/damien/.mitmproxy
+}
+
 init_variables
 parse_command_line "$@"
 
@@ -92,3 +107,4 @@ upgrade_current_packages
 setup_users_1
 install_packages
 setup_users_2
+setup_proxy
