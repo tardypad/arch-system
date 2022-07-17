@@ -1,6 +1,6 @@
 pkgname=system-config
 pkgver=212
-pkgrel=2
+pkgrel=3
 pkgdesc='System configurations'
 url='https://sr.ht/~tardypad/arch-system'
 arch=('any')
@@ -59,6 +59,7 @@ depends+=(
   libxml2
   light
   mako
+  mitmproxy
   mpc
   mpd
   mpv
@@ -144,7 +145,6 @@ depends+=(
 depends+=(
   inetutils
   ldns
-  mitmproxy
   nmap
   speedtest-cli
   termshark
