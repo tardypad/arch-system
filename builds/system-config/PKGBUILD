@@ -1,5 +1,5 @@
 pkgname=system-config
-pkgver=213
+pkgver=214
 pkgrel=1
 pkgdesc='System configurations'
 url='https://sr.ht/~tardypad/arch-system'
@@ -192,6 +192,7 @@ depends+=(
   oath-toolkit
   pacman-contrib # needed for paccache service
   python-adblock
+  qpdf
   tree
   vi # used as backup editor
   yt-dlp
