@@ -51,7 +51,8 @@ list_packages() {
     > "${TMP_DIR}/system_pkgs"
 
   comm -13 "${TMP_DIR}/system_pkgs" "${TMP_DIR}/explicit_pkgs" \
-    | grep -v '^system-config'
+    | grep -v '^system-config' \
+    | grep -vE '^(lib32-gnutls|wine|winetricks)$'
 }
 
 init_variables
