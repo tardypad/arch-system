@@ -1,5 +1,5 @@
 pkgname=system-config
-pkgver=214
+pkgver=215
 pkgrel=1
 pkgdesc='System configurations'
 url='https://sr.ht/~tardypad/arch-system'
