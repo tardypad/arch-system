@@ -49,4 +49,14 @@ EOF3
   chown -R damien:damien /home/damien/.ssh
 EOF
 
+# makepkg config
+cat << EOF | lxc exec "${CONTAINER_NAME}" -- /bin/sh
+  mkdir -p /home/damien/.config/pacman
+  cat <<- EOF2 > /home/damien/.config/pacman/makepkg.conf
+		PKGDEST=/home/damien/packages
+		SRCDEST=/home/damien/sources
+EOF2
+  chown -R damien:damien /home/damien/.config
+EOF
+
 lxc restart "${CONTAINER_NAME}"
