@@ -1,0 +1,84 @@
+#!/bin/sh
+# commands used:
+# - lxc
+
+init_variables() {
+  COMMAND=${0##*/}
+
+  CONTAINER_NAME='arch-builds'
+  REPO_NAME='tardypad'
+
+  SYNC=true
+  PACKAGE=
+}
+
+show_usage() {
+  cat <<- EOF
+	usage: ${COMMAND} [<options>] <package_name>
+
+	Build and sync package to remote repository
+
+	Options:
+	-b    build only
+	-h    show this message only
+EOF
+}
+
+parse_command_line() {
+  while getopts bh OPT; do
+    case "${OPT}" in
+      b) SYNC=false ;;
+      h) show_usage; exit 0 ;;
+      ?) exit_error ;;
+    esac
+  done
+
+  shift $(( OPTIND - 1 ))
+
+  PACKAGE="$1"
+}
+
+validate_command_line() {
+  if [ -z "${PACKAGE}" ]; then
+    exit_error 'missing package operand'
+  fi
+
+  if [ ! -d "builds/${PACKAGE}" ]; then
+    exit_error "Package '${PACKAGE}' does not exist"
+  fi
+}
+
+exit_error() {
+  [ -z "$1" ] || echo "${COMMAND}: $1"
+  exit 1
+} >&2
+
+build() {
+  lxc exec "${CONTAINER_NAME}" -- \
+    su -lc "cd /home/damien/builds/${PACKAGE} && makepkg --noconfirm --syncdeps --rmdeps --clean --force && makepkg --printsrcinfo > .SRCINFO" damien
+}
+
+add_package() {
+  lxc exec "${CONTAINER_NAME}" -- \
+    su -lc "repo-add /home/damien/packages/${REPO_NAME}.db.tar.xz /home/damien/packages/${PACKAGE}*" damien
+}
+
+import_env() {
+  lxc exec "${CONTAINER_NAME}" -- \
+    su -lc "rm -rf /home/damien/packages && rsync -azh --mkpath 'chestnut:/srv/http/pkgs/arch/${REPO_NAME}/${REPO_NAME}.*' /home/damien/packages" damien
+}
+
+export_env() {
+  lxc exec "${CONTAINER_NAME}" -- \
+    su -lc "rsync -azh /home/damien/packages/ chestnut:/srv/http/pkgs/arch/${REPO_NAME}" damien
+}
+
+init_variables
+parse_command_line "$@"
+validate_command_line
+
+if [ "${SYNC}" = 'false' ]; then
+  build
+else
+  import_env && build && add_package && export_env
+fi
