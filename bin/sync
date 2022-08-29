@@ -8,7 +8,9 @@ init_variables() {
   CONTAINER_NAME='arch-builds'
   AUR_URL='https://aur.archlinux.org'
 
+  REMOVE=false
   SYNC=true
+
   REPO_NAME=
   PACKAGE=
 }
@@ -22,14 +24,16 @@ show_usage() {
 	Options:
 	-b    build only
 	-h    show this message only
+	-r    remove package from repository
 EOF
 }
 
 parse_command_line() {
-  while getopts bh OPT; do
+  while getopts bhr OPT; do
     case "${OPT}" in
       b) SYNC=false ;;
       h) show_usage; exit 0 ;;
+      r) REMOVE=true ;;
       ?) exit_error ;;
     esac
   done
@@ -91,6 +95,11 @@ add_package() {
     su -lc "repo-add /home/damien/packages/${REPO_NAME}.db.tar.xz /home/damien/packages/${PACKAGE}*" damien
 }
 
+remove_package() {
+  lxc exec "${CONTAINER_NAME}" -- \
+    su -lc "repo-remove /home/damien/packages/${REPO_NAME}.db.tar.xz ${PACKAGE}" damien
+}
+
 import_env() {
   lxc exec "${CONTAINER_NAME}" -- \
     su -lc "rm -rf /home/damien/packages && rsync -azh --mkpath 'chestnut:/srv/http/pkgs/arch/${REPO_NAME}/${REPO_NAME}.*' /home/damien/packages" damien
@@ -104,6 +113,11 @@ export_env() {
 init_variables
 parse_command_line "$@"
 validate_command_line
+
+if [ "${REMOVE}" = 'true' ]; then
+  import_env && remove_package && export_env
+  exit
+fi
 
 if [ "${SYNC}" = 'false' ]; then
   "build_${REPO_NAME}"
