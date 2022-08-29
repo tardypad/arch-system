@@ -6,15 +6,16 @@ init_variables() {
   COMMAND=${0##*/}
 
   CONTAINER_NAME='arch-builds'
-  REPO_NAME='tardypad'
+  AUR_URL='https://aur.archlinux.org'
 
   SYNC=true
+  REPO_NAME=
   PACKAGE=
 }
 
 show_usage() {
   cat <<- EOF
-	usage: ${COMMAND} [<options>] <package_name>
+	usage: ${COMMAND} [<options>] <repo> <package_name>
 
 	Build and sync package to remote repository
 
@@ -35,15 +36,25 @@ parse_command_line() {
 
   shift $(( OPTIND - 1 ))
 
-  PACKAGE="$1"
+  REPO_NAME="$1"
+  PACKAGE="$2"
 }
 
 validate_command_line() {
+  if [ -z "${REPO_NAME}" ]; then
+    exit_error 'missing repo operand'
+  fi
+
+  if [ "${REPO_NAME}" != 'aur' ] \
+    && [ "${REPO_NAME}" != 'tardypad' ]; then
+    exit_error "invalid repo '${REPO_NAME}'"
+  fi
+
   if [ -z "${PACKAGE}" ]; then
     exit_error 'missing package operand'
   fi
 
-  if [ ! -d "builds/${PACKAGE}" ]; then
+  if [ "${REPO_NAME}" = 'tardypad' ] && [ ! -d "builds/${PACKAGE}" ]; then
     exit_error "Package '${PACKAGE}' does not exist"
   fi
 }
@@ -53,9 +64,26 @@ exit_error() {
   exit 1
 } >&2
 
+
 build() {
   lxc exec "${CONTAINER_NAME}" -- \
-    su -lc "cd /home/damien/builds/${PACKAGE} && makepkg --noconfirm --syncdeps --rmdeps --clean --force && makepkg --printsrcinfo > .SRCINFO" damien
+    su -lc "cd $1 && makepkg --noconfirm --syncdeps --rmdeps --clean --force && makepkg --printsrcinfo > .SRCINFO" damien
+}
+
+build_tardypad() {
+  build "/home/damien/builds/${PACKAGE}"
+}
+
+build_aur() {
+  lxc exec "${CONTAINER_NAME}" -- \
+    su -lc "rm -rf /var/tmp/sync-${PACKAGE} && git clone ${AUR_URL}/${PACKAGE} /var/tmp/sync-${PACKAGE}" damien
+
+  printf '%s\n' 'Review the package build'
+  printf "lxc exec %s -- vi %s\n" "${CONTAINER_NAME}" "/var/tmp/sync-${PACKAGE}/PKGBUILD"
+  printf '%s\n' 'Press Return to continue, Ctrl-c to abort'
+  read -r
+
+  build "/var/tmp/sync-${PACKAGE}"
 }
 
 add_package() {
@@ -78,7 +106,7 @@ parse_command_line "$@"
 validate_command_line
 
 if [ "${SYNC}" = 'false' ]; then
-  build
+  "build_${REPO_NAME}"
 else
-  import_env && build && add_package && export_env
+  import_env && "build_${REPO_NAME}" && add_package && export_env
 fi
