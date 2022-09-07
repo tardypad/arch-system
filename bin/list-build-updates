@@ -86,6 +86,7 @@ get_package_new_version() (
 
   git clone -q --bare "${SOURCE_URL}" "${SOURCE_DIR}"
 
+  srcdir=.
   pkgver
 )
 
