@@ -1,4 +1,6 @@
 #!/bin/sh
+# commands used:
+# - pass
 
 CONTAINER_NAME='arch-builds'
 
@@ -62,6 +64,18 @@ cat << EOF | lxc exec "${CONTAINER_NAME}" -- /bin/sh
 		SRCDEST=/home/damien/sources
 EOF2
   chown -R damien:damien /home/damien/.config
+EOF
+
+# enable own repositories to fetch dependencies from
+cat << EOF | lxc exec "${CONTAINER_NAME}" -- /bin/sh
+  cat <<- EOF2 >> /etc/pacman.conf
+		[tardypad]
+		SigLevel = Never
+		Server = https://damien:$( pass perso/tardypad.me/pkgs | sed 1q )@pkgs.tardypad.me/arch/\\\$repo
+		[aur]
+		SigLevel = Never
+		Server = https://damien:$( pass perso/tardypad.me/pkgs | sed 1q )@pkgs.tardypad.me/arch/\\\$repo
+EOF2
 EOF
 
 lxc restart "${CONTAINER_NAME}"
