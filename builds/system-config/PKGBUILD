@@ -1,6 +1,6 @@
 pkgname=system-config
 pkgver=216
-pkgrel=1
+pkgrel=2
 pkgdesc='System configurations'
 url='https://sr.ht/~tardypad/arch-system'
 arch=('any')
@@ -233,7 +233,7 @@ depends+=(
 
 _rootdir=$PWD
 
-package_system-config() {
+package() {
   cp -R "$_rootdir"/files/* "$pkgdir"
 
   # adjust permissions

@@ -1,6 +1,6 @@
 pkgname=dotfiles-git
 pkgver=r3183.ad3dcdfb
-pkgrel=1
+pkgrel=2
 pkgdesc="My dotfiles"
 arch=('any')
 url="https://sr.ht/~tardypad/dotfiles/"
@@ -42,7 +42,7 @@ pkgver() {
   printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
 }
 
-package_dotfiles-git() {
+package() {
   cd dotfiles
   make DESTDIR="$pkgdir" all
 
