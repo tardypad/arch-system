@@ -1,6 +1,6 @@
 pkgname=dotfiles-git
 pkgver=r3183.ad3dcdfb
-pkgrel=2
+pkgrel=3
 pkgdesc="My dotfiles"
 arch=('any')
 url="https://sr.ht/~tardypad/dotfiles/"
@@ -15,12 +15,6 @@ makedepends=(
   'git'
   'openssh'
   'scdoc'
-)
-
-depends=(
-  'fontconfig'
-  'systemd'
-  'vim'
 )
 
 install=dotfiles-git.install
@@ -43,6 +37,12 @@ pkgver() {
 }
 
 package() {
+  depends+=(
+    'fontconfig'
+    'systemd'
+    'vim'
+  )
+
   cd dotfiles
   make DESTDIR="$pkgdir" all
 

@@ -1,6 +1,6 @@
 pkgname=vim-taboo-git
 pkgver=r46.caf9481
-pkgrel=1
+pkgrel=2
 pkgdesc="A Vim plugin to manage tabs"
 arch=("any")
 url="https://github.com/gcmt/taboo.vim"
@@ -12,10 +12,6 @@ groups=(
 
 makedepends=(
   'git'
-)
-
-depends=(
-  'vim-runtime'
 )
 
 source=(
@@ -32,6 +28,10 @@ pkgver() {
 }
 
 package() {
+  depends+=(
+    'vim-runtime'
+  )
+
   cd taboo.vim
   install -D -m644 plugin/taboo.vim "${pkgdir}/usr/share/vim/vimfiles/plugin/taboo.vim"
   install -D -m644 doc/taboo.txt "${pkgdir}/usr/share/vim/vimfiles/doc/taboo.txt"

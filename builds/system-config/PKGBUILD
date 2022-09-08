@@ -1,6 +1,6 @@
 pkgname=system-config
 pkgver=216
-pkgrel=2
+pkgrel=3
 pkgdesc='System configurations'
 url='https://sr.ht/~tardypad/arch-system'
 arch=('any')
@@ -17,223 +17,223 @@ backup=(
 
 install=system-config.install
 
-# base installation
-depends=(
-  base
-  linux
-  linux-firmware
-  efibootmgr
-  grub
-  intel-ucode
-)
-
-# dotfiles
-depends+=(
-  aerc
-  amfora
-  aria2
-  bemenu-wayland
-  bluez-tools
-  bluez-utils
-  catimg
-  ctags
-  curl
-  entr
-  fontconfig
-  foot
-  fzf
-  gammastep
-  git
-  gnupg
-  grim
-  htop
-  httpie
-  i3blocks
-  imagemagick
-  imv
-  jq
-  khard
-  less
-  libpulse
-  libqalculate
-  libxml2
-  light
-  mako
-  mitmproxy
-  mpc
-  mpd
-  mpv
-  networkmanager
-  opendoas
-  openssh
-  otf-font-awesome
-  pass
-  pulsemixer
-  pv
-  qrencode
-  qutebrowser
-  remind
-  ripgrep
-  rsync
-  scdoc
-  sfeed
-  slurp
-  sway
-  swaybg
-  swayidle
-  swaylock
-  tmux
-  tmux-xpanes
-  translate-shell
-  vdirsyncer
-  vim
-  w3m
-  weechat
-  wf-recorder
-  wl-clipboard
-  xdg-utils
-  ydotool
-  yubikey-manager
-  zathura
-  zsh
-)
-
-# plugins
-depends+=(
-  fzf-tab-git
-  vim-ale
-  vim-go
-  vim-goyo-git
-  vim-gutentags-git
-  vim-nerdcommenter
-  vim-oscyank-git
-  vim-repeat
-  vim-sayonara-git
-  vim-surround
-  vim-taboo-git
-  vim-tagbar
-  vim-tmux-navigator-git
-  vim-ultisnips
-  vim-undotree
-  weechat-vimode-git
-  weechat-wee-most-git
-  zathura-cb
-  zathura-pdf-mupdf
-  zsh-autosuggestions
-  zsh-history-substring-search
-  zsh-syntax-highlighting
-)
-
-# system
-depends+=(
-  bluez
-  cryptsetup
-  device-mapper
-  dosfstools
-  e2fsprogs
-  logrotate
-  lvm2
-  lxd
-  man-db
-  man-pages
-  ntfs-3g
-  pipewire-pulse
-  s-nail
-  usbutils
-)
-
-# network
-depends+=(
-  inetutils
-  ldns
-  nmap
-  speedtest-cli
-  termshark
-  wireguard-tools
-)
-
-# development
-depends+=(
-  autoconf
-  automake
-  bash-bats
-  bison
-  diffutils
-  fakeroot
-  gcc
-  go
-  gopls
-  make
-  meson
-  ninja
-  patch
-  pkgconf
-  shellcheck-bin
-  which
-)
-
-# GUI
-depends+=(
-  chromium
-  firefox
-  gimp
-  inkscape
-  libreoffice-fresh
-  xorg-xwayland
-)
-
-# extra
-depends+=(
-  asciinema
-  asciitosvg-git
-  bc
-  dotfiles-git
-  fd
-  gmni-git
-  go-yq
-  gron-bin
-  hyperfine
-  ncdu
-  oath-toolkit
-  pacman-contrib # needed for paccache service
-  python-adblock
-  qpdf
-  tree
-  vi # used as backup editor
-  yt-dlp
-)
-
-# fonts
-depends+=(
-  adobe-source-code-pro-fonts
-  adobe-source-sans-fonts
-  adobe-source-serif-fonts
-)
-
-# screen sharing
-depends+=(
-  wireplumber
-  xdg-desktop-portal-wlr
-)
-
-# extra archive formats
-depends+=(
-  p7zip
-  unrar
-  unzip
-  zip
-)
-
-# git email
-depends+=(
-  perl-authen-sasl
-  perl-net-smtp-ssl
-  perl-mime-tools
-)
-
 _rootdir=$PWD
 
 package() {
+  # base installation
+  depends+=(
+    base
+    linux
+    linux-firmware
+    efibootmgr
+    grub
+    intel-ucode
+  )
+
+  # dotfiles
+  depends+=(
+    aerc
+    amfora
+    aria2
+    bemenu-wayland
+    bluez-tools
+    bluez-utils
+    catimg
+    ctags
+    curl
+    entr
+    fontconfig
+    foot
+    fzf
+    gammastep
+    git
+    gnupg
+    grim
+    htop
+    httpie
+    i3blocks
+    imagemagick
+    imv
+    jq
+    khard
+    less
+    libpulse
+    libqalculate
+    libxml2
+    light
+    mako
+    mitmproxy
+    mpc
+    mpd
+    mpv
+    networkmanager
+    opendoas
+    openssh
+    otf-font-awesome
+    pass
+    pulsemixer
+    pv
+    qrencode
+    qutebrowser
+    remind
+    ripgrep
+    rsync
+    scdoc
+    sfeed
+    slurp
+    sway
+    swaybg
+    swayidle
+    swaylock
+    tmux
+    tmux-xpanes
+    translate-shell
+    vdirsyncer
+    vim
+    w3m
+    weechat
+    wf-recorder
+    wl-clipboard
+    xdg-utils
+    ydotool
+    yubikey-manager
+    zathura
+    zsh
+  )
+
+  # plugins
+  depends+=(
+    fzf-tab-git
+    vim-ale
+    vim-go
+    vim-goyo-git
+    vim-gutentags-git
+    vim-nerdcommenter
+    vim-oscyank-git
+    vim-repeat
+    vim-sayonara-git
+    vim-surround
+    vim-taboo-git
+    vim-tagbar
+    vim-tmux-navigator-git
+    vim-ultisnips
+    vim-undotree
+    weechat-vimode-git
+    weechat-wee-most-git
+    zathura-cb
+    zathura-pdf-mupdf
+    zsh-autosuggestions
+    zsh-history-substring-search
+    zsh-syntax-highlighting
+  )
+
+  # system
+  depends+=(
+    bluez
+    cryptsetup
+    device-mapper
+    dosfstools
+    e2fsprogs
+    logrotate
+    lvm2
+    lxd
+    man-db
+    man-pages
+    ntfs-3g
+    pipewire-pulse
+    s-nail
+    usbutils
+  )
+
+  # network
+  depends+=(
+    inetutils
+    ldns
+    nmap
+    speedtest-cli
+    termshark
+    wireguard-tools
+  )
+
+  # development
+  depends+=(
+    autoconf
+    automake
+    bash-bats
+    bison
+    diffutils
+    fakeroot
+    gcc
+    go
+    gopls
+    make
+    meson
+    ninja
+    patch
+    pkgconf
+    shellcheck-bin
+    which
+  )
+
+  # GUI
+  depends+=(
+    chromium
+    firefox
+    gimp
+    inkscape
+    libreoffice-fresh
+    xorg-xwayland
+  )
+
+  # extra
+  depends+=(
+    asciinema
+    asciitosvg-git
+    bc
+    dotfiles-git
+    fd
+    gmni-git
+    go-yq
+    gron-bin
+    hyperfine
+    ncdu
+    oath-toolkit
+    pacman-contrib # needed for paccache service
+    python-adblock
+    qpdf
+    tree
+    vi # used as backup editor
+    yt-dlp
+  )
+
+  # fonts
+  depends+=(
+    adobe-source-code-pro-fonts
+    adobe-source-sans-fonts
+    adobe-source-serif-fonts
+  )
+
+  # screen sharing
+  depends+=(
+    wireplumber
+    xdg-desktop-portal-wlr
+  )
+
+  # extra archive formats
+  depends+=(
+    p7zip
+    unrar
+    unzip
+    zip
+  )
+
+  # git email
+  depends+=(
+    perl-authen-sasl
+    perl-net-smtp-ssl
+    perl-mime-tools
+  )
+
   cp -R "$_rootdir"/files/* "$pkgdir"
 
   # adjust permissions

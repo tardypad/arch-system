@@ -1,14 +1,14 @@
 pkgbase = vim-sayonara-git
 	pkgdesc = A Vim plugin for sane buffer/window deletion
 	pkgver = r51.75c73f3
-	pkgrel = 1
+	pkgrel = 2
 	url = https://github.com/mhinz/vim-sayonara
 	arch = any
 	groups = vim-plugins
 	license = MIT
 	makedepends = git
-	depends = vim-runtime
 	source = git+https://github.com/mhinz/vim-sayonara.git
 	sha512sums = SKIP
 
 pkgname = vim-sayonara-git
+	depends = vim-runtime

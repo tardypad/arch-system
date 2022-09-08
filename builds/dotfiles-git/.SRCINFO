@@ -1,7 +1,7 @@
 pkgbase = dotfiles-git
 	pkgdesc = My dotfiles
 	pkgver = r3183.ad3dcdfb
-	pkgrel = 1
+	pkgrel = 3
 	url = https://sr.ht/~tardypad/dotfiles/
 	install = dotfiles-git.install
 	arch = any
@@ -11,10 +11,10 @@ pkgbase = dotfiles-git
 	makedepends = git
 	makedepends = openssh
 	makedepends = scdoc
-	depends = fontconfig
-	depends = systemd
-	depends = vim
 	source = git+ssh://damien@tardypad.me:11235/~/repos/dotfiles#branch=master
 	sha512sums = SKIP
 
 pkgname = dotfiles-git
+	depends = fontconfig
+	depends = systemd
+	depends = vim

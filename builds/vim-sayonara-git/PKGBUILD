@@ -1,6 +1,6 @@
 pkgname=vim-sayonara-git
 pkgver=r51.75c73f3
-pkgrel=1
+pkgrel=2
 pkgdesc="A Vim plugin for sane buffer/window deletion"
 arch=("any")
 url="https://github.com/mhinz/vim-sayonara"
@@ -12,10 +12,6 @@ groups=(
 
 makedepends=(
   'git'
-)
-
-depends=(
-  'vim-runtime'
 )
 
 source=(
@@ -32,6 +28,10 @@ pkgver() {
 }
 
 package() {
+  depends+=(
+    'vim-runtime'
+  )
+
   cd vim-sayonara
   install -D -m644 plugin/sayonara.vim "${pkgdir}/usr/share/vim/vimfiles/plugin/sayonara.vim"
   install -D -m644 doc/sayonara.txt "${pkgdir}/usr/share/vim/vimfiles/doc/sayonara.txt"
