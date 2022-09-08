@@ -7,6 +7,11 @@ lxc launch "images:archlinux" "${CONTAINER_NAME}"
 # wait for network
 sleep 2
 
+# better mirror for usage in Europe than default one based in US
+cat << EOF | lxc exec "${CONTAINER_NAME}" -- /bin/sh
+  echo 'Server = https://mirror.ams1.nl.leaseweb.net/archlinux/\$repo/os/\$arch' > /etc/pacman.d/mirrorlist
+EOF
+
 cat << EOF | lxc exec "${CONTAINER_NAME}" -- /bin/sh
   pacman -S --noconfirm base-devel git vim
   useradd -mU damien
