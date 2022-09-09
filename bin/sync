@@ -91,8 +91,9 @@ build_aur() {
 }
 
 add_package() {
+  PACKAGE_PREFIX="$( echo "${PACKAGE}" | sed 's/-git$//' )"
   lxc exec "${CONTAINER_NAME}" -- \
-    su -lc "repo-add /home/damien/packages/${REPO_NAME}.db.tar.xz /home/damien/packages/${PACKAGE}*" damien
+    su -lc "repo-add /home/damien/packages/${REPO_NAME}.db.tar.xz /home/damien/packages/${PACKAGE_PREFIX}*" damien
 }
 
 remove_package() {
