@@ -19,5 +19,9 @@
 /etc/logrotate.conf
 /etc/pacman.conf
 
+# modified to have credentials
+/etc/NetworkManager/system-connections/Chestnut
+/etc/pacman.d/chestnut
+
 # misc
 /etc/resolv.conf
