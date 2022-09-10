@@ -78,6 +78,16 @@
 /boot/initramfs-linux.img
 /boot/vmlinuz-linux
 /etc/adjtime
+/usr/lib/modules/*/modules.alias
+/usr/lib/modules/*/modules.alias.bin
+/usr/lib/modules/*/modules.builtin.alias.bin
+/usr/lib/modules/*/modules.builtin.bin
+/usr/lib/modules/*/modules.dep
+/usr/lib/modules/*/modules.dep.bin
+/usr/lib/modules/*/modules.devname
+/usr/lib/modules/*/modules.softdep
+/usr/lib/modules/*/modules.symbols
+/usr/lib/modules/*/modules.symbols.bin
 
 # lm_sensors
 /etc/conf.d/lm_sensors
