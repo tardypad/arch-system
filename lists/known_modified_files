@@ -14,7 +14,6 @@
 /etc/shells
 
 # modified by own system-config package
-/etc/bluetooth/main.conf
 /etc/issue
 /etc/logrotate.conf
 /etc/pacman.conf
