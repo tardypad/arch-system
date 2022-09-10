@@ -58,7 +58,9 @@ validate_command_line() {
     exit_error 'missing package operand'
   fi
 
-  if [ "${REPO_NAME}" = 'tardypad' ] && [ ! -d "builds/${PACKAGE}" ]; then
+  if [ "${REPO_NAME}" = 'tardypad' ] \
+    && [ "${REMOVE}" = 'false' ] \
+    && [ ! -d "builds/${PACKAGE}" ]; then
     exit_error "Package '${PACKAGE}' does not exist"
   fi
 }
