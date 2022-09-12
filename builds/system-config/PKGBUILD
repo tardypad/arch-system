@@ -1,6 +1,6 @@
 pkgname=system-config
-pkgver=216
-pkgrel=3
+pkgver=217
+pkgrel=1
 pkgdesc='System configurations'
 url='https://sr.ht/~tardypad/arch-system'
 arch=('any')
@@ -33,7 +33,6 @@ package() {
   # dotfiles
   depends+=(
     aerc
-    amfora
     aria2
     bemenu-wayland
     bluez-tools
@@ -192,7 +191,6 @@ package() {
     bc
     dotfiles-git
     fd
-    gmni-git
     go-yq
     gron-bin
     hyperfine
