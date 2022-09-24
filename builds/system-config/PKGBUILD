@@ -1,5 +1,5 @@
 pkgname=system-config
-pkgver=217
+pkgver=218
 pkgrel=1
 pkgdesc='System configurations'
 url='https://sr.ht/~tardypad/arch-system'
@@ -219,6 +219,7 @@ package() {
 
   # extra archive formats
   depends+=(
+    lzip
     p7zip
     unrar
     unzip
