@@ -1,5 +1,5 @@
 pkgname=system-config
-pkgver=218
+pkgver=219
 pkgrel=1
 pkgdesc='System configurations'
 url='https://sr.ht/~tardypad/arch-system'
@@ -46,6 +46,7 @@ package() {
     fzf
     gammastep
     git
+    git-delta
     gnupg
     grim
     htop
