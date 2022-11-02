@@ -72,6 +72,9 @@ exit_error() {
 
 
 build() {
+  # update packages cache to install dependencies successfully
+  lxc exec "${CONTAINER_NAME}" -- pacman -Sy
+
   lxc exec "${CONTAINER_NAME}" -- \
     su -lc "cd $1 && makepkg --noconfirm --syncdeps --rmdeps --clean --force && makepkg --printsrcinfo > .SRCINFO" damien
 }
