@@ -17,6 +17,8 @@
 /etc/issue
 /etc/logrotate.conf
 /etc/pacman.conf
+/etc/subgid
+/etc/subuid
 
 # modified to have credentials
 /etc/NetworkManager/system-connections/Chestnut
