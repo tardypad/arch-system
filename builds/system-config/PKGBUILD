@@ -1,6 +1,6 @@
 pkgname=system-config
 pkgver=221
-pkgrel=1
+pkgrel=2
 pkgdesc='System configurations'
 url='https://sr.ht/~tardypad/arch-system'
 arch=('any')
