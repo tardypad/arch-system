@@ -73,12 +73,7 @@ install_packages() {
   pacman -S --overwrite '*' system-config
 }
 
-setup_users_1() {
-  # damien user is needed before the installation of system-config and dotfiles-git packages
-  useradd -mU damien
-}
-
-setup_users_2() {
+setup_users() {
   usermod -aG uucp,video,wheel,input,wireshark,lxd damien
   passwd damien
 
@@ -104,7 +99,6 @@ check_root_user
 
 setup_repositories
 upgrade_current_packages
-setup_users_1
 install_packages
-setup_users_2
+setup_users
 setup_proxy
