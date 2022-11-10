@@ -15,6 +15,8 @@ regenerate_fonts() {
 
 
 post_install() {
+  useradd -U damien 2> /dev/null
+
   generate_vim_spell_files
   reload_systemd
   regenerate_fonts

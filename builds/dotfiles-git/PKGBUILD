@@ -1,6 +1,6 @@
 pkgname=dotfiles-git
 pkgver=r3240.98925c91
-pkgrel=1
+pkgrel=2
 pkgdesc="My dotfiles"
 arch=('any')
 url="https://sr.ht/~tardypad/dotfiles/"
