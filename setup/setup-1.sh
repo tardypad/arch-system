@@ -133,6 +133,9 @@ install_system_config() {
   done
 
   pacstrap -K /mnt "system-config-${SYSTEM_CONFIG}" --override '*'
+
+  # we set the packages password on the end system while we can
+  sed -i "s/{PASSWORD}/${PKG_PWD}/" /mnt/etc/pacman.d/chestnut
 }
 
 generate_fstab() {
