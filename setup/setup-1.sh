@@ -228,6 +228,17 @@ configure_lxd() {
   arch-root /mnt lxd init --minimal
 }
 
+configure_proxy() {
+  # creates keys for CA and trust it
+  arch-chroot /mnt useradd -m proxyer
+  arch-chroot /mnt timeout 1s doas -u proxyer mitmproxy
+  arch-chroot /mnt trust anchor --store /home/proxyer/.mitmproxy/mitmproxy-ca.pem
+
+  # reuse same keys locally (creating new ones seems to create issues on usage)
+  arch-chroot /mnt cp -r /home/proxyer/.mitmproxy/ /home/damien/.mitmproxy
+  arch-chroot /mnt chown -R damien:damien /home/damien/.mitmproxy
+}
+
 connect_to_internet &&
 update_clock &&
 prepare_device &&
@@ -241,4 +252,5 @@ configure_users &&
 configure_bootloader &&
 configure_mount_devices &&
 enable_services &&
-configure_lxd
+configure_lxd &&
+configure_proxy
