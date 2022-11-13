@@ -217,6 +217,11 @@ enable_services() {
   arch-root /mnt systemctl enable pcscd.service
 }
 
+configure_lxd() {
+  arch-root /mnt systemctl start lxd.service
+  arch-root /mnt lxd init --minimal
+}
+
 connect_to_internet &&
 update_clock &&
 prepare_device &&
@@ -229,4 +234,5 @@ configure_initramfs &&
 configure_root &&
 configure_bootloader &&
 configure_mount_devices &&
-enable_services
+enable_services &&
+configure_lxd
