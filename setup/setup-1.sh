@@ -206,6 +206,17 @@ configure_mount_devices() {
 	EOF
 }
 
+enable_services() {
+  arch-root /mnt systemctl enable NetworkManager.service
+  arch-root /mnt systemctl enable bluetooth.service
+
+  # packages cache cleaning
+  arch-root /mnt systemctl enable paccache.timer
+
+  # Yubikey usage
+  arch-root /mnt systemctl enable pcscd.service
+}
+
 connect_to_internet &&
 update_clock &&
 prepare_device &&
@@ -217,4 +228,5 @@ configure_hostname &&
 configure_initramfs &&
 configure_root &&
 configure_bootloader &&
-configure_mount_devices
+configure_mount_devices &&
+enable_services
