@@ -190,6 +190,22 @@ configure_bootloader() {
   arch-chroot /mnt grub-mkconfig -o /boot/grub/grub.cfg
 }
 
+configure_mount_devices() {
+  for d in toshiba lacie tdk_secret tdk_data kobo; do
+    mkdir "/mnt/mnt/$d"
+  done
+
+  cat >> /mnt/etc/fstab <<- EOF
+
+		# mount-device
+		/dev/mapper/toshiba    /mnt/toshiba    ext4 noauto,user
+		/dev/mapper/lacie      /mnt/lacie      ext4 noauto,user
+		/dev/mapper/tdk_secret /mnt/tdk_secret ext4 noauto,user
+		UUID=AFE8-B122         /mnt/tdk_data   vfat noauto,user
+		UUID=5BBA-D17          /mnt/kobo       vfat noauto,user
+	EOF
+}
+
 connect_to_internet &&
 update_clock &&
 prepare_device &&
@@ -200,4 +216,5 @@ configure_locale &&
 configure_hostname &&
 configure_initramfs &&
 configure_root &&
-configure_bootloader
+configure_bootloader &&
+configure_mount_devices
