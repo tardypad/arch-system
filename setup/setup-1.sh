@@ -173,9 +173,15 @@ configure_initramfs() {
   arch-chroot /mnt mkinitcpio -P
 }
 
-configure_root() {
-  printf 'Set root password\n'
-  arch-chroot /mnt passwd
+configure_users() {
+  arch-root /mnt useradd -U damien
+  arch-root /mnt usermod -aG uucp,video,wheel,input,wireshark,lxd damien
+
+  arch-root /mnt chsh -s /usr/bin/zsh root
+  arch-root /mnt chsh -s /usr/bin/zsh damien
+
+  arch-root /mnt passwd root
+  arch-root /mnt passwd damien
 }
 
 configure_bootloader() {
@@ -231,7 +237,7 @@ configure_timezone &&
 configure_locale &&
 configure_hostname &&
 configure_initramfs &&
-configure_root &&
+configure_users &&
 configure_bootloader &&
 configure_mount_devices &&
 enable_services &&
