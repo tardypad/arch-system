@@ -13,15 +13,6 @@ post_install() {
   install -dm0755 -o damien -g damien /var/log/sway
   install -Dm0644 -o damien -g damien /dev/null /var/log/sway/sway.log
 
-  systemctl enable --now NetworkManager.service
-  systemctl enable --now bluetooth.service
-
-  # Yubikey usage
-  systemctl enable --now pcscd.service
-
-  # Weekly delete cached versions of packages, except most recent 3
-  systemctl enable paccache.timer
-
   # LXD setup
   systemctl start lxd.service
   lxd init --minimal
