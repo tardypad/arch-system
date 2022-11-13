@@ -6,20 +6,6 @@ list_manual_updates() {
 	EOF
 }
 
-setup_mount_devices() {
-  mkdir /mnt/toshiba /mnt/lacie /mnt/tdk_secret /mnt/tdk_data /mnt/kobo
-
-  cat << EOF >> /etc/fstab
-
-# mount-device
-/dev/mapper/toshiba    /mnt/toshiba    ext4 noauto,user
-/dev/mapper/lacie      /mnt/lacie      ext4 noauto,user
-/dev/mapper/tdk_secret /mnt/tdk_secret ext4 noauto,user
-UUID=AFE8-B122         /mnt/tdk_data   vfat noauto,user
-UUID=5BBA-D17          /mnt/kobo       vfat noauto,user
-EOF
-}
-
 post_install() {
   useradd -U damien 2> /dev/null
 
@@ -39,8 +25,6 @@ post_install() {
   # LXD setup
   systemctl start lxd.service
   lxd init --minimal
-
-  setup_mount_devices
 
   list_manual_updates
 }
