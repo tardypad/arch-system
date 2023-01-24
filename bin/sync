@@ -72,8 +72,8 @@ exit_error() {
 
 
 build() {
-  # update packages cache to install dependencies successfully
-  lxc exec "${CONTAINER_NAME}" -- pacman -Sy
+  # update packages cache and upgrade keyring to install dependencies successfully
+  lxc exec "${CONTAINER_NAME}" -- pacman -Sy --noconfirm archlinux-keyring
 
   lxc exec "${CONTAINER_NAME}" -- \
     su -lc "cd $1 && makepkg --noconfirm --syncdeps --rmdeps --clean --force && makepkg --printsrcinfo > .SRCINFO" damien
