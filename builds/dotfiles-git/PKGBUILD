@@ -1,5 +1,5 @@
 pkgname=dotfiles-git
-pkgver=r3272.67ca5bc6
+pkgver=r3307.d25eb8cd
 pkgrel=1
 pkgdesc="My dotfiles"
 arch=('any')
