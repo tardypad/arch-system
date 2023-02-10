@@ -19,9 +19,16 @@ Most scripts rely on the following packages
 | pacman      | package manager                  | [Archlinux](https://git.archlinux.org/pacman.git)                                 | [6.0.2](https://git.archlinux.org/pacman.git/tag/?h=v6.0.2)                                                 |
 
 
+
 ## Setup
 
 ```shell
 # from Live USB
 curl -s https://git.sr.ht/~tardypad/arch-system/blob/master/setup/setup-1.sh | sh | tee install.log
 ```
+
+
+## Builds
+
+Builds are run within a pre setup LXC container named "arch-builds".
+The build container can be created via the "utilities/setup-build-container" script.
