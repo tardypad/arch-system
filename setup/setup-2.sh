@@ -1,45 +1,4 @@
 #!/bin/sh
-# commands used:
-# - curl
-# - gpg
-# - pass
-# - weechat
-
-init_variables() {
-  COMMAND=${0##*/}
-}
-
-show_usage() {
-  cat <<- EOF
-	usage: ${COMMAND} [<options>]
-
-	Setup some parts of the user environment
-
-	Options:
-	  -h    show this message only
-	EOF
-}
-
-parse_command_line() {
-  while getopts h OPT; do
-    case "${OPT}" in
-      h) show_usage; exit 0 ;;
-      ?) exit_error ;;
-    esac
-  done
-
-  shift $(( OPTIND - 1 ))
-}
-
-exit_error() {
-  [ -z "$1" ] || echo "${COMMAND}: $1"
-  echo "Try '${COMMAND} -h' for more information."
-  exit 1
-} >&2
-
-check_damien_user() {
-  [ "$( id -un )" != 'damien' ] && exit_error 'The script must be run as damien'
-}
 
 setup_home_dirs() {
   mkdir -p /home/damien/Contacts
@@ -54,6 +13,10 @@ setup_home_dirs() {
   mkdir -p /home/damien/Videos
 }
 
+setup_pass() {
+  git clone perso:pass-store ~/.password-store
+}
+
 setup_gnupg() {
   curl -sL https://tardypad.me/public_key.txt | gpg --import -
   GPG_PUB_KEY_FINGERPRINT="$( gpg --list-keys --with-colons damien@tardypad.me | awk -F: '/^pub:/ {print $5}' )"
@@ -64,11 +27,12 @@ setup_weechat() {
   weechat -ap -r "/secure passphrase $( pass perso/weechat )" -r '/quit'
 }
 
-init_variables
-parse_command_line "$@"
+if [ "$( id -un )" != 'damien' ]; then
+  echo 'The script must be run as damien' >&2
+  exit 1
+fi
 
-check_damien_user
-
-setup_home_dirs
-setup_gnupg
+setup_home_dirs &&
+setup_pass &&
+setup_gnupg &&
 setup_weechat

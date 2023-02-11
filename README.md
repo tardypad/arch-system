@@ -25,6 +25,9 @@ Most scripts rely on the following packages
 ```shell
 # from Live USB
 curl -s https://git.sr.ht/~tardypad/arch-system/blob/master/setup/setup-1.sh | sh | tee install.log
+
+# after first login as user
+curl -s https://git.sr.ht/~tardypad/arch-system/blob/master/setup/setup-2.sh | sh
 ```
 
 
