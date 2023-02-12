@@ -105,6 +105,10 @@ prepare_device() {
   mount --mkdir /dev/vg/home /mnt/home
   mount --mkdir "${EFI_PARTITION}" /mnt/boot
   swapon /dev/vg/swap
+
+  lsblk -o NAME,TYPE,FSTYPE,SIZE,MOUNTPOINTS
+  printf 'Confirm device preparation\n'
+  read -r
 }
 
 install_system_config() {
@@ -136,10 +140,17 @@ install_system_config() {
 
   # we set the packages password on the end system while we can
   sed -i "s/{PASSWORD}/${PKG_PWD}/" /mnt/etc/pacman.d/chestnut
+
+  printf 'Confirm system config installation\n'
+  read -r
 }
 
 generate_fstab() {
   genfstab -U /mnt >> /mnt/etc/fstab
+
+  cat /mnt/etc/fstab
+  printf 'Confirm fstab file\n'
+  read -r
 }
 
 configure_timezone() {
