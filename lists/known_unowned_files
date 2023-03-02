@@ -32,6 +32,8 @@
 
 # filesystem
 /etc/.pwd.lock
+/etc/credstore
+/etc/credstore.encrypted
 /etc/ld.so.cache
 /etc/os-release
 
