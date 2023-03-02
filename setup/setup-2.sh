@@ -24,7 +24,7 @@ setup_gnupg() {
 }
 
 setup_weechat() {
-  weechat -ap -r "/secure passphrase $( pass perso/weechat )" -r '/quit'
+  weechat -ap -r "/secure passphrase $( pass show perso/weechat )" -r '/quit'
 }
 
 if [ "$( id -un )" != 'damien' ]; then

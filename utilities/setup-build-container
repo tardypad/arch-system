@@ -71,10 +71,10 @@ cat << EOF | lxc exec "${CONTAINER_NAME}" -- /bin/sh
   cat <<- EOF2 >> /etc/pacman.conf
 		[tardypad]
 		SigLevel = Never
-		Server = https://damien:$( pass perso/tardypad.me/pkgs | sed 1q )@pkgs.tardypad.me/arch/\\\$repo
+		Server = https://damien:$( pass show perso/tardypad.me/pkgs | sed 1q )@pkgs.tardypad.me/arch/\\\$repo
 		[aur]
 		SigLevel = Never
-		Server = https://damien:$( pass perso/tardypad.me/pkgs | sed 1q )@pkgs.tardypad.me/arch/\\\$repo
+		Server = https://damien:$( pass show perso/tardypad.me/pkgs | sed 1q )@pkgs.tardypad.me/arch/\\\$repo
 EOF2
 EOF
 
