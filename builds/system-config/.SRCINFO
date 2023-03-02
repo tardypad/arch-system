@@ -1,6 +1,6 @@
 pkgbase = system-config
 	pkgdesc = System configurations
-	pkgver = 225
+	pkgver = 226
 	pkgrel = 1
 	url = https://sr.ht/~tardypad/arch-system
 	install = system-config.install
@@ -143,6 +143,7 @@ pkgname = system-config
 	depends = pkgconf
 	depends = shellcheck-bin
 	depends = which
+	depends = wayland-protocols
 	depends = chromium
 	depends = firefox
 	depends = gimp
