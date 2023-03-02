@@ -67,14 +67,15 @@ EOF2
 EOF
 
 # enable own repositories to fetch dependencies from
+PKGS_PASSWORD="$( pass show perso/tardypad.me/pkgs | sed 1q )"
 cat << EOF | lxc exec "${CONTAINER_NAME}" -- /bin/sh
   cat <<- EOF2 >> /etc/pacman.conf
 		[tardypad]
 		SigLevel = Never
-		Server = https://damien:$( pass show perso/tardypad.me/pkgs | sed 1q )@pkgs.tardypad.me/arch/\\\$repo
+		Server = https://damien:${PKGS_PASSWORD}@pkgs.tardypad.me/arch/\\\$repo
 		[aur]
 		SigLevel = Never
-		Server = https://damien:$( pass show perso/tardypad.me/pkgs | sed 1q )@pkgs.tardypad.me/arch/\\\$repo
+		Server = https://damien:${PKGS_PASSWORD}@pkgs.tardypad.me/arch/\\\$repo
 EOF2
 EOF
 
