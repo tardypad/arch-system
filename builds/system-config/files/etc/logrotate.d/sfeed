@@ -3,7 +3,7 @@
   su damien damien
   nocreate
   weekly
-  olddir old
+  olddir /home/damien/.sfeed/feeds.old
   createolddir 755 damien damien
   rotate 4
   maxage 28
