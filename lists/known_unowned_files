@@ -191,6 +191,9 @@
 # vim
 /usr/share/vim/vimfiles/doc/tags
 
+# vim-unicode
+/usr/share/vim/vimfiles/autoload/unicode/*
+
 # xdg-utils
 /usr/share/applications/mimeinfo.cache
 
