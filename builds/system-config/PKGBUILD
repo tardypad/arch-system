@@ -1,5 +1,5 @@
 pkgname=system-config
-pkgver=227
+pkgver=228
 pkgrel=1
 pkgdesc='System configurations'
 url='https://sr.ht/~tardypad/arch-system'
@@ -119,6 +119,7 @@ package() {
     vim-tmux-navigator-git
     vim-ultisnips
     vim-undotree
+    vim-unicode-git
     weechat-vimode-git
     weechat-wee-most-git
     zathura-cb
