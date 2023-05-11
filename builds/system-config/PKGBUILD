@@ -1,5 +1,5 @@
 pkgname=system-config
-pkgver=228
+pkgver=229
 pkgrel=1
 pkgdesc='System configurations'
 url='https://sr.ht/~tardypad/arch-system'
@@ -55,6 +55,7 @@ package() {
     i3blocks
     imagemagick
     imv
+    isync
     jq
     khard
     less
