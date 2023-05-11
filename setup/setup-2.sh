@@ -5,6 +5,7 @@ setup_home_dirs() {
   mkdir -p /home/damien/Desktop
   mkdir -p /home/damien/Downloads
   mkdir -p /home/damien/Documents
+  mkdir -p /home/damien/Mail/Perso
   mkdir -p /home/damien/Music
   mkdir -p /home/damien/Notes
   mkdir -p /home/damien/Pictures
