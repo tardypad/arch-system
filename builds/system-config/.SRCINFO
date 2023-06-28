@@ -1,6 +1,6 @@
 pkgbase = system-config
 	pkgdesc = System configurations
-	pkgver = 230
+	pkgver = 231
 	pkgrel = 1
 	url = https://sr.ht/~tardypad/arch-system
 	install = system-config.install
@@ -125,6 +125,7 @@ pkgname = system-config
 	depends = usbutils
 	depends = inetutils
 	depends = ldns
+	depends = mtr
 	depends = nmap
 	depends = speedtest-cli
 	depends = termshark
