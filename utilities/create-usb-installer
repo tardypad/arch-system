@@ -1,9 +1,9 @@
 #!/bin/sh
 # commands used:
+# - b2sum
 # - bsdtar
 # - curl
 # - fatlabel
-# - md5sum
 # - mktemp
 
 init_variables() {
@@ -83,11 +83,11 @@ download_iso() (
     exit_error "Cannot download ISO"
   fi
 
-  curl -fL "${DOWNLOAD_BASE_URL}/${VERSION}/md5sums.txt" \
+  curl -fL "${DOWNLOAD_BASE_URL}/${VERSION}/b2sums.txt" \
     | grep "archlinux-${VERSION}-x86_64.iso" \
-    > md5sums.txt
+    > b2sums.txt
 
-  md5sum -c md5sums.txt
+  b2sum -c b2sums.txt
 )
 
 flash_usb() {
