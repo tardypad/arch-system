@@ -38,6 +38,12 @@ restore_backups() {
   backup -r "$HDD" laptop todo
 }
 
+clone_main_repositories() {
+  mkdir -p /home/damien/Projects/tardypad
+  git clone perso:arch-system /home/damien/Projects/tardypad/arch-system
+  git clone perso:dotfiles /home/damien/Projects/tardypad/dotfiles
+}
+
 if [ "$( id -un )" != 'damien' ]; then
   echo 'The script must be run as damien' >&2
   exit 1
@@ -47,4 +53,5 @@ setup_home_dirs &&
 setup_pass &&
 setup_gnupg &&
 setup_weechat &&
-restore_backups
+restore_backups &&
+clone_main_repositories
