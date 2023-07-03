@@ -26,7 +26,8 @@ Most scripts rely on the following packages
 # from Live USB
 iwctl --passphrase "${WIFI_PWD}" station wlan0 connect "${WIFI_SSID}"
 ping -c 1 archlinux.org
-curl -s https://git.sr.ht/~tardypad/arch-system/blob/master/setup/setup-1.sh | sh | tee install.log
+curl -s https://git.sr.ht/~tardypad/arch-system/blob/master/setup/setup-1.sh -o setup-1.sh
+sh setup-1.sh 2>&1 | tee install.log
 
 # after first login as user
 # with HDD=hdd1 or HDD=hdd2
