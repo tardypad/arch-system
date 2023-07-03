@@ -101,6 +101,7 @@ install_system_config() {
 		SigLevel = Never
 		Server = https://damien:${PKG_PWD}@pkgs.tardypad.me/arch/aur
 	EOF
+  sed -i "/\[multilib\]/,/Include/"'s/^#//' /etc/pacman.conf
   pacman -Sy
 
   printf 'Available system configs:\n'
