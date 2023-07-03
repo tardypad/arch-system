@@ -211,22 +211,6 @@ enable_services() {
   arch-chroot /mnt systemctl enable pcscd.service
 }
 
-configure_lxd() {
-  arch-chroot /mnt systemctl start lxd.service
-  arch-chroot /mnt lxd init --minimal
-}
-
-configure_proxy() {
-  # creates keys for CA and trust it
-  arch-chroot /mnt useradd -m proxyer
-  arch-chroot /mnt timeout 1s doas -u proxyer mitmproxy
-  arch-chroot /mnt trust anchor --store /home/proxyer/.mitmproxy/mitmproxy-ca.pem
-
-  # reuse same keys locally (creating new ones seems to create issues on usage)
-  arch-chroot /mnt cp -r /home/proxyer/.mitmproxy/ /home/damien/.mitmproxy
-  arch-chroot /mnt chown -R damien:damien /home/damien/.mitmproxy
-}
-
 update_clock &&
 prepare_device &&
 install_system_config &&
@@ -238,6 +222,4 @@ configure_initramfs &&
 configure_users &&
 configure_bootloader &&
 configure_mount_devices &&
-enable_services &&
-configure_lxd &&
-configure_proxy
+enable_services
