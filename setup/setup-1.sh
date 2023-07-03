@@ -12,14 +12,11 @@
 # Values that should be mostly fixed
 LOCALE='en_US.UTF-8'
 TIMEZONE='Europe/Madrid'
-WIFI_DEVICE='wlan0'
 BOOT_SIZE='300M'
 SWAP_SIZE='2G'
 ROOT_SIZE='30G'
 
 # Required inputs
-WIFI_SSID=
-WIFI_PWD=
 DEVICE=
 PKG_PWD=
 SYSTEM_CONFIG=
@@ -29,32 +26,6 @@ HOSTNAME=
 EFI_PARTITION=
 LUKS_PARTITION=
 LUKS_PARTITION_UUID=
-
-connect_to_internet() {
-  while [ -z "${WIFI_SSID}" ]; do
-    printf 'Enter WiFi SSID: '
-    read -r WIFI_SSID
-  done
-
-  while [ -z "${WIFI_PWD}" ]; do
-    printf 'Enter WiFi password: '
-    read -r WIFI_PWD
-  done
-
-  printf 'Connecting to WIFI...'
-  if ! iwctl --passphrase "${WIFI_PWD}" station "${WIFI_DEVICE}" connect "${WIFI_SSID}" > /dev/null; then
-    printf 'failed\n'
-    return 1
-  fi
-  printf 'success\n'
-
-  printf 'Testing Internet connection...'
-  if ! ping -c 1 archlinux.org > /dev/null; then
-    printf 'failed\n'
-    return 1
-  fi
-  printf 'success\n'
-}
 
 update_clock() {
   timedatectl set-ntp true
@@ -250,7 +221,6 @@ configure_proxy() {
   arch-chroot /mnt chown -R damien:damien /home/damien/.mitmproxy
 }
 
-connect_to_internet &&
 update_clock &&
 prepare_device &&
 install_system_config &&

@@ -24,6 +24,8 @@ Most scripts rely on the following packages
 
 ```shell
 # from Live USB
+iwctl --passphrase "${WIFI_PWD}" station wlan0 connect "${WIFI_SSID}"
+ping -c 1 archlinux.org
 curl -s https://git.sr.ht/~tardypad/arch-system/blob/master/setup/setup-1.sh | sh | tee install.log
 
 # after first login as user
