@@ -43,6 +43,8 @@ prepare_device() {
   done
   printf '\n'
 
+  DEVICE="/dev/${DEVICE}"
+
   printf 'Confirm installation on device %s' "${DEVICE}"
   read -r
 
