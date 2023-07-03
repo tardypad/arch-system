@@ -162,14 +162,14 @@ configure_initramfs() {
 }
 
 configure_users() {
-  arch-root /mnt useradd -U damien
-  arch-root /mnt usermod -aG uucp,video,wheel,input,wireshark,lxd damien
+  arch-chroot /mnt useradd -U damien
+  arch-chroot /mnt usermod -aG uucp,video,wheel,input,wireshark,lxd damien
 
-  arch-root /mnt chsh -s /usr/bin/zsh root
-  arch-root /mnt chsh -s /usr/bin/zsh damien
+  arch-chroot /mnt chsh -s /usr/bin/zsh root
+  arch-chroot /mnt chsh -s /usr/bin/zsh damien
 
-  arch-root /mnt passwd root
-  arch-root /mnt passwd damien
+  arch-chroot /mnt passwd root
+  arch-chroot /mnt passwd damien
 }
 
 configure_bootloader() {
@@ -201,19 +201,19 @@ configure_mount_devices() {
 }
 
 enable_services() {
-  arch-root /mnt systemctl enable NetworkManager.service
-  arch-root /mnt systemctl enable bluetooth.service
+  arch-chroot /mnt systemctl enable NetworkManager.service
+  arch-chroot /mnt systemctl enable bluetooth.service
 
   # packages cache cleaning
-  arch-root /mnt systemctl enable paccache.timer
+  arch-chroot /mnt systemctl enable paccache.timer
 
   # Yubikey usage
-  arch-root /mnt systemctl enable pcscd.service
+  arch-chroot /mnt systemctl enable pcscd.service
 }
 
 configure_lxd() {
-  arch-root /mnt systemctl start lxd.service
-  arch-root /mnt lxd init --minimal
+  arch-chroot /mnt systemctl start lxd.service
+  arch-chroot /mnt lxd init --minimal
 }
 
 configure_proxy() {
