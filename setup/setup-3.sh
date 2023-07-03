@@ -8,7 +8,7 @@ configure_lxd() {
 configure_proxy() {
   # creates keys for CA and trust it
   useradd -m proxyer
-  timeout 1s doas -u proxyer mitmproxy
+  doas -u proxyer mitmproxy
   trust anchor --store /home/proxyer/.mitmproxy/mitmproxy-ca.pem
 
   # reuse same keys locally (creating new ones seems to create issues on usage)
