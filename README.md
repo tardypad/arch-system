@@ -27,7 +27,7 @@ Most scripts rely on the following packages
 iwctl --passphrase "${WIFI_PWD}" station wlan0 connect "${WIFI_SSID}"
 ping -c 1 archlinux.org
 curl -s https://git.sr.ht/~tardypad/arch-system/blob/master/setup/setup-1.sh -o setup-1.sh
-sh setup-1.sh 2>&1 | tee install.log
+script -c 'sh setup-1.sh' install.log
 
 # after first login as user
 # with HDD=hdd1 or HDD=hdd2
