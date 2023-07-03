@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# need to have HDD containing backup mounted
+HDD="$1"
+
 setup_home_dirs() {
   mkdir -p /home/damien/Contacts
   mkdir -p /home/damien/Desktop
@@ -28,6 +31,13 @@ setup_weechat() {
   weechat -ap -r "/secure passphrase $( pass show perso/weechat )" -r '/quit'
 }
 
+restore_backups() {
+  # only essential items
+  backup -r "$HDD" laptop bookmarks
+  backup -r "$HDD" laptop notes
+  backup -r "$HDD" laptop todo
+}
+
 if [ "$( id -un )" != 'damien' ]; then
   echo 'The script must be run as damien' >&2
   exit 1
@@ -36,4 +46,5 @@ fi
 setup_home_dirs &&
 setup_pass &&
 setup_gnupg &&
-setup_weechat
+setup_weechat &&
+restore_backups
