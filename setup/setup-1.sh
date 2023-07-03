@@ -112,7 +112,7 @@ install_system_config() {
   done
   printf '\n'
 
-  pacstrap -K /mnt "system-config-${SYSTEM_CONFIG}" --overwrite '*'
+  pacstrap -K -i /mnt "system-config-${SYSTEM_CONFIG}" --overwrite '*'
 
   # we set the packages password on the end system while we can
   sed -i "s/{PASSWORD}/${PKG_PWD}/" /mnt/etc/pacman.d/chestnut
