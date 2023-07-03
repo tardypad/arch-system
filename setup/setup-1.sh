@@ -175,7 +175,7 @@ configure_users() {
 configure_bootloader() {
   LUKS_PARTITION_UUID="$( blkid -s UUID -o value "${LUKS_PARTITION}" )"
 
-  sed -e "s|^GRUB_CMDLINE_LINUX=.*|GRUB_CMDLINE_LINUX=cryptdevice=UUID=${LUKS_PARTITION_UUID}:cryptlvm root=/dev/vg/root|" \
+  sed -e "s|^GRUB_CMDLINE_LINUX=.*|GRUB_CMDLINE_LINUX=\"cryptdevice=UUID=${LUKS_PARTITION_UUID}:cryptlvm root=/dev/vg/root\"|" \
       -e 's/^GRUB_TIMEOUT=.*/GRUB_TIMEOUT=3/' \
       -e 's/^GRUB_TIMEOUT_STYLE=.*/GRUB_TIMEOUT_STYLE=hidden/' \
       -i /mnt/etc/default/grub
