@@ -45,7 +45,7 @@ prepare_device() {
 
   DEVICE="/dev/${DEVICE}"
 
-  printf 'Confirm installation on device %s' "${DEVICE}"
+  printf 'Confirm installation on device %s\n' "${DEVICE}"
   read -r
 
   sgdisk -Z "${DEVICE}"
@@ -89,6 +89,7 @@ install_system_config() {
     printf 'Enter pkgs.tardypad.me HTTP password: '
     read -r PKG_PWD
   done
+  printf '\n'
 
   printf 'Refresh packages database\n'
   cat >> /etc/pacman.conf <<- EOF
@@ -108,6 +109,7 @@ install_system_config() {
     printf 'Enter system config: '
     read -r SYSTEM_CONFIG
   done
+  printf '\n'
 
   pacstrap -K /mnt "system-config-${SYSTEM_CONFIG}" --override '*'
 
@@ -142,6 +144,7 @@ configure_hostname() {
     printf 'Enter hostname: '
     read -r HOSTNAME
   done
+  printf '\n'
 
   echo "${HOSTNAME}" > /mnt/etc/hostname
 
