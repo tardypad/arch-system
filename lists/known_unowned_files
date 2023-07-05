@@ -104,6 +104,9 @@
 /etc/lvm/cache
 
 # lxd
+/var/lib/lxcfs/cgroup
+/var/lib/lxcfs/proc
+/var/lib/lxcfs/sys
 /var/lib/lxd
 /var/lib/misc/dnsmasq.*.leases
 
