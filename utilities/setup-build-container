@@ -4,6 +4,11 @@
 
 CONTAINER_NAME='arch-builds'
 
+if ! systemctl is-active --quiet lxd.service; then
+  echo 'LXD service is not running'
+  exit 1
+fi
+
 lxc launch "images:archlinux" "${CONTAINER_NAME}"
 
 # wait for network
