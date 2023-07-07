@@ -1,6 +1,6 @@
 # Arch system
 
-Personal [Arch Linux](https://www.archlinux.org/) system management
+Personal [Arch Linux](https://www.archlinux.org/) system management for my laptop
 
 - bin: scripts to manage system and packages
 - builds: custom packages builds
