@@ -129,9 +129,10 @@ generate_fstab() {
   read -r
 }
 
-configure_timezone() {
+configure_time() {
   arch-chroot /mnt ln -sf "/usr/share/zoneinfo/${TIMEZONE}" /etc/localtime
   arch-chroot /mnt hwclock --systohc
+  arch-chroot /mnt timedatectl set-ntp true
 }
 
 configure_locale() {
@@ -218,7 +219,7 @@ update_clock &&
 prepare_device &&
 install_system_config &&
 generate_fstab &&
-configure_timezone &&
+configure_time &&
 configure_locale &&
 configure_hostname &&
 configure_initramfs &&
