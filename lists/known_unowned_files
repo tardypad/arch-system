@@ -168,6 +168,7 @@
 /var/lib/systemd/backlight
 /var/lib/systemd/catalog
 /var/lib/systemd/coredump
+/var/lib/systemd/ephemeral-trees
 /var/lib/systemd/linger
 /var/lib/systemd/pstore
 /var/lib/systemd/random-seed
