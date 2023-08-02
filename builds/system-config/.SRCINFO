@@ -1,6 +1,6 @@
 pkgbase = system-config
 	pkgdesc = System configurations
-	pkgver = 232
+	pkgver = 233
 	pkgrel = 1
 	url = https://sr.ht/~tardypad/arch-system
 	install = system-config.install
@@ -171,6 +171,8 @@ pkgname = system-config
 	depends = adobe-source-code-pro-fonts
 	depends = adobe-source-sans-fonts
 	depends = adobe-source-serif-fonts
+	depends = noto-fonts
+	depends = noto-fonts-cjk
 	depends = wireplumber
 	depends = xdg-desktop-portal-wlr
 	depends = lzip

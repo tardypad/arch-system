@@ -1,5 +1,5 @@
 pkgname=system-config
-pkgver=232
+pkgver=233
 pkgrel=1
 pkgdesc='System configurations'
 url='https://sr.ht/~tardypad/arch-system'
@@ -218,6 +218,8 @@ package() {
     adobe-source-code-pro-fonts
     adobe-source-sans-fonts
     adobe-source-serif-fonts
+    noto-fonts
+    noto-fonts-cjk
   )
 
   # screen sharing
