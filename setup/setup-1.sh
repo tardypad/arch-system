@@ -214,6 +214,10 @@ enable_services() {
   arch-chroot /mnt systemctl enable pcscd.service
 }
 
+unmount() {
+  umount -R /mnt
+}
+
 update_clock &&
 prepare_device &&
 install_system_config &&
@@ -225,4 +229,5 @@ configure_initramfs &&
 configure_users &&
 configure_bootloader &&
 configure_mount_devices &&
-enable_services
+enable_services &&
+unmount
