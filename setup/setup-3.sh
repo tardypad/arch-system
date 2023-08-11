@@ -16,10 +16,15 @@ configure_proxy() {
   chown -R damien:damien /home/damien/.mitmproxy
 }
 
+configure_ntp() {
+  timedatectl set-ntp true
+}
+
 if [ "$( id -un )" != 'root' ]; then
   echo 'The script must be run as root' >&2
   exit 1
 fi
 
 configure_lxd &&
-configure_proxy
+configure_proxy &&
+configure_ntp

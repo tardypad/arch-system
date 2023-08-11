@@ -132,7 +132,6 @@ generate_fstab() {
 configure_time() {
   arch-chroot /mnt ln -sf "/usr/share/zoneinfo/${TIMEZONE}" /etc/localtime
   arch-chroot /mnt hwclock --systohc
-  arch-chroot /mnt timedatectl set-ntp true
 }
 
 configure_locale() {
