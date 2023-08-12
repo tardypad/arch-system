@@ -1,5 +1,6 @@
 #!/bin/sh
 
+# optional parameter
 # need to have HDD containing backup mounted
 HDD="$1"
 
@@ -32,6 +33,10 @@ setup_weechat() {
 }
 
 restore_backups() {
+  if [ -z "${HDD}" ]; then
+    return
+  fi
+
   # only essential items
   backup -r "$HDD" laptop bookmarks
   backup -r "$HDD" laptop notes

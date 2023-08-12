@@ -30,7 +30,7 @@ curl -s https://git.sr.ht/~tardypad/arch-system/blob/master/setup/setup-1.sh -o 
 script -c 'sh setup-1.sh' install.log
 
 # after first login as user
-# with HDD=hdd1 or HDD=hdd2
+# with HDD=hdd1 or HDD=hdd2 if we need to restore data, otherwise leave empty
 curl -s https://git.sr.ht/~tardypad/arch-system/blob/master/setup/setup-2.sh -o setup-2.sh
 sh setup-2.sh $HDD
 curl -s https://git.sr.ht/~tardypad/arch-system/blob/master/setup/setup-3.sh -o setup-3.sh
