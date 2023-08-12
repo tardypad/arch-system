@@ -1,5 +1,5 @@
 pkgname=system-config
-pkgver=234
+pkgver=235
 pkgrel=1
 pkgdesc='System configurations'
 url='https://sr.ht/~tardypad/arch-system'
@@ -107,7 +107,6 @@ package() {
   depends+=(
     fzf-tab-git
     vim-ale
-    vim-go
     vim-goyo-git
     vim-gutentags-git
     vim-nerdcommenter

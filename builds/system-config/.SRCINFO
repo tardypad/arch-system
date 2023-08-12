@@ -1,6 +1,6 @@
 pkgbase = system-config
 	pkgdesc = System configurations
-	pkgver = 234
+	pkgver = 235
 	pkgrel = 1
 	url = https://sr.ht/~tardypad/arch-system
 	install = system-config.install
@@ -88,7 +88,6 @@ pkgname = system-config
 	depends = zsh
 	depends = fzf-tab-git
 	depends = vim-ale
-	depends = vim-go
 	depends = vim-goyo-git
 	depends = vim-gutentags-git
 	depends = vim-nerdcommenter
