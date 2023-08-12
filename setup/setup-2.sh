@@ -26,6 +26,9 @@ setup_gnupg() {
   curl -sL https://tardypad.me/public_key.txt | gpg --import -
   GPG_PUB_KEY_FINGERPRINT="$( gpg --list-keys --with-colons damien@tardypad.me | awk -F: '/^pub:/ {print $5}' )"
   printf '5\ny\n' | gpg --command-fd 0 --edit-key "${GPG_PUB_KEY_FINGERPRINT}" trust
+
+  #HACK: Secret key from the card is not immediately available, reading its status seems to do the trick
+  gpg --card-status
 }
 
 setup_weechat() {
