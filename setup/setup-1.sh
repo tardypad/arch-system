@@ -10,7 +10,7 @@
 # - use LVM on LUKS with unencrypted boot
 
 # Values that should be mostly fixed
-LOCALE='en_US.UTF-8'
+LOCALE='en_GB.UTF-8'
 TIMEZONE='Europe/Madrid'
 BOOT_SIZE='300M'
 SWAP_SIZE='2G'
