@@ -1,5 +1,5 @@
 pkgname=system-config
-pkgver=238
+pkgver=239
 pkgrel=1
 pkgdesc='System configurations'
 url='https://sr.ht/~tardypad/arch-system'
@@ -68,6 +68,7 @@ package() {
     mpc
     mpd
     mpv
+    neovim
     networkmanager
     opendoas
     openssh
