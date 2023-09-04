@@ -1,6 +1,6 @@
 pkgname=system-config
 pkgver=241
-pkgrel=1
+pkgrel=2
 pkgdesc='System configurations'
 url='https://sr.ht/~tardypad/arch-system'
 arch=('any')
@@ -92,7 +92,6 @@ package() {
     tmux-xpanes
     translate-shell
     vdirsyncer
-    vim
     w3m
     weechat
     wf-recorder
@@ -212,7 +211,8 @@ package() {
     python-adblock
     qpdf
     tree
-    vi # used as backup editor
+    vi
+    vim
     yt-dlp
   )
 
