@@ -203,6 +203,7 @@ configure_mount_devices() {
 enable_services() {
   arch-chroot /mnt systemctl enable NetworkManager.service
   arch-chroot /mnt systemctl enable bluetooth.service
+  arch-chroot /mnt systemctl enable tlp.service
 
   # packages cache cleaning
   arch-chroot /mnt systemctl enable paccache.timer
