@@ -1,6 +1,6 @@
 pkgbase = system-config
 	pkgdesc = System configurations
-	pkgver = 240
+	pkgver = 241
 	pkgrel = 1
 	url = https://sr.ht/~tardypad/arch-system
 	install = system-config.install
@@ -122,6 +122,7 @@ pkgname = system-config
 	depends = ntfs-3g
 	depends = pipewire-pulse
 	depends = s-nail
+	depends = tlp
 	depends = usbutils
 	depends = inetutils
 	depends = ldns

@@ -1,5 +1,5 @@
 pkgname=system-config
-pkgver=240
+pkgver=241
 pkgrel=1
 pkgdesc='System configurations'
 url='https://sr.ht/~tardypad/arch-system'
@@ -145,6 +145,7 @@ package() {
     ntfs-3g
     pipewire-pulse
     s-nail
+    tlp
     usbutils
   )
 
