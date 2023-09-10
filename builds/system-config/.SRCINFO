@@ -1,6 +1,6 @@
 pkgbase = system-config
 	pkgdesc = System configurations
-	pkgver = 241
+	pkgver = 242
 	pkgrel = 2
 	url = https://sr.ht/~tardypad/arch-system
 	install = system-config.install
@@ -87,6 +87,7 @@ pkgname = system-config
 	depends = zathura
 	depends = zsh
 	depends = fzf-tab-git
+	depends = neovim-lspconfig-git
 	depends = python-pynvim
 	depends = vim-ale
 	depends = vim-goyo-git

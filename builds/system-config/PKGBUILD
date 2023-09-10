@@ -1,5 +1,5 @@
 pkgname=system-config
-pkgver=241
+pkgver=242
 pkgrel=2
 pkgdesc='System configurations'
 url='https://sr.ht/~tardypad/arch-system'
@@ -106,6 +106,7 @@ package() {
   # plugins
   depends+=(
     fzf-tab-git
+    neovim-lspconfig-git
     python-pynvim # for usage of UltiSnips plugin in neovim
     vim-ale
     vim-goyo-git
