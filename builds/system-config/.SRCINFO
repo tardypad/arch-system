@@ -1,6 +1,6 @@
 pkgbase = system-config
 	pkgdesc = System configurations
-	pkgver = 243
+	pkgver = 244
 	pkgrel = 2
 	url = https://sr.ht/~tardypad/arch-system
 	install = system-config.install
@@ -59,6 +59,7 @@ pkgname = system-config
 	depends = openssh
 	depends = otf-font-awesome
 	depends = pass
+	depends = poweralertd-git
 	depends = pulsemixer
 	depends = pv
 	depends = qrencode

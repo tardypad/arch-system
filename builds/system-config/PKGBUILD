@@ -1,5 +1,5 @@
 pkgname=system-config
-pkgver=243
+pkgver=244
 pkgrel=2
 pkgdesc='System configurations'
 url='https://sr.ht/~tardypad/arch-system'
@@ -74,6 +74,7 @@ package() {
     openssh
     otf-font-awesome
     pass
+    poweralertd-git
     pulsemixer
     pv
     qrencode
