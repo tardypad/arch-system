@@ -1,7 +1,7 @@
 pkgbase = system-config
 	pkgdesc = System configurations
-	pkgver = 244
-	pkgrel = 2
+	pkgver = 245
+	pkgrel = 1
 	url = https://sr.ht/~tardypad/arch-system
 	install = system-config.install
 	arch = any
@@ -77,6 +77,7 @@ pkgname = system-config
 	depends = tmux
 	depends = tmux-xpanes
 	depends = translate-shell
+	depends = upower
 	depends = vdirsyncer
 	depends = w3m
 	depends = weechat
