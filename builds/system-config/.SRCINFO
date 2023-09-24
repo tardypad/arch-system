@@ -1,6 +1,6 @@
 pkgbase = system-config
 	pkgdesc = System configurations
-	pkgver = 249
+	pkgver = 250
 	pkgrel = 1
 	url = https://sr.ht/~tardypad/arch-system
 	install = system-config.install
@@ -92,6 +92,7 @@ pkgname = system-config
 	depends = neovim-formatter-git
 	depends = neovim-lint-git
 	depends = neovim-lspconfig-git
+	depends = neovim-luasnip-git
 	depends = vim-goyo-git
 	depends = vim-gutentags-git
 	depends = vim-nerdcommenter
