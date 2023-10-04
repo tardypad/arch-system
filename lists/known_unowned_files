@@ -193,6 +193,9 @@
 # update-mime-database
 /usr/share/mime
 
+# upower
+/var/lib/upower/history-*
+
 # vim
 /usr/share/vim/vimfiles/doc/tags
 
