@@ -160,6 +160,7 @@
 /etc/machine-id
 /etc/systemd/system/*
 /etc/systemd/user/*
+/etc/vconsole.conf
 /etc/.updated
 /usr/lib/udev/hwdb.bin
 /var/lib/machines
