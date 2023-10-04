@@ -26,3 +26,4 @@
 
 # misc
 /etc/resolv.conf
+/etc/cups/printers.conf
