@@ -1,6 +1,6 @@
 pkgbase = system-config
 	pkgdesc = System configurations
-	pkgver = 251
+	pkgver = 252
 	pkgrel = 1
 	url = https://sr.ht/~tardypad/arch-system
 	install = system-config.install
@@ -162,7 +162,6 @@ pkgname = system-config
 	depends = libreoffice-fresh
 	depends = xorg-xwayland
 	depends = asciinema
-	depends = asciitosvg-git
 	depends = bc
 	depends = dotfiles-git
 	depends = fd
