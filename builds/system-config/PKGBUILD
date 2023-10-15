@@ -1,5 +1,5 @@
 pkgname=system-config
-pkgver=253
+pkgver=254
 pkgrel=1
 pkgdesc='System configurations'
 url='https://sr.ht/~tardypad/arch-system'
@@ -60,7 +60,6 @@ package() {
     khard
     less
     libnotify
-    libpulse
     libqalculate
     libxml2
     light
@@ -75,6 +74,7 @@ package() {
     openssh
     otf-font-awesome
     pass
+    pipewire-audio
     poweralertd-git
     pulsemixer
     pv
@@ -98,6 +98,7 @@ package() {
     w3m
     weechat
     wf-recorder
+    wireplumber
     wl-clipboard
     xdg-utils
     ydotool
@@ -221,6 +222,7 @@ package() {
     tree
     vi
     vim
+    xdg-desktop-portal-wlr
     yt-dlp
   )
 
@@ -232,12 +234,6 @@ package() {
     noto-fonts
     noto-fonts-cjk
     noto-fonts-emoji
-  )
-
-  # screen sharing
-  depends+=(
-    wireplumber
-    xdg-desktop-portal-wlr
   )
 
   # extra archive formats
