@@ -1,6 +1,6 @@
 pkgbase = system-config
 	pkgdesc = System configurations
-	pkgver = 252
+	pkgver = 253
 	pkgrel = 1
 	url = https://sr.ht/~tardypad/arch-system
 	install = system-config.install
@@ -44,6 +44,7 @@ pkgname = system-config
 	depends = jq
 	depends = khard
 	depends = less
+	depends = libnotify
 	depends = libpulse
 	depends = libqalculate
 	depends = libxml2

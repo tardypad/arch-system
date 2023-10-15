@@ -1,5 +1,5 @@
 pkgname=system-config
-pkgver=252
+pkgver=253
 pkgrel=1
 pkgdesc='System configurations'
 url='https://sr.ht/~tardypad/arch-system'
@@ -59,6 +59,7 @@ package() {
     jq
     khard
     less
+    libnotify
     libpulse
     libqalculate
     libxml2
