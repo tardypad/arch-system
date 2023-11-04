@@ -9,8 +9,5 @@ list_manual_updates() {
 post_install() {
   useradd -U damien 2> /dev/null
 
-  install -dm0755 -o damien -g damien /var/log/sway
-  install -Dm0644 -o damien -g damien /dev/null /var/log/sway/sway.log
-
   list_manual_updates
 }
