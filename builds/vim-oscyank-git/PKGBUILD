@@ -1,5 +1,5 @@
 pkgname=vim-oscyank-git
-pkgver=r78.74f5ed9
+pkgver=r79.7250d51
 pkgrel=1
 pkgdesc="A Vim plugin copy text to system clipboard"
 arch=("any")
