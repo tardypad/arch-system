@@ -1,5 +1,5 @@
 pkgname=neovim-formatter-git
-pkgver=r151.34dcdfa
+pkgver=r174.cb4778b
 pkgrel=1
 pkgdesc="A format runner for Neovim"
 arch=("any")
