@@ -1,5 +1,5 @@
 pkgname=system-config
-pkgver=257
+pkgver=258
 pkgrel=1
 pkgdesc='System configurations'
 url='https://sr.ht/~tardypad/arch-system'
@@ -186,6 +186,7 @@ package() {
     patch
     pkgconf
     shellcheck-bin
+    valgrind
     which
   )
 
