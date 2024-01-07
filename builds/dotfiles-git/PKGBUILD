@@ -1,6 +1,6 @@
 pkgname=dotfiles-git
 pkgver=r3542.97884839
-pkgrel=1
+pkgrel=2
 pkgdesc="My dotfiles"
 arch=('any')
 url="https://sr.ht/~tardypad/dotfiles/"
@@ -15,6 +15,10 @@ makedepends=(
   'git'
   'openssh'
   'scdoc'
+)
+
+backup=(
+  home/damien/.config/weechat/sec.conf
 )
 
 install=dotfiles-git.install
