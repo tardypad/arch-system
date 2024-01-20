@@ -1,6 +1,6 @@
 pkgbase = system-config
 	pkgdesc = System configurations
-	pkgver = 259
+	pkgver = 260
 	pkgrel = 1
 	url = https://sr.ht/~tardypad/arch-system
 	install = system-config.install
@@ -157,6 +157,8 @@ pkgname = system-config
 	depends = shellcheck-bin
 	depends = valgrind
 	depends = which
+	depends = cairo-docs
+	depends = pango-docs
 	depends = wayland-docs
 	depends = wayland-protocols
 	depends = chromium

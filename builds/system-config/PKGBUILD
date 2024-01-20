@@ -1,5 +1,5 @@
 pkgname=system-config
-pkgver=259
+pkgver=260
 pkgrel=1
 pkgdesc='System configurations'
 url='https://sr.ht/~tardypad/arch-system'
@@ -192,6 +192,8 @@ package() {
 
   # projects
   depends+=(
+    cairo-docs
+    pango-docs
     wayland-docs
     wayland-protocols
   )
