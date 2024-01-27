@@ -1,5 +1,5 @@
 pkgname=system-config
-pkgver=260
+pkgver=261
 pkgrel=1
 pkgdesc='System configurations'
 url='https://sr.ht/~tardypad/arch-system'
@@ -35,7 +35,6 @@ package() {
     aerc
     aria2
     bat
-    bemenu-wayland
     bluez-tools
     bluez-utils
     catimg
@@ -100,6 +99,7 @@ package() {
     wf-recorder
     wireplumber
     wl-clipboard
+    wmenu
     xdg-utils
     ydotool
     yubikey-manager
