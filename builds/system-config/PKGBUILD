@@ -1,5 +1,5 @@
 pkgname=system-config
-pkgver=261
+pkgver=262
 pkgrel=1
 pkgdesc='System configurations'
 url='https://sr.ht/~tardypad/arch-system'
@@ -91,6 +91,7 @@ package() {
     swaylock
     tmux
     tmux-xpanes
+    tofi
     translate-shell
     upower
     vdirsyncer
@@ -99,7 +100,6 @@ package() {
     wf-recorder
     wireplumber
     wl-clipboard
-    wmenu
     xdg-utils
     ydotool
     yubikey-manager
