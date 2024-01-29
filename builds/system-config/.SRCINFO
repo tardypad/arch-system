@@ -1,6 +1,6 @@
 pkgbase = system-config
 	pkgdesc = System configurations
-	pkgver = 262
+	pkgver = 263
 	pkgrel = 1
 	url = https://sr.ht/~tardypad/arch-system
 	install = system-config.install
@@ -20,6 +20,7 @@ pkgname = system-config
 	depends = aerc
 	depends = aria2
 	depends = bat
+	depends = bluez-obex
 	depends = bluez-tools
 	depends = bluez-utils
 	depends = catimg
