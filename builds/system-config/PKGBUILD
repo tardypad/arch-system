@@ -1,5 +1,5 @@
 pkgname=system-config
-pkgver=263
+pkgver=264
 pkgrel=1
 pkgdesc='System configurations'
 url='https://sr.ht/~tardypad/arch-system'
@@ -185,6 +185,7 @@ package() {
     meson
     ninja
     patch
+    perf
     pkgconf
     shellcheck-bin
     valgrind

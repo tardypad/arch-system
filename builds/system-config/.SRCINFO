@@ -1,6 +1,6 @@
 pkgbase = system-config
 	pkgdesc = System configurations
-	pkgver = 263
+	pkgver = 264
 	pkgrel = 1
 	url = https://sr.ht/~tardypad/arch-system
 	install = system-config.install
@@ -154,6 +154,7 @@ pkgname = system-config
 	depends = meson
 	depends = ninja
 	depends = patch
+	depends = perf
 	depends = pkgconf
 	depends = shellcheck-bin
 	depends = valgrind
