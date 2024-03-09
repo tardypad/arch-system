@@ -1,6 +1,6 @@
 pkgbase = system-config
 	pkgdesc = System configurations
-	pkgver = 264
+	pkgver = 265
 	pkgrel = 1
 	url = https://sr.ht/~tardypad/arch-system
 	install = system-config.install
@@ -147,6 +147,7 @@ pkgname = system-config
 	depends = bison
 	depends = diffutils
 	depends = fakeroot
+	depends = flamegraph
 	depends = gcc
 	depends = go
 	depends = gopls

@@ -1,5 +1,5 @@
 pkgname=system-config
-pkgver=264
+pkgver=265
 pkgrel=1
 pkgdesc='System configurations'
 url='https://sr.ht/~tardypad/arch-system'
@@ -178,6 +178,7 @@ package() {
     bison
     diffutils
     fakeroot
+    flamegraph
     gcc
     go
     gopls
