@@ -1,6 +1,6 @@
 pkgname=neovim-cmp-tags-git
 pkgver=r21.30bdc2e
-pkgrel=1
+pkgrel=2
 pkgdesc="Tags completion source for nvim-cmp"
 arch=("any")
 url="https://github.com/quangnguyen30192/cmp-nvim-tags"
@@ -28,6 +28,6 @@ pkgver() {
 
 package() {
   cd cmp-nvim-tags
-  find after lua -type f -exec install -D -m644 '{}' "$pkgdir/usr/share/nvim/runtime/pack/dist/start/$pkgname/{}" \;
+  find after lua -type f -exec install -D -m644 '{}' "${pkgdir}/usr/share/nvim/site/pack/dist/start/${pkgname}/{}" \;
   install -D -m644 LICENSE "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
 }
