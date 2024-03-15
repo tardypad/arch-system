@@ -11,3 +11,4 @@ pkgbase = neovim-cmp-tags-git
 	sha512sums = SKIP
 
 pkgname = neovim-cmp-tags-git
+	depends = neovim
