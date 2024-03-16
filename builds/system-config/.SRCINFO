@@ -1,6 +1,6 @@
 pkgbase = system-config
 	pkgdesc = System configurations
-	pkgver = 266
+	pkgver = 267
 	pkgrel = 1
 	url = https://sr.ht/~tardypad/arch-system
 	install = system-config.install
@@ -87,7 +87,6 @@ pkgname = system-config
 	depends = wireplumber
 	depends = wl-clipboard
 	depends = xdg-utils
-	depends = ydotool
 	depends = yubikey-manager
 	depends = zathura
 	depends = zsh

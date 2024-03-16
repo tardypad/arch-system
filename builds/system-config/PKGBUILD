@@ -1,5 +1,5 @@
 pkgname=system-config
-pkgver=266
+pkgver=267
 pkgrel=1
 pkgdesc='System configurations'
 url='https://sr.ht/~tardypad/arch-system'
@@ -102,7 +102,6 @@ package() {
     wireplumber
     wl-clipboard
     xdg-utils
-    ydotool
     yubikey-manager
     zathura
     zsh
