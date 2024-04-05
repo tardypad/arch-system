@@ -1,5 +1,5 @@
 pkgname=wee-slack-git
-pkgver=2.10.2.r368.gedaad8b
+pkgver=2.10.2.r379.g0b5069e
 pkgrel=1
 pkgdesc='A WeeChat plugin for Slack'
 url='https://github.com/wee-slack/wee-slack/'
