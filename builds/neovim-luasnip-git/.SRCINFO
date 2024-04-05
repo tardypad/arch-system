@@ -1,6 +1,6 @@
 pkgbase = neovim-luasnip-git
 	pkgdesc = Snippet engine for Neovim
-	pkgver = 2.2.0.r25.ga7a4b46
+	pkgver = 2.2.0.r38.gbe7be2c
 	pkgrel = 1
 	url = https://github.com/L3MON4D3/LuaSnip
 	arch = any
