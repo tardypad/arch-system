@@ -157,7 +157,7 @@ configure_hostname() {
 }
 
 configure_initramfs() {
-  sed -i 's/^HOOKS=.*/HOOKS=(base udev autodetect microcode keyboard keymap consolefont modconf block encrypt lvm2 filesystems fsck)/' /mnt/etc/mkinitcpio.conf
+  sed -i 's/^HOOKS=.*/HOOKS=(base udev autodetect microcode keyboard modconf block encrypt lvm2 filesystems fsck)/' /mnt/etc/mkinitcpio.conf
   arch-chroot /mnt mkinitcpio -P
 }
 
