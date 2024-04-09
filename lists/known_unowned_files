@@ -69,6 +69,7 @@
 
 # gtk
 /usr/lib/gtk-*/*/immodules.cache
+/usr/lib/gtk-*/*/giomodule.cache
 
 # hicolor-icon-theme
 /usr/share/icons/*/icon-theme.cache
