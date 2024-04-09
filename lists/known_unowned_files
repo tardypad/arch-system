@@ -120,6 +120,9 @@
 # mysql
 /var/lib/mysql
 
+# neovim
+/usr/share/nvim/site/pack/dist/start/*/doc/tags
+
 # networkmanager
 /etc/NetworkManager/system-connections/*.nmconnection
 /var/lib/NetworkManager/NetworkManager-intern.conf
