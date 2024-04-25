@@ -1,5 +1,5 @@
 pkgname=system-config
-pkgver=268
+pkgver=269
 pkgrel=1
 pkgdesc='System configurations'
 url='https://sr.ht/~tardypad/arch-system'
@@ -221,6 +221,7 @@ package() {
     go-yq
     gron-bin
     hyperfine
+    libsixel
     ncdu
     oath-toolkit
     pacman-contrib # needed for paccache service
