@@ -1,6 +1,6 @@
 pkgbase = neovim-lspconfig-git
 	pkgdesc = Quickstart configurations for the Neovim LSP client
-	pkgver = 0.1.7.r181.g96e57110
+	pkgver = 0.1.7.r228.gaa5f4f4e
 	pkgrel = 1
 	url = https://github.com/neovim/nvim-lspconfig
 	arch = any
