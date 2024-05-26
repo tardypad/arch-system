@@ -1,5 +1,5 @@
 pkgname=system-config
-pkgver=270
+pkgver=271
 pkgrel=1
 pkgdesc='System configurations'
 url='https://sr.ht/~tardypad/arch-system'
@@ -122,7 +122,6 @@ package() {
     vim-goyo-git
     vim-gutentags-git
     vim-nerdcommenter
-    vim-oscyank-git
     vim-repeat
     vim-sayonara-git
     vim-surround
