@@ -1,5 +1,5 @@
 pkgname=neovim-cmp-tags-git
-pkgver=r23.3580b6c
+pkgver=r25.e126a09
 pkgrel=1
 pkgdesc="Tags completion source for nvim-cmp"
 arch=("any")

@@ -1,5 +1,5 @@
 pkgname=neovim-cmp-nvim-lsp-git
-pkgver=r37.5af77f5
+pkgver=r39.39e2eda
 pkgrel=1
 pkgdesc="neovim-cmp source for Neovim's builtin LSP client"
 arch=('any')

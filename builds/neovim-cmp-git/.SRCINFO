@@ -1,6 +1,6 @@
 pkgbase = neovim-cmp-git
 	pkgdesc = Autocompletion plugin for Neovim
-	pkgver = 0.0.1.r181.g8f3c541
+	pkgver = 0.0.1.r187.g5260e5e
 	pkgrel = 1
 	url = https://github.com/hrsh7th/nvim-cmp
 	arch = any

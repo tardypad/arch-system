@@ -1,6 +1,6 @@
 pkgbase = neovim-cmp-tags-git
 	pkgdesc = Tags completion source for nvim-cmp
-	pkgver = r23.3580b6c
+	pkgver = r25.e126a09
 	pkgrel = 1
 	url = https://github.com/quangnguyen30192/cmp-nvim-tags
 	arch = any
