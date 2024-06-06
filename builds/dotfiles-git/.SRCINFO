@@ -1,6 +1,6 @@
 pkgbase = dotfiles-git
 	pkgdesc = My dotfiles
-	pkgver = r3621.7700f854
+	pkgver = r3635.f365a3aa
 	pkgrel = 1
 	url = https://sr.ht/~tardypad/dotfiles/
 	install = dotfiles-git.install
