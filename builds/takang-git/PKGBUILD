@@ -1,5 +1,5 @@
 pkgname=takang-git
-pkgver=r222.b80a416
+pkgver=r223.f33943e
 pkgrel=1
 pkgdesc='Minimal presentation tool for Wayland'
 url='https://sr.ht/~tardypad/takang/'
