@@ -175,6 +175,7 @@
 /var/lib/systemd/coredump
 /var/lib/systemd/ephemeral-trees
 /var/lib/systemd/linger
+/var/lib/systemd/network
 /var/lib/systemd/pstore
 /var/lib/systemd/random-seed
 /var/lib/systemd/rfkill
