@@ -84,4 +84,13 @@ cat << EOF | lxc exec "${CONTAINER_NAME}" -- /bin/sh
 EOF2
 EOF
 
+# define git default branch to suppress warning during clone
+cat << EOF | lxc exec "${CONTAINER_NAME}" -- /bin/sh
+  cat <<- EOF2 > /home/damien/.gitconfig
+		[init]
+			defaultBranch = main
+EOF2
+  chown -R damien:damien /home/damien/.gitconfig
+EOF
+
 lxc restart "${CONTAINER_NAME}"
