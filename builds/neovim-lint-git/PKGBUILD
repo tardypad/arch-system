@@ -1,5 +1,5 @@
 pkgname=neovim-lint-git
-pkgver=r378.1a3a8d0
+pkgver=r385.efc6fc8
 pkgrel=1
 pkgdesc="Asynchronous linter plugin"
 arch=('any')
