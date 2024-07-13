@@ -1,6 +1,6 @@
 pkgbase = system-config
 	pkgdesc = System configurations
-	pkgver = 271
+	pkgver = 272
 	pkgrel = 1
 	url = https://sr.ht/~tardypad/arch-system
 	install = system-config.install
@@ -23,7 +23,6 @@ pkgname = system-config
 	depends = bluez-obex
 	depends = bluez-tools
 	depends = bluez-utils
-	depends = catimg
 	depends = ctags
 	depends = curl
 	depends = entr
