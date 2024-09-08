@@ -5,6 +5,7 @@
 HDD="$1"
 
 setup_home_dirs() {
+  mkdir -p /home/damien/Archives
   mkdir -p /home/damien/Contacts
   mkdir -p /home/damien/Desktop
   mkdir -p /home/damien/Downloads
