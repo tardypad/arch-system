@@ -1,5 +1,5 @@
 pkgname=neovim-luasnip-git
-pkgver=2.3.0.r49.g45db5ad
+pkgver=2.3.0.r52.ge808bee
 pkgrel=1
 pkgdesc="Snippet engine for Neovim"
 arch=('any')
