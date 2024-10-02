@@ -1,7 +1,7 @@
 pkgname=neovim-cmp-buffer-git
+pkgdesc="neovim-cmp source for buffer words"
 pkgver=r53.3022dbc
 pkgrel=1
-pkgdesc="neovim-cmp source for buffer words"
 arch=('any')
 url="https://github.com/hrsh7th/cmp-buffer"
 license=('MIT')

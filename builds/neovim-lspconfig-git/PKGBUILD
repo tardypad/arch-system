@@ -1,7 +1,7 @@
 pkgname=neovim-lspconfig-git
+pkgdesc="Quickstart configurations for the Neovim LSP client"
 pkgver=1.0.0.r40.g6d25cf12
 pkgrel=1
-pkgdesc="Quickstart configurations for the Neovim LSP client"
 arch=('any')
 url="https://github.com/neovim/nvim-lspconfig"
 license=('Apache')

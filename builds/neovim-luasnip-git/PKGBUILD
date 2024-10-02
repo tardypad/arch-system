@@ -1,7 +1,7 @@
 pkgname=neovim-luasnip-git
+pkgdesc="Snippet engine for Neovim"
 pkgver=2.3.0.r52.ge808bee
 pkgrel=1
-pkgdesc="Snippet engine for Neovim"
 arch=('any')
 url="https://github.com/L3MON4D3/LuaSnip"
 license=('Apache')

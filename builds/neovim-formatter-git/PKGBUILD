@@ -1,7 +1,7 @@
 pkgname=neovim-formatter-git
+pkgdesc="A format runner for Neovim"
 pkgver=r195.b0edd69
 pkgrel=1
-pkgdesc="A format runner for Neovim"
 arch=("any")
 url="https://github.com/mhartington/formatter.nvim"
 license=("MIT")

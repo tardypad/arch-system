@@ -1,7 +1,7 @@
 pkgname=neovim-cmp-tags-git
+pkgdesc="Tags completion source for nvim-cmp"
 pkgver=r25.e126a09
 pkgrel=1
-pkgdesc="Tags completion source for nvim-cmp"
 arch=("any")
 url="https://github.com/quangnguyen30192/cmp-nvim-tags"
 license=("Apache")

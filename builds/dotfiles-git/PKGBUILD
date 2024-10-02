@@ -1,7 +1,7 @@
 pkgname=dotfiles-git
+pkgdesc="My dotfiles"
 pkgver=r3694.bb4a70ca
 pkgrel=1
-pkgdesc="My dotfiles"
 arch=('any')
 url="https://sr.ht/~tardypad/dotfiles/"
 license=('custom')

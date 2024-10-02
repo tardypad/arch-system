@@ -1,7 +1,7 @@
 pkgname=vim-sayonara-git
+pkgdesc="A Vim plugin for sane buffer/window deletion"
 pkgver=r51.75c73f3
 pkgrel=2
-pkgdesc="A Vim plugin for sane buffer/window deletion"
 arch=("any")
 url="https://github.com/mhinz/vim-sayonara"
 license=("MIT")

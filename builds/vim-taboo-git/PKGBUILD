@@ -1,7 +1,7 @@
 pkgname=vim-taboo-git
+pkgdesc="A Vim plugin to manage tabs"
 pkgver=r46.caf9481
 pkgrel=2
-pkgdesc="A Vim plugin to manage tabs"
 arch=("any")
 url="https://github.com/gcmt/taboo.vim"
 license=("MIT")

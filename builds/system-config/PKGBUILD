@@ -1,7 +1,7 @@
 pkgname=system-config
+pkgdesc='System configurations'
 pkgver=274
 pkgrel=1
-pkgdesc='System configurations'
 url='https://sr.ht/~tardypad/arch-system'
 arch=('any')
 license=('custom')

@@ -1,7 +1,7 @@
 pkgname=neovim-lint-git
+pkgdesc="Asynchronous linter plugin"
 pkgver=r416.968a35d
 pkgrel=1
-pkgdesc="Asynchronous linter plugin"
 arch=('any')
 url="https://github.com/mfussenegger/nvim-lint"
 license=('GPL')
