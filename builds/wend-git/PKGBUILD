@@ -3,7 +3,7 @@ pkgdesc='Minimal presentation tool for Wayland'
 pkgver=r225.dc3867f
 pkgrel=1
 url='https://sr.ht/~tardypad/wend/'
-arch=('any')
+arch=('x86_64')
 license=('GPL3')
 
 makedepends=(
