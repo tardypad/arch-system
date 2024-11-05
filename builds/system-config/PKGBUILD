@@ -1,6 +1,6 @@
 pkgname=system-config
 pkgdesc='System configurations'
-pkgver=275
+pkgver=276
 pkgrel=1
 url='https://sr.ht/~tardypad/arch-system'
 arch=('any')
@@ -216,7 +216,6 @@ package() {
     bc
     dotfiles-git
     fd
-    gcr # needed for pinentry-gnome3
     graphviz
     go-yq
     gron-bin
