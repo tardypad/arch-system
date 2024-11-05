@@ -1,6 +1,6 @@
 pkgname=system-config
 pkgdesc='System configurations'
-pkgver=274
+pkgver=275
 pkgrel=1
 url='https://sr.ht/~tardypad/arch-system'
 arch=('any')
@@ -96,6 +96,7 @@ package() {
     upower
     vdirsyncer
     w3m
+    wayprompt
     weechat
     wf-recorder
     wireplumber

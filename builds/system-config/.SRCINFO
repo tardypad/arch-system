@@ -1,6 +1,6 @@
 pkgbase = system-config
 	pkgdesc = System configurations
-	pkgver = 274
+	pkgver = 275
 	pkgrel = 1
 	url = https://sr.ht/~tardypad/arch-system
 	install = system-config.install
@@ -81,6 +81,7 @@ pkgname = system-config
 	depends = upower
 	depends = vdirsyncer
 	depends = w3m
+	depends = wayprompt
 	depends = weechat
 	depends = wf-recorder
 	depends = wireplumber
