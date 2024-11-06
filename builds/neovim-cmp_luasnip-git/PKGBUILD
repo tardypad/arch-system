@@ -1,6 +1,6 @@
 pkgname=neovim-cmp_luasnip-git
 pkgdesc="nvim-cmp source for LuaSnip"
-pkgver=r66.05a9ab2
+pkgver=r68.98d9cb5
 pkgrel=1
 arch=('any')
 url="https://github.com/saadparwaiz1/cmp_luasnip"

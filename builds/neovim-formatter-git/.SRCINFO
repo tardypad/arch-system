@@ -1,6 +1,6 @@
 pkgbase = neovim-formatter-git
 	pkgdesc = A format runner for Neovim
-	pkgver = r195.b0edd69
+	pkgver = r201.eb89a1f
 	pkgrel = 1
 	url = https://github.com/mhartington/formatter.nvim
 	arch = any
