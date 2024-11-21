@@ -1,6 +1,6 @@
 pkgname=system-config
 pkgdesc='System configurations'
-pkgver=276
+pkgver=277
 pkgrel=1
 url='https://sr.ht/~tardypad/arch-system'
 arch=('any')
@@ -214,13 +214,13 @@ package() {
   depends+=(
     asciinema
     bc
+    chafa
     dotfiles-git
     fd
     graphviz
     go-yq
     gron-bin
     hyperfine
-    libsixel
     ncdu
     oath-toolkit
     pacman-contrib # needed for paccache service
