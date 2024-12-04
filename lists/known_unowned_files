@@ -59,6 +59,7 @@
 
 # glibc
 /usr/lib/locale/locale-archive
+/usr/lib/gconv/gconv-modules.cache
 
 # graphviz
 /usr/lib/graphviz/config6
@@ -92,6 +93,7 @@
 /usr/lib/modules/*/modules.softdep
 /usr/lib/modules/*/modules.symbols
 /usr/lib/modules/*/modules.symbols.bin
+/usr/lib/modules/*/modules.weakdep
 
 # lm_sensors
 /etc/conf.d/lm_sensors
@@ -209,5 +211,7 @@
 
 # misc
 /var/log
+/var/lib/lastlog
+/var/lib/libuuid
 /var/cache
 /var/tmp
