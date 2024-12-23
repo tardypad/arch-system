@@ -15,4 +15,11 @@ fakeroot -- pacman -Sy --disable-sandbox -b "${TMP_DIR}" --logfile /dev/null > /
 pacman -Qu -b "${TMP_DIR}" --logfile /dev/null \
   | grep -v '\[ignored\]' \
   | cut -d' ' -f1,2,4 \
+  | while read -r UPDATE; do
+      CUR_VERSION="$(echo "${UPDATE}" | cut -d' ' -f2 | sed 's/\(.*\)-\([^-]*\)$/\1/')"
+      NEW_VERSION="$(echo "${UPDATE}" | cut -d' ' -f3 | sed 's/\(.*\)-\([^-]*\)$/\1/')"
+      if [ "${CUR_VERSION}" != "${NEW_VERSION}" ]; then
+        echo "${UPDATE}";
+      fi
+    done \
   | column -t
