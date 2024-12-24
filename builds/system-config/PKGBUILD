@@ -1,6 +1,6 @@
 pkgname=system-config
 pkgdesc='System configurations'
-pkgver=278
+pkgver=279
 pkgrel=1
 url='https://sr.ht/~tardypad/arch-system'
 arch=('any')
@@ -227,6 +227,7 @@ package() {
     pacman-contrib # needed for paccache service
     python-adblock
     qpdf
+    spacer-bin
     tree
     vi
     vim

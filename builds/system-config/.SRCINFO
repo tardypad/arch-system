@@ -1,6 +1,6 @@
 pkgbase = system-config
 	pkgdesc = System configurations
-	pkgver = 278
+	pkgver = 279
 	pkgrel = 1
 	url = https://sr.ht/~tardypad/arch-system
 	install = system-config.install
@@ -184,6 +184,7 @@ pkgname = system-config
 	depends = pacman-contrib
 	depends = python-adblock
 	depends = qpdf
+	depends = spacer-bin
 	depends = tree
 	depends = vi
 	depends = vim
