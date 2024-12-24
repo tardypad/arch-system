@@ -1,6 +1,6 @@
 pkgbase = system-config
 	pkgdesc = System configurations
-	pkgver = 277
+	pkgver = 278
 	pkgrel = 1
 	url = https://sr.ht/~tardypad/arch-system
 	install = system-config.install
@@ -173,6 +173,7 @@ pkgname = system-config
 	depends = bc
 	depends = chafa
 	depends = dotfiles-git
+	depends = ets-bin
 	depends = fd
 	depends = graphviz
 	depends = go-yq
