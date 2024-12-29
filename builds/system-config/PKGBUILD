@@ -1,6 +1,6 @@
 pkgname=system-config
 pkgdesc='System configurations'
-pkgver=279
+pkgver=280
 pkgrel=1
 url='https://sr.ht/~tardypad/arch-system'
 arch=('any')
@@ -220,7 +220,7 @@ package() {
     fd
     graphviz
     go-yq
-    gron-bin
+    gron
     hyperfine
     ncdu
     oath-toolkit
