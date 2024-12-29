@@ -1,6 +1,6 @@
 pkgbase = system-config
 	pkgdesc = System configurations
-	pkgver = 280
+	pkgver = 281
 	pkgrel = 1
 	url = https://sr.ht/~tardypad/arch-system
 	install = system-config.install
@@ -175,6 +175,7 @@ pkgname = system-config
 	depends = dotfiles-git
 	depends = ets-bin
 	depends = fd
+	depends = frangipanni
 	depends = graphviz
 	depends = go-yq
 	depends = gron

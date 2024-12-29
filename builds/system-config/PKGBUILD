@@ -1,6 +1,6 @@
 pkgname=system-config
 pkgdesc='System configurations'
-pkgver=280
+pkgver=281
 pkgrel=1
 url='https://sr.ht/~tardypad/arch-system'
 arch=('any')
@@ -218,6 +218,7 @@ package() {
     dotfiles-git
     ets-bin
     fd
+    frangipanni
     graphviz
     go-yq
     gron
