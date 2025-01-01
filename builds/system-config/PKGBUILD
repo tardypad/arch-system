@@ -31,6 +31,7 @@ package() {
   )
 
   # dotfiles
+  depends+=( dotfiles-git )
   depends+=(
     aerc
     aria2
@@ -215,7 +216,6 @@ package() {
     asciinema
     bc
     chafa
-    dotfiles-git
     ets-bin
     fd
     frangipanni
