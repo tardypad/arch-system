@@ -1,6 +1,6 @@
 pkgbase = wend-git
 	pkgdesc = Minimal presentation tool for Wayland
-	pkgver = r245.d96cf4f
+	pkgver = r246.02c78fb
 	pkgrel = 1
 	url = https://sr.ht/~tardypad/wend/
 	arch = x86_64
