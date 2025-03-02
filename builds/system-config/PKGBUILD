@@ -1,6 +1,6 @@
 pkgname=system-config
 pkgdesc='System configurations'
-pkgver=281
+pkgver=282
 pkgrel=1
 url='https://sr.ht/~tardypad/arch-system'
 arch=('any')
@@ -44,6 +44,7 @@ package() {
     entr
     fontconfig
     foot
+    fyi
     fzf
     gammastep
     git
@@ -59,7 +60,6 @@ package() {
     jq
     khard
     less
-    libnotify
     libqalculate
     libxml2
     light
