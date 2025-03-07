@@ -1,6 +1,6 @@
 pkgbase = system-config
 	pkgdesc = System configurations
-	pkgver = 282
+	pkgver = 283
 	pkgrel = 1
 	url = https://sr.ht/~tardypad/arch-system
 	install = system-config.install
@@ -181,6 +181,7 @@ pkgname = system-config
 	depends = gron
 	depends = hyperfine
 	depends = ncdu
+	depends = jo
 	depends = oath-toolkit
 	depends = pacman-contrib
 	depends = python-adblock

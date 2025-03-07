@@ -1,6 +1,6 @@
 pkgname=system-config
 pkgdesc='System configurations'
-pkgver=282
+pkgver=283
 pkgrel=1
 url='https://sr.ht/~tardypad/arch-system'
 arch=('any')
@@ -224,6 +224,7 @@ package() {
     gron
     hyperfine
     ncdu
+    jo
     oath-toolkit
     pacman-contrib # needed for paccache service
     python-adblock
