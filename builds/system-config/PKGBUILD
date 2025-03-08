@@ -1,6 +1,6 @@
 pkgname=system-config
 pkgdesc='System configurations'
-pkgver=283
+pkgver=284
 pkgrel=1
 url='https://sr.ht/~tardypad/arch-system'
 arch=('any')
@@ -44,6 +44,7 @@ package() {
     entr
     fontconfig
     foot
+    fuzzel
     fyi
     fzf
     gammastep
@@ -92,7 +93,6 @@ package() {
     swaylock
     tmux
     tmux-xpanes
-    tofi
     translate-shell
     upower
     vdirsyncer
