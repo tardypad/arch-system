@@ -1,6 +1,6 @@
 pkgname=neovim-formatter-git
 pkgdesc="A format runner for Neovim"
-pkgver=r201.eb89a1f
+pkgver=r202.b9d7f85
 pkgrel=1
 arch=("any")
 url="https://github.com/mhartington/formatter.nvim"
