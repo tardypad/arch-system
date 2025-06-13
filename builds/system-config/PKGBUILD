@@ -1,6 +1,6 @@
 pkgname=system-config
 pkgdesc='System configurations'
-pkgver=284
+pkgver=285
 pkgrel=1
 url='https://sr.ht/~tardypad/arch-system'
 arch=('any')
@@ -118,7 +118,6 @@ package() {
     neovim-cmp_luasnip-git
     neovim-formatter-git
     neovim-lint-git
-    neovim-lspconfig-git
     neovim-luasnip-git
     vim-goyo-git
     vim-gutentags-git
