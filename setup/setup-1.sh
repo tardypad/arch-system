@@ -229,3 +229,7 @@ configure_bootloader &&
 configure_mount_devices &&
 enable_services &&
 unmount
+
+printf '\n'
+printf 'Do not forget to remove the linux-firmware package from system-config\n'
+printf 'and instead select only the ones required by the system\n'
