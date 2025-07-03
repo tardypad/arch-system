@@ -1,6 +1,6 @@
 pkgbase = neovim-lint-git
 	pkgdesc = Asynchronous linter plugin
-	pkgver = r473.b47cbb2
+	pkgver = r482.2b0039b
 	pkgrel = 1
 	url = https://github.com/mfussenegger/nvim-lint
 	arch = any
